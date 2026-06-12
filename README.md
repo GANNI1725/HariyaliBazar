@@ -298,7 +298,7 @@ in the publish directory or via `netlify.toml`.
 - **Host Company** — Sweven Incorporate Pvt. Ltd., Butwal, Nepal
 - **College** — Lumbini City College, Tribhuvan University
 - **Images** — [Unsplash](https://unsplash.com)
-- **Inspiration** — Current status of Nepalese Market.
+- **Inspiration** — Current status of Nepalese Market
 
 ---
 
