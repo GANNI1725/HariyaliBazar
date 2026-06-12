@@ -263,18 +263,18 @@ src/
 
 ## Security
 
-Security headers are applied via **Netlify `_headers`** file (production) and a **CSP `<meta>` tag** (defence-in-depth for dev mode).
+Security is enforced via a **CSP `<meta>` tag** in `index.html`:
 
-| Header | Value | Purpose |
-|---|---|---|
-| `Content-Security-Policy` | `default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com` | Blocks XSS |
-| `Strict-Transport-Security` | `max-age=31536000; includeSubDomains; preload` | Forces HTTPS |
-| `X-Frame-Options` | `DENY` | Prevents clickjacking |
-| `X-Content-Type-Options` | `nosniff` | Prevents MIME-sniffing |
-| `Referrer-Policy` | `strict-origin-when-cross-origin` | Limits referrer leakage |
-| `Permissions-Policy` | `camera=(), microphone=(), geolocation=(), payment=()` | Disables unused APIs |
+```
+default-src 'self'; script-src 'self' 'unsafe-inline';
+style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;
+connect-src 'self'; base-uri 'self'; form-action 'self'
+```
 
-**Test:** [`securityheaders.com`](https://securityheaders.com) · `curl -I https://hariyalibazar.netlify.app`
+Additional headers (HSTS, X-Frame-Options, etc.) can be enabled by
+creating a [`_headers`](https://docs.netlify.com/routing/headers/) file
+in the publish directory or via `netlify.toml`.
 
 ---
 
