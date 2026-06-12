@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_io/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_io/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/favicon_io/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HariyaliBazar | किसानसँग जोड्छ, घरसम्म पुर्‍याउँछ।</title>
+    <meta name="description" content="HariyaliBazar — Fresh organic produce sourced directly from Nepal's farms. Vegetables, fruits, lentils, spices, tea and dairy delivered same day in Kathmandu Valley.">
+    <meta name="keywords" content="organic vegetables Nepal, fresh produce Kathmandu, HariyaliBazar, organic food Nepal, local farm produce">
+    <meta property="og:title" content="HariyaliBazar | किसानसँग जोड्छ, घरसम्म पुर्‍याउँछ।">
+    <meta property="og:description" content="Farm-fresh organic produce delivered to your door in Kathmandu Valley.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hariyalibazar.netlify.app">
+    <meta property="og:image" content="https://hariyalibazar.netlify.app/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://hariyalibazar.netlify.app/og-image.png">
+    <meta name="theme-color" content="#2F6B3F">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'">
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('hariyali-theme');
+          var theme = stored;
+          if (theme !== 'dark' && theme !== 'light') {
+            theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=Tiro+Devanagari+Nepal&display=swap" rel="stylesheet">
+  </head>
+  <body class="w-full">
+    <div id="root" class="w-full"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
