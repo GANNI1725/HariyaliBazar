@@ -308,4 +308,4 @@ This project is released under the **MIT License**. See [`LICENSE`](LICENSE) for
 
 ---
 
-*Supporting Nepali Farmers, One Order at a Time 🌿*
+*Connecting Nepal's organic farmers with families who care about what's on their table.*
