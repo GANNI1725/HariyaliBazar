@@ -308,4 +308,4 @@ This project is released under the **MIT License**. See [`LICENSE`](LICENSE) for
 
 ---
 
-*Connecting Nepal's organic farmers with families who care about what's on their table.*
+*Grown in Nepal's soil. Delivered with care. 🌿*
