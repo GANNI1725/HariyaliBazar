@@ -191,6 +191,15 @@ $ npm run lint
 ## Project Structure
 
 ```
+public/
+├── Home-Logo_Section_Pics/     Logo, banners, flag GIF
+├── About_Section/              About page images
+├── Products_Pics/              Product photos (41 items)
+├── Farmers_Pics/               Farmer portraits (6 farmers)
+├── Blog_Section/               Blog post cover images
+├── Footer-Payment-Method/      Payment method icons
+└── assets/favicon_io/          Favicons & manifest
+
 src/
 ├── App.jsx               Router, providers, toast, layout shell
 ├── main.jsx
