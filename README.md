@@ -9,7 +9,7 @@
 A frontend-only organic-produce e-commerce experience crafted for the Nepali market — built end-to-end during a BCA Frontend Internship at **Sweven Incorporate Pvt. Ltd., Butwal**.
 
 **Live demo:** [hariyalibazar.netlify.app](https://hariyalibazar.netlify.app)
-**Repository:** `github.com/ganeshbhandari/hariyali-bazar`
+**Repository:** `github.com/GANNI1725/HariyaliBazar`
 
 ---
 
@@ -30,8 +30,7 @@ $ npm --version
 ## Install
 
 ```bash
-$ git clone https://github.com/ganeshbhandari/hariyali-bazar.git
-$ cd hariyali-bazar
+$ git clone https://github.com/GANNI1725/HariyaliBazar.git
 $ npm install
 ```
 
