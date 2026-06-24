@@ -3,6 +3,7 @@ import { X, Check, Sparkles } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { useCart } from '../../context/CartContext'
 import { useProducts } from '../../context/ProductContext'
+import { lockScroll, unlockScroll } from '../../utils/scrollLock'
 
 const MAX_VEG = 4
 const MAX_FRUIT = 2
@@ -80,13 +81,10 @@ const VeggieBoxModal = ({ isOpen, onClose }) => {
       if (e.key === 'Escape') onClose()
     }
     document.addEventListener('keydown', onKey)
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-    document.body.style.overflow = 'hidden'
-    document.body.style.paddingRight = `${scrollbarWidth}px`
+    lockScroll()
     return () => {
       document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+      unlockScroll()
     }
   }, [isOpen, onClose])
 

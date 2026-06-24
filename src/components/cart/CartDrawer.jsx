@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 import { useCart } from '../../context/CartContext'
 import CartItem from './CartItem'
 import Button from '../shared/Button'
+import { lockScroll, unlockScroll } from '../../utils/scrollLock'
 
 const CartDrawer = () => {
   const { items, isOpen, closeCart, subtotal, totalItems, clearCart } = useCart()
@@ -15,15 +16,11 @@ const CartDrawer = () => {
     const onKey = (e) => e.key === 'Escape' && closeCart()
     document.addEventListener('keydown', onKey)
 
-    // Compensate for scrollbar width so page doesn't shift
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-    document.body.style.overflow = 'hidden'
-    document.body.style.paddingRight = `${scrollbarWidth}px`
+    lockScroll()
 
     return () => {
       document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+      unlockScroll()
     }
   }, [isOpen, closeCart])
 

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Search, X, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useProducts } from '../../context/ProductContext'
+import { lockScroll, unlockScroll } from '../../utils/scrollLock'
 
 const SearchModal = ({ isOpen, onClose }) => {
   const { products } = useProducts()
@@ -17,16 +18,12 @@ const SearchModal = ({ isOpen, onClose }) => {
     }
     document.addEventListener('keydown', onKey)
 
-    // Compensate for scrollbar width so page doesn't shift
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-    document.body.style.overflow = 'hidden'
-    document.body.style.paddingRight = `${scrollbarWidth}px`
+    lockScroll()
 
     const t = setTimeout(() => inputRef.current?.focus(), 50)
     return () => {
       document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+      unlockScroll()
       clearTimeout(t)
     }
   }, [isOpen, onClose])

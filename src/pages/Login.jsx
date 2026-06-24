@@ -88,19 +88,21 @@ const Login = () => {
             <Link to="/signup" className="text-[var(--color-leaf)] font-medium hover:underline">Sign up</Link>
           </p>
 
-          <div className="mt-6 pt-5 border-t border-[var(--color-border)]">
-            <p className="text-xs text-[var(--color-text-secondary)] text-center mb-3">Demo Credentials</p>
-            <div className="space-y-2 text-xs text-[var(--color-text-secondary)]">
-              <div className="flex justify-between items-center px-3 py-1.5 rounded-lg bg-[var(--color-background)]">
-                <span className="font-medium text-[var(--color-forest)]">Admin</span>
-                <span>Ganesh@gmail.com / Admin@123</span>
-              </div>
-              <div className="flex justify-between items-center px-3 py-1.5 rounded-lg bg-[var(--color-background)]">
-                <span className="font-medium text-[var(--color-forest)]">Customer</span>
-                <span>Customer@gmail.com / Customer@123</span>
+          {import.meta.env.DEV && (
+            <div className="mt-6 pt-5 border-t border-[var(--color-border)]">
+              <p className="text-xs text-[var(--color-text-secondary)] text-center mb-3">Demo Credentials (dev only)</p>
+              <div className="space-y-2 text-xs text-[var(--color-text-secondary)]">
+                <div className="flex justify-between items-center px-3 py-1.5 rounded-lg bg-[var(--color-background)]">
+                  <span className="font-medium text-[var(--color-forest)]">Admin</span>
+                  <span>{import.meta.env.VITE_ADMIN_EMAIL || 'Ganesh@gmail.com'} / {import.meta.env.VITE_ADMIN_PASSWORD || 'Admin@123'}</span>
+                </div>
+                <div className="flex justify-between items-center px-3 py-1.5 rounded-lg bg-[var(--color-background)]">
+                  <span className="font-medium text-[var(--color-forest)]">Customer</span>
+                  <span>{import.meta.env.VITE_CUSTOMER_EMAIL || 'Customer@gmail.com'} / {import.meta.env.VITE_CUSTOMER_PASSWORD || 'Customer@123'}</span>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </motion.div>
     </div>

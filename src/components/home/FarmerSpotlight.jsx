@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, MapPin, Calendar, Leaf, Star } from 'lucide-react'
 import { farmers } from '../../data/farmers'
 import SectionHeader from '../shared/SectionHeader'
+import { lockScroll, unlockScroll } from '../../utils/scrollLock'
 
 const FarmerSpotlight = memo(() => {
   const [active, setActive] = useState(null)
@@ -12,15 +13,11 @@ const FarmerSpotlight = memo(() => {
     const onKey = (e) => e.key === 'Escape' && setActive(null)
     document.addEventListener('keydown', onKey)
 
-    // Compensate for scrollbar width so page doesn't shift
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-    document.body.style.overflow = 'hidden'
-    document.body.style.paddingRight = `${scrollbarWidth}px`
+    lockScroll()
 
     return () => {
       document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+      unlockScroll()
     }
   }, [active])
 

@@ -2,8 +2,8 @@ import { createContext, useContext, useState, useEffect, useCallback } from 'rea
 import toast from 'react-hot-toast'
 
 const SEED_USERS = [
-  { id: 'admin-1', name: 'Ganesh Admin', email: 'Ganesh@gmail.com', password: 'Admin@123', role: 'admin', createdAt: new Date().toISOString(), address: '' },
-  { id: 'customer-1', name: 'Customer', email: 'Customer@gmail.com', password: 'Customer@123', role: 'customer', createdAt: new Date().toISOString(), address: 'Butwal, Rupandehi' },
+  { id: 'admin-1', name: import.meta.env.VITE_ADMIN_NAME || 'Ganesh Admin', email: import.meta.env.VITE_ADMIN_EMAIL || 'Ganesh@gmail.com', password: import.meta.env.VITE_ADMIN_PASSWORD || 'Admin@123', role: 'admin', createdAt: new Date().toISOString(), address: '' },
+  { id: 'customer-1', name: import.meta.env.VITE_CUSTOMER_NAME || 'Customer', email: import.meta.env.VITE_CUSTOMER_EMAIL || 'Customer@gmail.com', password: import.meta.env.VITE_CUSTOMER_PASSWORD || 'Customer@123', role: 'customer', createdAt: new Date().toISOString(), address: 'Butwal, Rupandehi' },
 ]
 
 const SEED_ORDERS = [

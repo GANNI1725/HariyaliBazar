@@ -13,6 +13,7 @@ import { useCart } from '../../context/CartContext'
 import { useWishlist } from '../../context/WishlistContext'
 import SearchModal from '../shared/SearchModal'
 import ThemeToggle from '../shared/ThemeToggle'
+import { lockScroll, unlockScroll } from '../../utils/scrollLock'
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -43,17 +44,11 @@ const Navbar = () => {
 
   useEffect(() => {
     if (mobileOpen) {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-      document.body.style.overflow = 'hidden'
-      document.body.style.paddingRight = `${scrollbarWidth}px`
+      lockScroll()
     } else {
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+      unlockScroll()
     }
-    return () => {
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
-    }
+    return () => unlockScroll()
   }, [mobileOpen])
 
   return (

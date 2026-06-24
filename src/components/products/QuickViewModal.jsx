@@ -7,6 +7,7 @@ import { useCart } from '../../context/CartContext'
 import { useWishlist } from '../../context/WishlistContext'
 import Badge from '../shared/Badge'
 import Button from '../shared/Button'
+import { lockScroll, unlockScroll } from '../../utils/scrollLock'
 
 const QuickViewModal = ({ product, onClose }) => {
   const { addItem } = useCart()
@@ -37,16 +38,12 @@ const QuickViewModal = ({ product, onClose }) => {
     }
     document.addEventListener('keydown', onKey)
 
-    // Compensate for scrollbar width so page doesn't shift
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-    document.body.style.overflow = 'hidden'
-    document.body.style.paddingRight = `${scrollbarWidth}px`
+    lockScroll()
 
     const t = setTimeout(() => closeBtnRef.current?.focus(), 30)
     return () => {
       document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+      unlockScroll()
       clearTimeout(t)
     }
   }, [product, onClose])
