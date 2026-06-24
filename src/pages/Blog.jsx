@@ -51,7 +51,7 @@ const Blog = () => {
             No posts in this category yet.
           </p>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filtered.map((p, i) => (
               <motion.article
                 key={p.id}
@@ -62,7 +62,7 @@ const Blog = () => {
                 className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group flex flex-col"
               >
                 <Link to={`/blog/${p.slug}`} className="block">
-                  <div className="aspect-[16/10] overflow-hidden">
+                  <div className="aspect-[4/3] sm:aspect-[16/10] max-h-36 sm:max-h-none overflow-hidden">
                     <img
                       src={p.image}
                       alt={p.title}
@@ -71,7 +71,7 @@ const Blog = () => {
                     />
                   </div>
                 </Link>
-                <div className="p-5 flex-1 flex flex-col">
+                <div className="p-3 sm:p-5 flex-1 flex flex-col">
                   <div className="flex items-center gap-3 text-xs text-[var(--color-text)]/60 mb-3 flex-wrap">
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--color-border)] text-[var(--color-leaf)] font-medium">
                       <Tag size={11} /> {p.categoryLabel}

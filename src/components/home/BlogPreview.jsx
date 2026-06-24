@@ -15,7 +15,7 @@ const BlogPreview = () => {
           subtitle="Glimpses of life from the farms, plus easy recipes for what's in season."
         />
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {latest.map((p, i) => (
             <motion.article
               key={p.id}
@@ -26,7 +26,7 @@ const BlogPreview = () => {
               className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-strong transition-all duration-300 group"
             >
               <Link to={`/blog/${p.slug}`} className="block">
-                <div className="aspect-[16/10] sm:aspect-[16/10] max-h-48 sm:max-h-none overflow-hidden">
+                <div className="aspect-[4/3] sm:aspect-[16/10] max-h-36 sm:max-h-none overflow-hidden">
                   <img
                     src={p.image}
                     alt={p.title}
@@ -34,7 +34,7 @@ const BlogPreview = () => {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <div className="p-5">
+                <div className="p-3 sm:p-5">
                   <div className="flex items-center gap-3 text-xs text-[var(--color-text)]/60 mb-3">
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--color-hover)] text-[var(--color-forest)] font-medium">
                       <Tag size={11} /> {p.categoryLabel}
