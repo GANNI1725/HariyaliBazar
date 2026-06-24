@@ -44,6 +44,7 @@ const JuiceBarSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
+              className={i >= 2 ? 'hidden sm:block' : ''}
             >
               <ProductCard product={j} />
             </motion.div>

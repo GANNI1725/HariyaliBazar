@@ -104,16 +104,16 @@ const Blog = () => {
               </motion.article>
             ))}
           </div>
-          <style>{`
-            @media (max-width: 1023px) {
-              .blog-page-grid > :last-child:nth-child(odd) {
-                grid-column: 1 / -1;
-                justify-self: center;
-                width: calc(50% - 0.5rem);
-              }
-            }
-          `}</style>
         )}
+        <style>{`
+          @media (max-width: 1023px) {
+            .blog-page-grid > :last-child:nth-child(odd) {
+              grid-column: 1 / -1;
+              justify-self: center;
+              width: calc(50% - 0.5rem);
+            }
+          }
+        `}</style>
       </div>
     </section>
   )

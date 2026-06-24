@@ -23,7 +23,7 @@ const BlogPreview = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-strong transition-all duration-300 group"
+              className={`bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-strong transition-all duration-300 group ${i >= 2 ? 'hidden md:block' : ''}`}
             >
               <Link to={`/blog/${p.slug}`} className="block">
                 <div className="aspect-[4/3] sm:aspect-[16/10] max-h-36 sm:max-h-none overflow-hidden">
