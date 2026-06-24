@@ -22,6 +22,12 @@ import { useWishlist } from '../context/WishlistContext'
 import Button from '../components/shared/Button'
 import RelatedProducts from '../components/products/RelatedProducts'
 
+const getGramValue = (unit) => {
+  if (!unit) return null
+  const match = unit.match(/^(\d+)g$/)
+  return match ? parseInt(match[1], 10) : null
+}
+
 const ProductDetail = () => {
   const { id } = useParams()
   const { getProductById } = useProducts()
@@ -32,6 +38,7 @@ const ProductDetail = () => {
   const [stickyVisible, setStickyVisible] = useState(false)
   const { addItem } = useCart()
   const { isWishlisted, toggle } = useWishlist()
+  const gramPerUnit = getGramValue(product?.unit)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
@@ -199,7 +206,7 @@ const ProductDetail = () => {
                   <Minus size={16} />
                 </button>
                 <span className="px-4 py-2 font-semibold min-w-[44px] text-center">
-                  {quantity} {product.unit}
+                  {gramPerUnit ? `${gramPerUnit * quantity}g` : `${quantity} ${product.unit}`}
                 </span>
                 <button
                   onClick={() => setQuantity((q) => q + (product.unit === 'kg' ? 0.5 : 1))}

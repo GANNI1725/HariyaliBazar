@@ -3,9 +3,22 @@ import { memo } from 'react'
 import { Minus, Plus, Trash2 } from 'lucide-react'
 import { useCart } from '../../context/CartContext'
 
+const getGramValue = (unit) => {
+  if (!unit) return null
+  const match = unit.match(/^(\d+)g$/)
+  return match ? parseInt(match[1], 10) : null
+}
+
 const CartItem = memo(({ item }) => {
   const { updateQuantity, removeItem } = useCart()
   const isVeggieBox = item.selections
+  const gramPerUnit = getGramValue(item.unit)
+  const totalGrams = gramPerUnit ? item.quantity * gramPerUnit : null
+  const quantityLabel = totalGrams !== null
+    ? totalGrams >= 1000
+      ? `${(totalGrams / 1000).toFixed(2)} kg`
+      : `${totalGrams} g`
+    : `${item.quantity} ${item.unit}`
 
   return (
     <div className="flex gap-3 sm:gap-4 py-4 border-b border-[var(--color-border-light)] last:border-0">
@@ -67,7 +80,7 @@ const CartItem = memo(({ item }) => {
               <Minus size={12} className="md:size-[14px]" />
             </button>
             <span className="px-2 text-xs md:text-sm font-medium min-w-[28px] text-center">
-              {item.quantity} <span className="text-xs text-[var(--color-text-secondary)]">{item.unit}</span>
+              {quantityLabel}
             </span>
             <button
               onClick={() => updateQuantity(item.id, item.quantity + (item.unit === 'kg' ? 0.5 : 1))}

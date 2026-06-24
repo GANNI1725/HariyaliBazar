@@ -1,5 +1,5 @@
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useSearchParams, useNavigationType } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { SlidersHorizontal, Leaf } from 'lucide-react'
 import { useProducts } from '../context/ProductContext'
@@ -28,27 +28,45 @@ const defaultFilters = {
 const Products = () => {
   const { products } = useProducts()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [filters, setFilters] = useState(defaultFilters)
-  const [sort, setSort] = useState('newest')
+  const getInitialFilters = () => {
+    const cat = searchParams.get('category')
+    return {
+      ...defaultFilters,
+      categories: cat ? (cat === 'juices' ? [] : [cat]) : [],
+    }
+  }
+  const [filters, setFilters] = useState(getInitialFilters)
+  const [sort, setSort] = useState(searchParams.get('sort') || 'newest')
   const [quickView, setQuickView] = useState(null)
   const [showMobileFilters, setShowMobileFilters] = useState(false)
+  const isFirstRender = useRef(true)
+  const navigationType = useNavigationType()
+
+  const handleNavAway = useRef(() => {
+    sessionStorage.setItem('productsScrollY', window.scrollY)
+  })
 
   useLayoutEffect(() => {
     document.activeElement?.blur()
-  }, [])
+    const saved = sessionStorage.getItem('productsScrollY')
+    if (saved && navigationType === 'POP') {
+      window.scrollTo({ top: Number(saved), behavior: 'instant' })
+      sessionStorage.removeItem('productsScrollY')
+    }
+  }, [searchParams, navigationType])
 
   useEffect(() => {
-    const cat = searchParams.get('category')
-    const s = searchParams.get('sort')
-    if (cat) setFilters((f) => ({ ...f, categories: cat === 'juices' ? [] : [cat] }))
-    if (s) setSort(s)
-  }, [searchParams])
-
-  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
     const params = new URLSearchParams()
     if (filters.categories.length === 1) params.set('category', filters.categories[0])
     if (sort !== 'newest') params.set('sort', sort)
-    setSearchParams(params, { replace: true })
+    const current = new URLSearchParams(searchParams)
+    if (params.toString() !== current.toString()) {
+      setSearchParams(params, { replace: true })
+    }
   }, [filters.categories, sort, setSearchParams])
 
   const totalCount = useMemo(() => products.filter((p) => p.category !== 'juices').length, [products])
@@ -73,7 +91,10 @@ const Products = () => {
     return list
   }, [filters, sort, products])
 
-  const clear = () => setFilters(defaultFilters)
+  const clear = () => {
+    setFilters(defaultFilters)
+    setSort('newest')
+  }
 
   return (
     <section className="w-full py-10 sm:py-14">
@@ -144,7 +165,14 @@ const Products = () => {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div
+                className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+                onClick={(e) => {
+                  if (e.target.closest('a[href^="/products/"]')) {
+                    handleNavAway.current()
+                  }
+                }}
+              >
                 {filtered.map((p) => (
                   <ProductCard key={p.id} product={p} onQuickView={setQuickView} />
                 ))}

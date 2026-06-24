@@ -19,7 +19,7 @@ const Login = () => {
     if (!email.trim() || !password.trim()) { setError('Please fill in all fields'); return }
     setLoading(true)
     await new Promise(r => setTimeout(r, 400))
-    const result = login(email, password)
+    const result = login(email.trim(), password.trim())
     setLoading(false)
     if (!result.success) { setError(result.error); return }
     navigate(result.role === 'admin' ? '/admin' : '/')

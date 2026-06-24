@@ -23,6 +23,7 @@ export const CartProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [loginPromptOpen, setLoginPromptOpen] = useState(false)
   const cartToastId = useRef(null)
+  const prevLoggedIn = useRef(isLoggedIn)
 
   useEffect(() => {
     try {
@@ -31,6 +32,13 @@ export const CartProvider = ({ children }) => {
       /* ignore storage errors */
     }
   }, [items])
+
+  useEffect(() => {
+    if (prevLoggedIn.current && !isLoggedIn) {
+      setItems([])
+    }
+    prevLoggedIn.current = isLoggedIn
+  }, [isLoggedIn])
 
   const addItem = useCallback((product, qty = 1) => {
     if (!isLoggedIn) {

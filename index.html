@@ -23,12 +23,7 @@
       (function () {
         try {
           var stored = localStorage.getItem('hariyali-theme');
-          var theme = stored;
-          if (theme !== 'dark' && theme !== 'light') {
-            theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light';
-          }
+          var theme = stored === 'dark' || stored === 'light' ? stored : 'light';
           document.documentElement.setAttribute('data-theme', theme);
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'light');

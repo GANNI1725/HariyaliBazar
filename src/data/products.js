@@ -287,7 +287,7 @@ export const products = [
     category: 'fruits',
     price: 160,
     originalPrice: 200,
-    unit: 'kg',
+    unit: 'dozen',
     images: ['/Products_Pics/Hill-Banana.png'],
     inStock: true,
     isOrganic: true,

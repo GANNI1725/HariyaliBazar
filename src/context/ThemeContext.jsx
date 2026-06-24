@@ -10,7 +10,6 @@ const readInitialTheme = () => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     if (stored === 'dark' || stored === 'light') return stored
-    if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) return 'dark'
   } catch {
     /* ignore */
   }

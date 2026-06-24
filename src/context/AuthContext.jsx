@@ -20,8 +20,12 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (!localStorage.getItem('hariyali-users')) {
-      localStorage.setItem('hariyali-users', JSON.stringify(SEED_USERS))
+    let existingUsers = JSON.parse(localStorage.getItem('hariyali-users') || '[]')
+    const seedEmails = SEED_USERS.map(s => s.email.toLowerCase())
+    const missingSeeds = SEED_USERS.filter(s => !existingUsers.some(u => u.email.toLowerCase() === s.email.toLowerCase()))
+    if (missingSeeds.length > 0) {
+      existingUsers = [...missingSeeds, ...existingUsers]
+      localStorage.setItem('hariyali-users', JSON.stringify(existingUsers))
     }
     if (!localStorage.getItem('hariyali-orders')) {
       localStorage.setItem('hariyali-orders', JSON.stringify(SEED_ORDERS))
@@ -34,8 +38,10 @@ export function AuthProvider({ children }) {
   }, [])
 
   const login = useCallback((email, password) => {
+    const trimmedEmail = email.trim()
+    const trimmedPassword = password.trim()
     const users = JSON.parse(localStorage.getItem('hariyali-users') || '[]')
-    const found = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password)
+    const found = users.find(u => u.email.toLowerCase() === trimmedEmail.toLowerCase() && u.password === trimmedPassword)
     if (!found) return { success: false, error: 'Invalid email or password' }
     const session = { id: found.id, name: found.name, email: found.email, role: found.role, address: found.address || '' }
     localStorage.setItem('hariyali-current-user', JSON.stringify(session))

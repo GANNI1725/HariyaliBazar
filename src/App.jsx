@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation, useNavigationType, Navigate } from 'react-router-dom'
 import { Suspense, lazy, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Toaster } from 'react-hot-toast'
@@ -36,11 +36,14 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 
 const AnimatedRoutes = () => {
   const location = useLocation()
+  const navigationType = useNavigationType()
   const { pathname } = location
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [pathname])
+    if (navigationType !== 'POP') {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+    }
+  }, [pathname, navigationType])
 
   return (
     <AnimatePresence mode="wait">
