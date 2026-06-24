@@ -6,7 +6,7 @@
 [![License: All Rights Reserved](https://img.shields.io/badge/License-All%20Rights%20Reserved-C9901A?style=for-the-badge)](LICENSE)
 [![Status: Internship Complete](https://img.shields.io/badge/Status-Internship%20Complete-7FB069?style=for-the-badge)](https://github.com)
 
-A frontend-only organic-produce e-commerce experience crafted for the Nepali market — built end-to-end during a BCA Frontend Internship at **Sweven Incorporate Pvt. Ltd., Butwal**.
+A frontend-only organic-produce e-commerce experience crafted for the Nepali market - built end-to-end during a BCA Frontend Internship at **Sweven Incorporate Pvt. Ltd., Butwal**.
 
 **Live demo:** https://hariyalibazar.netlify.app
 **Repository:** https://github.com/GANNI1725/HariyaliBazar
@@ -100,7 +100,7 @@ $ npm run lint
 ### 🌿 Organic E-Commerce
 - **41 products** across 7 categories (Vegetables, Fruits, Tea & Coffee, Lentils, Spices, Dairy, Juices)
 - Bilingual data (English + Nepali/Devanagari) with organic, local, pesticide-free, and same-day badges
-- Product traceability — every item linked to its farmer and district of origin
+- Product traceability - every item linked to its farmer and district of origin
 - Seasonal banner that dynamically adapts to the current month
 
 ### 👨‍🌾 Farmer-Centric Model
@@ -122,8 +122,8 @@ $ npm run lint
 
 ### 🔐 Auth & User Accounts
 - Login / Signup with validation (email must be `@gmail.com`, password: 8+ chars, uppercase, lowercase, number, special char)
-- Admin: `Ganesh@gmail.com` / `Admin@123` — access admin panel at `/admin`
-- Customer: `Customer@gmail.com` / `Customer@123` — access account dashboard at `/account`
+- Admin: `Ganesh@gmail.com` / `Admin@123` - access admin panel at `/admin`
+- Customer: `Customer@gmail.com` / `Customer@123` - access account dashboard at `/account`
 - New users sign up as customers (stored in `localStorage`)
 - Address management from customer dashboard
 
@@ -322,7 +322,7 @@ in the publish directory or via `netlify.toml`.
 | | |
 |---|---|
 | **Name** | Ganesh Prasad Bhandari |
-| **Programme** | BCA — Lumbini City College, Tribhuvan University |
+| **Programme** | BCA - Lumbini City College, Tribhuvan University |
 | **Internship** | Frontend Intern (CAIN403) at Sweven Incorporate Pvt. Ltd., Butwal |
 | **Mentor** | Mr. Sandesh Tiwari |
 | **Supervisor** | Mr. Suraj Kumar Khattri |
@@ -332,12 +332,12 @@ in the publish directory or via `netlify.toml`.
 
 ## Credits
 
-- **Internship Mentor** — Mr. Sandesh Tiwari
-- **Academic Supervisor** — Mr. Suraj Kumar Khattri
-- **Host Company** — Sweven Incorporate Pvt. Ltd., Butwal, Nepal
-- **College** — Lumbini City College, Tribhuvan University
-- **Images** — [Unsplash](https://unsplash.com)
-- **Inspiration** — Current status of Nepalese Market
+- **Internship Mentor** - Mr. Sandesh Tiwari
+- **Academic Supervisor** - Mr. Suraj Kumar Khattri
+- **Host Company** - Sweven Incorporate Pvt. Ltd., Butwal, Nepal
+- **College** - Lumbini City College, Tribhuvan University
+- **Images** - [Unsplash](https://unsplash.com)
+- **Inspiration** - Current status of Nepalese Market
 
 ---
 

@@ -20,7 +20,7 @@ const slides = [
     secondaryLabel: 'Meet Our Farmers',
     secondaryTo: '/about',
     image:
-      '/Home-Logo_Section_Pics/100%-Organic-100%-Nepali.jpg',
+      '/Home-Logo_Section_Pics/Organic-100p-Nepali.jpg',
     tagline: 'खेतबाट भान्सासम्म',
     districts: 'Tilottama · Dhading · Ilam',
   },
