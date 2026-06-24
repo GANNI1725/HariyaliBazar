@@ -114,25 +114,25 @@ const HeroBanner = () => {
       >
         {slides.map((s, i) => (
           <SwiperSlide key={`${s.title}-${i}`}>
-            <div className="relative min-h-[520px] md:min-h-[600px] lg:min-h-[680px] overflow-hidden">
+            <div className="relative min-h-[420px] sm:min-h-[520px] md:min-h-[600px] lg:min-h-[680px] overflow-hidden">
               <SlideImage image={s.image} isActive={i === activeIndex} />
               <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-pure-black)]/75 via-[var(--color-pure-black)]/35 to-transparent" />
 
-              <div className="slide-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-[520px] md:min-h-[600px] lg:min-h-[680px] flex items-center">
-                <div className="max-w-2xl text-[var(--color-pure-white)] py-12 min-w-0">
+              <div className="slide-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-[420px] sm:min-h-[520px] md:min-h-[600px] lg:min-h-[680px] flex items-center">
+                <div className="max-w-2xl text-[var(--color-pure-white)] py-8 sm:py-12 min-w-0">
                   <motion.span
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                      className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-pure-white)]/15 backdrop-blur-sm text-xs uppercase tracking-[0.2em] font-semibold hero-green-text mb-5"
+                      className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-[var(--color-pure-white)]/15 backdrop-blur-sm text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold hero-green-text mb-3 sm:mb-5"
                   >
                     <Sprout size={14} /> {s.eyebrow}
                   </motion.span>
 
-                  <div className="heading-xl !text-[var(--color-pure-white)] leading-tight mb-1">
+                  <div className="heading-xl !text-[var(--color-pure-white)] leading-tight mb-1 hero-title-mobile">
                     <AnimatedWords text={s.title} />
                   </div>
-                  <div className="heading-xl hero-accent-title leading-tight mb-6">
+                  <div className="heading-xl hero-accent-title leading-tight mb-4 sm:mb-6 hero-title-mobile">
                     <AnimatedWords text={s.titleAccent} />
                   </div>
 
@@ -140,7 +140,7 @@ const HeroBanner = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
-                    className="text-base sm:text-lg text-[var(--color-pure-white)]/85 mb-4 max-w-xl leading-relaxed"
+                    className="text-sm sm:text-lg text-[var(--color-pure-white)]/85 mb-3 sm:mb-4 max-w-xl leading-relaxed"
                   >
                     {s.subtitle}
                   </motion.p>
@@ -149,7 +149,7 @@ const HeroBanner = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.75 }}
-                    className="nepali-text text-[var(--color-clay)]/90 text-xl mb-2"
+                    className="nepali-text text-[var(--color-clay)]/90 text-base sm:text-xl mb-2"
                   >
                     {s.tagline}
                   </motion.p>
@@ -158,7 +158,7 @@ const HeroBanner = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.82 }}
-                    className="flex items-center gap-4 text-xs text-[var(--color-pure-white)]/70 mb-7"
+                    className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[var(--color-pure-white)]/70 mb-5 sm:mb-7"
                   >
                     <span className="flex items-center gap-1.5">
                       <MapPin size={12} /> {s.districts}
@@ -176,13 +176,13 @@ const HeroBanner = () => {
                   >
                     <Link
                       to={s.primaryTo}
-                      className="hero-btn inline-flex items-center gap-2 bg-[var(--color-forest)] text-[var(--color-pure-white)] font-semibold px-7 py-3.5 rounded-xl hover:bg-[var(--color-leaf)] hover:shadow-2xl transition-all duration-300 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2"
+                      className="hero-btn inline-flex items-center gap-2 bg-[var(--color-forest)] text-[var(--color-pure-white)] font-semibold px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl hover:bg-[var(--color-leaf)] hover:shadow-2xl transition-all duration-300 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2 text-sm sm:text-base"
                     >
-                      {s.primaryLabel} <ArrowRight size={18} />
+                      {s.primaryLabel} <ArrowRight size={16} className="sm:size-[18px]" />
                     </Link>
                     <Link
                       to={s.secondaryTo}
-                      className="inline-flex items-center gap-2 bg-[var(--color-pure-white)]/10 backdrop-blur-sm text-[var(--color-pure-white)] border border-[var(--color-pure-white)]/25 font-medium px-7 py-3.5 rounded-xl hover:bg-[var(--color-pure-white)]/20 hover:border-[var(--color-pure-white)]/40 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2"
+                      className="inline-flex items-center gap-2 bg-[var(--color-pure-white)]/10 backdrop-blur-sm text-[var(--color-pure-white)] border border-[var(--color-pure-white)]/25 font-medium px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl hover:bg-[var(--color-pure-white)]/20 hover:border-[var(--color-pure-white)]/40 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2 text-sm sm:text-base"
                     >
                       {s.secondaryLabel}
                     </Link>
@@ -221,6 +221,9 @@ const HeroBanner = () => {
           transition: opacity 0.5s ease 0.15s, visibility 0s linear 0.15s;
         }
         .hero-green-text { color: var(--color-leaf); }
+        @media (max-width: 639px) {
+          .hero-title-mobile { font-size: clamp(1.75rem, 8vw, 2.5rem) !important; }
+        }
         .hero-accent-title { color: var(--color-accent); }
         :root[data-theme="dark"] .hero-btn {
           background-color: var(--color-forest);
