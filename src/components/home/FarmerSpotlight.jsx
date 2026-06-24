@@ -33,7 +33,7 @@ const FarmerSpotlight = memo(() => {
           subtitle="Every order supports a real Nepali farmer practising sustainable, organic agriculture."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {farmers.slice(0, 4).map((f, i) => (
             <motion.button
               key={f.id}

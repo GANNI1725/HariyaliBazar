@@ -36,7 +36,7 @@ const JuiceBarSection = () => {
           </Link>
         </motion.div>
 
-        <div className="lg:col-span-3 grid sm:grid-cols-3 gap-4">
+        <div className="lg:col-span-3 grid grid-cols-2 sm:grid-cols-3 gap-4">
           {juices.map((j, i) => (
             <motion.div
               key={j.id}
@@ -44,7 +44,6 @@ const JuiceBarSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="max-w-xs mx-auto sm:max-w-none"
             >
               <ProductCard product={j} />
             </motion.div>
