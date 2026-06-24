@@ -164,7 +164,7 @@ const HeroBanner = () => {
                       <MapPin size={12} /> {s.districts}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <ShieldCheck size={12} /> Certified Organic
+                      <ShieldCheck size={12} /> Organic
                     </span>
                   </motion.div>
 
