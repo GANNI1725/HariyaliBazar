@@ -51,7 +51,7 @@ const Blog = () => {
             No posts in this category yet.
           </p>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 blog-page-grid">
             {filtered.map((p, i) => (
               <motion.article
                 key={p.id}
@@ -104,6 +104,13 @@ const Blog = () => {
               </motion.article>
             ))}
           </div>
+          <style>{`
+            .blog-page-grid > :last-child:nth-child(odd) {
+              grid-column: 1 / -1;
+              justify-self: center;
+              width: calc(50% - 0.5rem);
+            }
+          `}</style>
         )}
       </div>
     </section>

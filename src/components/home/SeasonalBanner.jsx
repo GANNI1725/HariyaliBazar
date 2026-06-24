@@ -52,7 +52,7 @@ const SeasonalBanner = () => {
             </div>
           </div>
 
-          <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-2 seasonal-grid">
             {inSeason.map((p) => (
               <Link
                 key={p.id}
@@ -64,6 +64,13 @@ const SeasonalBanner = () => {
               </Link>
             ))}
           </div>
+          <style>{`
+            .seasonal-grid > :last-child:nth-child(odd) {
+              grid-column: 1 / -1;
+              justify-self: center;
+              width: calc(50% - 0.25rem);
+            }
+          `}</style>
         </motion.div>
       </div>
     </section>

@@ -15,7 +15,7 @@ const BlogPreview = () => {
           subtitle="Glimpses of life from the farms, plus easy recipes for what's in season."
         />
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 blog-grid">
           {latest.map((p, i) => (
             <motion.article
               key={p.id}
@@ -43,7 +43,7 @@ const BlogPreview = () => {
                       <Clock size={11} /> {calculateReadingTime(p.content || '')} min read
                     </span>
                   </div>
-                  <h3 className="font-[var(--font-heading)] text-xl text-[var(--color-forest)] mb-2 group-hover:text-[var(--color-leaf)] transition-colors line-clamp-2">
+                  <h3 className="font-[var(--font-heading)] text-lg sm:text-xl text-[var(--color-forest)] mb-2 group-hover:text-[var(--color-leaf)] transition-colors line-clamp-2">
                     {p.title}
                   </h3>
                   <p className="text-sm text-[var(--color-text)]/70 line-clamp-3 mb-4">
@@ -57,6 +57,13 @@ const BlogPreview = () => {
             </motion.article>
           ))}
         </div>
+        <style>{`
+          .blog-grid > :last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: calc(50% - 0.5rem);
+          }
+        `}</style>
 
         <div className="text-center mt-10">
           <Link

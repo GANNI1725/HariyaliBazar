@@ -53,13 +53,23 @@ const CategoryTabs = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 category-grid"
           >
             {filtered.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </motion.div>
         </AnimatePresence>
+        <style>{`
+          .category-grid > :last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: calc(50% - 0.5rem);
+          }
+          .category-grid > :last-child:nth-child(odd) > * {
+            max-width: 100%;
+          }
+        `}</style>
 
         <div className="mt-10 text-center">
           <Link

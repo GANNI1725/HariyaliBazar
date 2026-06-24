@@ -36,7 +36,7 @@ const JuiceBarSection = () => {
           </Link>
         </motion.div>
 
-        <div className="lg:col-span-3 grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div className="lg:col-span-3 grid grid-cols-2 sm:grid-cols-3 gap-4 juice-grid">
           {juices.map((j, i) => (
             <motion.div
               key={j.id}
@@ -49,6 +49,13 @@ const JuiceBarSection = () => {
             </motion.div>
           ))}
         </div>
+        <style>{`
+          .juice-grid > :last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: calc(50% - 0.5rem);
+          }
+        `}</style>
       </div>
     </section>
   )
