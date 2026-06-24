@@ -44,6 +44,7 @@ const JuiceBarSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="max-w-xs mx-auto sm:max-w-none"
             >
               <ProductCard product={j} />
             </motion.div>

@@ -26,7 +26,7 @@ const BlogPreview = () => {
               className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-strong transition-all duration-300 group"
             >
               <Link to={`/blog/${p.slug}`} className="block">
-                <div className="aspect-[16/10] overflow-hidden">
+                <div className="aspect-[16/10] sm:aspect-[16/10] max-h-48 sm:max-h-none overflow-hidden">
                   <img
                     src={p.image}
                     alt={p.title}

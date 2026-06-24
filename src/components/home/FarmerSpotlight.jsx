@@ -49,7 +49,7 @@ const FarmerSpotlight = memo(() => {
                   <Star size={10} fill="currentColor" /> Farmer of the Week
                 </span>
               )}
-              <div className="relative aspect-square overflow-hidden">
+              <div className="relative aspect-square sm:aspect-auto sm:h-48 overflow-hidden">
                 <img
                   src={f.image}
                   alt={`Portrait of ${f.name}, organic farmer from ${f.district}`}

@@ -42,7 +42,7 @@ const PhilosophySection = () => {
             src="/Home-Logo_Section_Pics/From-Farm-to-Table.png"
             alt="From Farm to Table"
             loading="lazy"
-            className="rounded-3xl shadow-strong w-full aspect-[4/5] object-cover"
+            className="rounded-3xl shadow-strong w-full aspect-[4/3] sm:aspect-[4/5] object-cover"
           />
           <div className="absolute -bottom-6 -right-6 hidden md:block bg-[var(--color-accent)] text-[var(--color-pure-white)] p-6 rounded-2xl shadow-strong max-w-[220px]">
             <p className="font-[var(--font-heading)] text-3xl mb-1 !text-[var(--color-pure-white)]">6</p>

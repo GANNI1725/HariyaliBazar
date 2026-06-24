@@ -41,7 +41,7 @@ const FeaturedBanner = () => {
                 Order Now <ArrowRight size={18} />
               </button>
             </div>
-            <div className="relative h-64 md:h-full min-h-[280px]">
+            <div className="relative h-48 sm:h-56 md:h-full min-h-[200px] md:min-h-[280px]">
               <img
                 src="/Home-Logo_Section_Pics/Weekly-Veggie-Box.png"
                 alt="Weekly veggie box"
