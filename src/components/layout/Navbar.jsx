@@ -104,16 +104,16 @@ const Navbar = () => {
               ))}
             </nav>
 
-            <div className="flex items-center gap-1 sm:gap-2">
+            <div className="flex items-center gap-0 sm:gap-1">
               <button
                 onClick={() => setSearchOpen(true)}
                 aria-label="Open search"
-                className="min-w-[44px] min-h-[44px] p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
+                className="min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] p-1.5 sm:p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
               >
-                <Search size={20} />
+                <Search size={18} className="sm:size-[20px]" />
               </button>
 
-              <ThemeToggle />
+              <div className="hidden sm:block"><ThemeToggle /></div>
 
               {user ? (
                 <div className="hidden sm:flex items-center gap-1">
@@ -150,11 +150,11 @@ const Navbar = () => {
               <Link
                 to="/wishlist"
                 aria-label={`Wishlist with ${wishlistCount} items`}
-                className="relative min-w-[44px] min-h-[44px] p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors flex items-center justify-center focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
+                className="relative min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] p-1.5 sm:p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors flex items-center justify-center focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
               >
-                <Heart size={20} />
+                <Heart size={18} className="sm:size-[20px]" />
                 {wishlistCount > 0 && (
-                    <span className="absolute top-1 right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--color-clay)] text-[var(--color-pure-white)] text-xs font-bold flex items-center justify-center">
+                    <span className="absolute top-0.5 right-0.5 min-w-[16px] h-[16px] px-0.5 rounded-full bg-[var(--color-clay)] text-[var(--color-pure-white)] text-[10px] font-bold flex items-center justify-center">
                     {wishlistCount}
                     </span>
                 )}
@@ -164,11 +164,11 @@ const Navbar = () => {
                 <button
                   onClick={openCart}
                   aria-label={`Cart with ${totalItems} items`}
-                  className="relative min-w-[44px] min-h-[44px] p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
+                  className="relative min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] p-1.5 sm:p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
                 >
-                  <ShoppingCart size={20} />
+                  <ShoppingCart size={18} className="sm:size-[20px]" />
                   {totalItems > 0 && (
-                    <span className="absolute top-1 right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--color-leaf)] text-[var(--color-pure-white)] text-xs font-bold flex items-center justify-center">
+                    <span className="absolute top-0.5 right-0.5 min-w-[16px] h-[16px] px-0.5 rounded-full bg-[var(--color-leaf)] text-[var(--color-pure-white)] text-[10px] font-bold flex items-center justify-center">
                       {totalItems}
                     </span>
                   )}
@@ -179,9 +179,9 @@ const Navbar = () => {
                 onClick={() => setMobileOpen((o) => !o)}
                 aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={mobileOpen}
-                className="lg:hidden min-w-[44px] min-h-[44px] p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
+                className="lg:hidden min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] p-1.5 sm:p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
               >
-                {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+                {mobileOpen ? <X size={18} className="sm:size-[22px]" /> : <Menu size={18} className="sm:size-[22px]" />}
               </button>
             </div>
           </div>
