@@ -46,7 +46,9 @@ const DeliveryChecker = ({ compact = false }) => {
   const selectSuggestion = (area) => {
     setQuery(area)
     setShowSuggestions(false)
-    inputRef.current?.focus()
+    const r = checkDelivery(area)
+    setResult(r)
+    setChecked(true)
   }
 
   const onCheck = () => {
