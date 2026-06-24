@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useCallback } from 'react'
+import { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react'
 import toast from 'react-hot-toast'
 
 const WishlistContext = createContext(null)
@@ -15,6 +15,7 @@ const readStorage = () => {
 
 export const WishlistProvider = ({ children }) => {
   const [ids, setIds] = useState(() => readStorage())
+  const wishlistToastId = useRef(null)
 
   useEffect(() => {
     try {
@@ -33,12 +34,13 @@ export const WishlistProvider = ({ children }) => {
         ? prev.filter((i) => i !== product.id)
         : [...prev, product.id]
     )
+    toast.dismiss(wishlistToastId.current)
     if (willRemove) {
-      toast(`Removed from wishlist`, {
+      wishlistToastId.current = toast(`Removed from wishlist`, {
         icon: <span className="text-[var(--color-leaf)]">💔</span>,
       })
     } else {
-      toast.success(`💚 Added to wishlist`)
+      wishlistToastId.current = toast.success(`Added to wishlist`, { icon: '💚' })
     }
   }, [ids])
 
