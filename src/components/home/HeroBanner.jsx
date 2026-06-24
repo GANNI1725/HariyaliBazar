@@ -182,7 +182,7 @@ const HeroBanner = () => {
                     </Link>
                     <Link
                       to={s.secondaryTo}
-                      className="inline-flex items-center gap-2 bg-[var(--color-pure-white)]/10 backdrop-blur-sm text-[var(--color-pure-white)] border border-[var(--color-pure-white)]/25 font-medium px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl hover:bg-[var(--color-pure-white)]/20 hover:border-[var(--color-pure-white)]/40 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2 text-sm sm:text-base"
+                      className="inline-flex items-center gap-2 bg-[var(--color-pure-white)]/10 text-[var(--color-pure-white)] border border-[var(--color-pure-white)]/25 font-medium px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl hover:bg-[var(--color-pure-white)]/20 hover:border-[var(--color-pure-white)]/40 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2 text-sm sm:text-base"
                     >
                       {s.secondaryLabel}
                     </Link>
