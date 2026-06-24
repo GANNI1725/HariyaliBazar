@@ -58,10 +58,12 @@ const BlogPreview = () => {
           ))}
         </div>
         <style>{`
-          .blog-grid > :last-child:nth-child(odd) {
-            grid-column: 1 / -1;
-            justify-self: center;
-            width: calc(50% - 0.5rem);
+          @media (max-width: 767px) {
+            .blog-grid > :last-child:nth-child(odd) {
+              grid-column: 1 / -1;
+              justify-self: center;
+              width: calc(50% - 0.5rem);
+            }
           }
         `}</style>
 

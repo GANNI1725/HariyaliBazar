@@ -65,10 +65,12 @@ const SeasonalBanner = () => {
             ))}
           </div>
           <style>{`
-            .seasonal-grid > :last-child:nth-child(odd) {
-              grid-column: 1 / -1;
-              justify-self: center;
-              width: calc(50% - 0.25rem);
+            @media (max-width: 639px) {
+              .seasonal-grid > :last-child:nth-child(odd) {
+                grid-column: 1 / -1;
+                justify-self: center;
+                width: calc(50% - 0.25rem);
+              }
             }
           `}</style>
         </motion.div>

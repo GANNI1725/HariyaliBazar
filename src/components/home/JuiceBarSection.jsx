@@ -50,10 +50,12 @@ const JuiceBarSection = () => {
           ))}
         </div>
         <style>{`
-          .juice-grid > :last-child:nth-child(odd) {
-            grid-column: 1 / -1;
-            justify-self: center;
-            width: calc(50% - 0.5rem);
+          @media (max-width: 639px) {
+            .juice-grid > :last-child:nth-child(odd) {
+              grid-column: 1 / -1;
+              justify-self: center;
+              width: calc(50% - 0.5rem);
+            }
           }
         `}</style>
       </div>

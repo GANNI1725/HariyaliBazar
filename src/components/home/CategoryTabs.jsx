@@ -61,13 +61,15 @@ const CategoryTabs = () => {
           </motion.div>
         </AnimatePresence>
         <style>{`
-          .category-grid > :last-child:nth-child(odd) {
-            grid-column: 1 / -1;
-            justify-self: center;
-            width: calc(50% - 0.5rem);
-          }
-          .category-grid > :last-child:nth-child(odd) > * {
-            max-width: 100%;
+          @media (max-width: 1023px) {
+            .category-grid > :last-child:nth-child(odd) {
+              grid-column: 1 / -1;
+              justify-self: center;
+              width: calc(50% - 0.5rem);
+            }
+            .category-grid > :last-child:nth-child(odd) > * {
+              max-width: 100%;
+            }
           }
         `}</style>
 

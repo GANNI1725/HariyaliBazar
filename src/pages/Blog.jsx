@@ -105,10 +105,12 @@ const Blog = () => {
             ))}
           </div>
           <style>{`
-            .blog-page-grid > :last-child:nth-child(odd) {
-              grid-column: 1 / -1;
-              justify-self: center;
-              width: calc(50% - 0.5rem);
+            @media (max-width: 1023px) {
+              .blog-page-grid > :last-child:nth-child(odd) {
+                grid-column: 1 / -1;
+                justify-self: center;
+                width: calc(50% - 0.5rem);
+              }
             }
           `}</style>
         )}
