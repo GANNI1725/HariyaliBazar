@@ -8,8 +8,8 @@
 
 A frontend-only organic-produce e-commerce experience crafted for the Nepali market — built end-to-end during a BCA Frontend Internship at **Sweven Incorporate Pvt. Ltd., Butwal**.
 
-**Live demo:** [hariyalibazar.netlify.app](https://hariyalibazar.netlify.app)
-**Repository:** `github.com/GANNI1725/HariyaliBazar`
+**Live demo:** https://hariyalibazar.netlify.app
+**Repository:** https://github.com/GANNI1725/HariyaliBazar
 
 ---
 
