@@ -73,10 +73,10 @@ const Navbar = () => {
                 alt="HariyaliBazar"
                 width="48"
                 height="48"
-                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-cover"
+                className="w-12 h-12 rounded-full object-cover"
               />
               <div className="leading-tight">
-                <span className="block font-[var(--font-heading)] text-lg sm:text-2xl text-[var(--color-forest)] font-bold">
+                <span className="font-[var(--font-heading)] text-base sm:text-2xl text-[var(--color-forest)] font-bold">
                   HariyaliBazar
                 </span>
                 <span className="hidden sm:block nepali-text text-[10px] sm:text-base text-[var(--color-leaf)] tracking-wider">
@@ -104,7 +104,7 @@ const Navbar = () => {
               ))}
             </nav>
 
-            <div className="flex items-center gap-0 sm:gap-1">
+            <div className="flex items-center gap-1">
               <button
                 onClick={() => setSearchOpen(true)}
                 aria-label="Open search"
@@ -113,46 +113,14 @@ const Navbar = () => {
                 <Search size={18} className="sm:size-[20px]" />
               </button>
 
-              <div><ThemeToggle /></div>
-
-              {user ? (
-                <div className="hidden sm:flex items-center gap-1">
-                  {isAdmin ? (
-                    <Link to="/admin" className="min-w-[44px] min-h-[44px] p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors flex items-center justify-center" title="Admin Panel">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-                    </Link>
-                  ) : (
-                    <Link to="/account" className="min-w-[44px] min-h-[44px] p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors flex items-center justify-center" title="My Account">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-                    </Link>
-                  )}
-                  <button onClick={logout} className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-[var(--color-error)] hover:bg-[var(--color-error-bg)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)]">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-                    Logout
-                  </button>
-                </div>
-              ) : (
-                <Link to="/login" className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-[var(--color-forest)] hover:bg-[var(--color-border)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)]">
-                  <motion.svg
-                    width="16" height="16" viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                    animate={{ x: [0, 3, 0] }}
-                    transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-                    style={{ stroke: 'var(--color-leaf)' }}
-                  >
-                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                    <polyline points="10 17 15 12 10 7"/>
-                    <line x1="15" y1="12" x2="3" y2="12"/>
-                  </motion.svg>
-                  Login
-                </Link>
-              )}
+              <ThemeToggle />
 
               <Link
                 to="/wishlist"
                 aria-label={`Wishlist with ${wishlistCount} items`}
-                className="relative min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] p-1.5 sm:p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors flex items-center justify-center focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
+                className="hidden sm:flex relative min-w-[44px] min-h-[44px] p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors items-center justify-center focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
               >
-                <Heart size={18} className="sm:size-[20px]" />
+                <Heart size={20} />
                 {wishlistCount > 0 && (
                     <span className="absolute top-0.5 right-0.5 min-w-[16px] h-[16px] px-0.5 rounded-full bg-[var(--color-clay)] text-[var(--color-pure-white)] text-[10px] font-bold flex items-center justify-center">
                     {wishlistCount}
@@ -164,7 +132,7 @@ const Navbar = () => {
                 <button
                   onClick={openCart}
                   aria-label={`Cart with ${totalItems} items`}
-                  className="relative min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] p-1.5 sm:p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
+                  className="relative min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] p-1.5 sm:p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors flex items-center justify-center focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
                 >
                   <ShoppingCart size={18} className="sm:size-[20px]" />
                   {totalItems > 0 && (
@@ -183,6 +151,40 @@ const Navbar = () => {
               >
                 {mobileOpen ? <X size={18} className="sm:size-[22px]" /> : <Menu size={18} className="sm:size-[22px]" />}
               </button>
+
+              <div className="hidden sm:contents">
+                {user ? (
+                  <div className="flex items-center gap-1">
+                    {isAdmin ? (
+                      <Link to="/admin" className="min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] p-1.5 sm:p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors flex items-center justify-center" title="Admin Panel">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                      </Link>
+                    ) : (
+                      <Link to="/account" className="min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] p-1.5 sm:p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors flex items-center justify-center" title="My Account">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+                      </Link>
+                    )}
+                    <button onClick={logout} className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-[var(--color-error)] hover:bg-[var(--color-error-bg)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)]">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <Link to="/login" className="flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-[var(--color-forest)] hover:bg-[var(--color-border)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)]">
+                    <motion.svg
+                      width="16" height="16" viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                      animate={{ x: [0, 3, 0] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                      style={{ stroke: 'var(--color-leaf)' }}
+                    >
+                      <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                      <polyline points="10 17 15 12 10 7"/>
+                      <line x1="15" y1="12" x2="3" y2="12"/>
+                    </motion.svg>
+                    Login
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         </div>

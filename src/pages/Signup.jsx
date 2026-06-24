@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { UserPlus, Eye, EyeOff, Mail, Lock, User, Phone, ExternalLink } from 'lucide-react'
+import { UserPlus, Eye, EyeOff, Mail, Lock, User, Phone } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 const Signup = () => {
@@ -151,15 +151,15 @@ const Signup = () => {
 
             {error && <p className="text-sm text-[var(--color-error)] bg-[var(--color-error-bg)] px-3 py-2 rounded-lg">{error}</p>}
 
-            <label className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)] cursor-pointer">
-              <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mt-0.5 rounded border-[var(--color-border)] text-[var(--color-leaf)] focus:ring-[var(--color-leaf)]" />
-              <span>I agree to the{' '}
-                <Link to="/terms" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-[var(--color-leaf)] hover:underline font-medium">
-                  Terms & Conditions<ExternalLink size={11} className="mb-0.5" />
-                </Link>
-                {' '}and{' '}
-                <Link to="/privacy" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-[var(--color-leaf)] hover:underline font-medium">
-                  Privacy Policy<ExternalLink size={11} className="mb-0.5" />
+            <label className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)] cursor-pointer leading-relaxed">
+              <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mt-1 shrink-0 rounded border-[var(--color-border)] text-[var(--color-leaf)] focus:ring-[var(--color-leaf)]" />
+              <span>
+                I agree to the{' '}
+                <Link to="/terms" target="_blank" rel="noopener noreferrer" className="text-[var(--color-leaf)] hover:brightness-75 font-medium">
+                  Terms & Conditions
+                </Link>{' '}and{' '}
+                <Link to="/privacy" target="_blank" rel="noopener noreferrer" className="text-[var(--color-leaf)] hover:brightness-75 font-medium">
+                  Privacy Policy
                 </Link>
               </span>
             </label>

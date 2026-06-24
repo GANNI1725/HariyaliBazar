@@ -95,7 +95,7 @@ const SearchModal = ({ isOpen, onClose }) => {
               {!query.trim() && (
                 <div className="p-8 text-center text-[var(--color-text)]/60">
                   <p className="mb-2">Start typing to search 30+ organic products</p>
-                  <p className="text-sm">Press <kbd className="px-1.5 py-0.5 bg-[var(--color-border)] rounded">Esc</kbd> to close</p>
+                  <p className="text-sm"><span className="hidden sm:inline">Press <kbd className="px-1.5 py-0.5 bg-[var(--color-border)] rounded">Esc</kbd> to close</span><span className="sm:hidden">Tap <kbd className="px-1.5 py-0.5 bg-[var(--color-border)] rounded">✕</kbd> to close</span></p>
                 </div>
               )}
 

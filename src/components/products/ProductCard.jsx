@@ -86,31 +86,31 @@ const ProductCard = memo(({ product, onQuickView }) => {
         </div>
       </div>
 
-      <div className="p-4 flex flex-col flex-1">
+      <div className="p-3 sm:p-4 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2 mb-1">
           <Link
             to={`/products/${product.id}`}
-            className="font-semibold text-[var(--color-charcoal)] hover:text-[var(--color-forest)] line-clamp-1 text-lg"
+            className="font-semibold text-[var(--color-charcoal)] hover:text-[var(--color-forest)] line-clamp-1 text-sm sm:text-lg"
           >
             {product.name}
           </Link>
-          <div className="flex items-center gap-0.5 text-xs text-[var(--color-gold)] shrink-0">
-            <Star size={12} fill="currentColor" />
+          <div className="flex items-center gap-0.5 text-[10px] sm:text-xs text-[var(--color-gold)] shrink-0">
+            <Star size={10} className="sm:size-[12px]" fill="currentColor" />
             <span className="font-medium">{product.rating}</span>
           </div>
         </div>
 
-        <p className="nepali-text text-lg text-[var(--color-text-secondary)] mb-2 line-clamp-1">
+        <p className="nepali-text text-sm sm:text-lg text-[var(--color-text-secondary)] mb-1.5 sm:mb-2 line-clamp-1">
           {product.nameNepali}
         </p>
 
-        <div className="flex flex-wrap gap-1 mb-2">
+        <div className="flex flex-wrap gap-1 mb-1.5 sm:mb-2">
           {product.isOrganic && <Badge type="organic" size="sm" />}
           {product.isSameDay && <Badge type="sameday" size="sm" />}
         </div>
 
         {product.district && (
-          <p className="flex items-center gap-1 text-xs text-[var(--color-text-secondary)] mb-3">
+          <p className="flex items-center gap-1 text-[10px] sm:text-xs text-[var(--color-text-secondary)] mb-2 sm:mb-3">
             <MapPin size={10} />
             {product.district}
           </p>
@@ -119,16 +119,16 @@ const ProductCard = memo(({ product, onQuickView }) => {
         <div className="mt-auto flex items-end justify-between gap-2">
           <div>
             <div className="flex items-baseline gap-1.5">
-              <span className="text-xl font-bold text-[var(--color-forest)]">
+              <span className="text-base sm:text-xl font-bold text-[var(--color-forest)]">
                 ₨ {product.price}
               </span>
               {product.originalPrice && (
-                <span className="text-xs line-through text-[var(--color-text-secondary)]/60">
+                <span className="text-[10px] sm:text-xs line-through text-[var(--color-text-secondary)]/60">
                   ₨ {product.originalPrice}
                 </span>
               )}
             </div>
-            <span className="text-xs text-[var(--color-text-secondary)]">
+            <span className="text-[10px] sm:text-xs text-[var(--color-text-secondary)]">
               per {product.unit}
             </span>
           </div>
@@ -136,7 +136,7 @@ const ProductCard = memo(({ product, onQuickView }) => {
             onClick={() => product.inStock && addItem(product)}
             disabled={!product.inStock}
             aria-label={`Add ${product.name} to cart`}
-            className="md:hidden bg-[var(--color-forest)] hover:bg-[var(--color-leaf)] text-[var(--color-pure-white)] text-xs font-semibold py-1.5 px-3 rounded-lg inline-flex items-center justify-center gap-1 disabled:bg-[var(--color-disabled)] disabled:cursor-not-allowed transition-colors duration-200 shrink-0"
+            className="md:hidden bg-[var(--color-forest)] hover:bg-[var(--color-leaf)] text-[var(--color-pure-white)] text-xs font-semibold py-1.5 px-2.5 sm:px-3 rounded-lg inline-flex items-center justify-center gap-1 disabled:bg-[var(--color-disabled)] disabled:cursor-not-allowed transition-colors duration-200 shrink-0"
           >
             <ShoppingCart size={12} /> Add
           </button>

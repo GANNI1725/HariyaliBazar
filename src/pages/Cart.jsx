@@ -102,14 +102,14 @@ const Cart = () => {
                 ))}
               </div>
               <div className="flex justify-between items-center pt-4 mt-2 border-t border-[var(--color-border)]">
-                <Link to="/products" className="text-sm text-[var(--color-leaf)] hover:underline">
+                <Link to="/products" className="text-sm text-[var(--color-leaf)] hover:text-[var(--color-forest)]">
                   ← Continue shopping
                 </Link>
                 <button
                   onClick={() => {
                     if (window.confirm('Clear all items from cart?')) clearCart()
                   }}
-                  className="text-sm text-[var(--color-red)] hover:underline hover:text-[var(--color-red)]/80 inline-flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-[var(--color-red)] focus-visible:outline-offset-2 rounded"
+                  className="text-sm text-[var(--color-red)] hover:brightness-75 inline-flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-[var(--color-red)] focus-visible:outline-offset-2 rounded"
                 >
                   <Trash2 size={14} /> Clear cart
                 </button>
