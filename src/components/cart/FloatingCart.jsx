@@ -33,10 +33,10 @@ const FloatingCart = () => {
           transition={{ type: 'spring', stiffness: 400, damping: 20 }}
           onClick={openCart}
           aria-label={`Cart with ${totalItems} items`}
-          className="fixed bottom-20 md:bottom-6 right-4 z-50 w-14 h-14 rounded-full bg-[var(--color-leaf)] text-white shadow-lg hover:bg-[var(--color-forest)] transition-colors flex items-center justify-center cursor-pointer"
+          className="fixed bottom-20 md:bottom-6 right-4 z-50 w-14 h-14 rounded-full bg-[var(--color-forest)] text-[var(--color-pure-white)] shadow-lg hover:bg-[var(--color-leaf)] transition-colors flex items-center justify-center cursor-pointer"
         >
           <ShoppingCart size={22} />
-          <span className="absolute -top-1 -right-1 min-w-[22px] h-[22px] px-1 rounded-full bg-[var(--color-clay)] text-white text-xs font-bold flex items-center justify-center border-2 border-[var(--color-background)]">
+          <span className="absolute -top-1 -right-1 min-w-[22px] h-[22px] px-1 rounded-full bg-[var(--color-clay)] text-[var(--color-pure-white)] text-xs font-bold flex items-center justify-center border-2 border-[var(--color-card)]">
             {totalItems}
           </span>
         </motion.button>

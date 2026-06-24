@@ -166,16 +166,18 @@ const AdminPanel = () => {
         ))}
       </div>
 
-      <div className="flex gap-1 mb-6 bg-[var(--color-background)] rounded-lg p-1 border border-[var(--color-border)] w-fit">
-        {tabs.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded ${tabBtnColor(tab === t.id)}`}>
-            <t.icon size={16} /> {t.label}
-          </button>
-        ))}
+      <div className="flex gap-1 mb-6 bg-[var(--color-background)] rounded-lg p-1 border border-[var(--color-border)] overflow-x-auto w-full">
+        <div className="flex gap-1 min-w-max sm:min-w-0 w-full sm:w-auto sm:grid sm:grid-cols-4">
+          {tabs.map(t => (
+            <button key={t.id} onClick={() => setTab(t.id)} className={`flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded whitespace-nowrap ${tabBtnColor(tab === t.id)}`}>
+              <t.icon size={16} /> {t.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {tab === 'products' && (
-        <div>
+        <div className="pb-16 md:pb-0">
           <div className="flex justify-between items-center mb-4">
             <p className="text-sm text-[var(--color-text-secondary)]">{products.length} products</p>
             <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--color-forest)] text-white text-sm font-medium hover:bg-[var(--color-leaf)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">
@@ -234,7 +236,7 @@ const AdminPanel = () => {
       )}
 
       {tab === 'categories' && (
-        <div>
+        <div className="pb-16 md:pb-0">
           <div className="flex justify-between items-center mb-4">
             <p className="text-sm text-[var(--color-text-secondary)]">{categories.length} categories</p>
             <button onClick={() => { setCatForm({ icon: '', name: '', description: '' }); setShowCatModal(true) }} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--color-forest)] text-white text-sm font-medium hover:bg-[var(--color-leaf)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">
@@ -316,7 +318,7 @@ const AdminPanel = () => {
       )}
 
       {tab === 'users' && (
-        <div className="bg-[var(--color-card)] rounded-xl border border-[var(--color-border)] overflow-x-auto">
+        <div className="pb-16 md:pb-0 bg-[var(--color-card)] rounded-xl border border-[var(--color-border)] overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-[var(--color-background)] text-[var(--color-text-secondary)]">
               <tr>

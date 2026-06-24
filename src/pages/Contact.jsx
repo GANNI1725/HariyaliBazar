@@ -63,7 +63,7 @@ const Contact = () => {
 
             <div className="space-y-4">
               {[
-                { icon: MapPin, label: 'Visit us', value: 'Sweven Incorporate Pvt. Ltd.\nButwal, Rupandehi, Nepal' },
+                { icon: MapPin, label: 'Visit us', value: 'Hariyali Bazar Pvt. Ltd.\nButwal, Rupandehi, Nepal' },
                 { icon: Phone, label: 'Call us', value: '+977-9800000000\nSun – Fri · 8 AM – 7 PM' },
                 { icon: Mail, label: 'Email us', value: 'hello@hariyalibazar.com.np' },
                 { icon: Clock, label: 'Same-Day Cut-Off', value: 'Order by 11 AM for same-day delivery in Butwal & Rupandehi' },

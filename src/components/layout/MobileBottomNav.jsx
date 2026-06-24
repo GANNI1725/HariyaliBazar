@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom'
-import { Home, Sprout, Search as SearchIcon, Heart, User } from 'lucide-react'
+import { Home, Sprout, Search as SearchIcon, Heart, User, Shield } from 'lucide-react'
 import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { useWishlist } from '../../context/WishlistContext'
 import SearchModal from '../shared/SearchModal'
 
 const MobileBottomNav = () => {
-  const { user } = useAuth()
+  const { user, isAdmin } = useAuth()
   const { count: wishlistCount } = useWishlist()
   const [searchOpen, setSearchOpen] = useState(false)
 
@@ -58,13 +58,13 @@ const MobileBottomNav = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={user ? '/account' : '/login'} className={({ isActive }) =>
+            <NavLink to={user ? (isAdmin ? '/admin' : '/account') : '/login'} className={({ isActive }) =>
               `flex flex-col items-center justify-center gap-0.5 h-full min-w-[56px] min-h-[44px] text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 ${
                 isActive ? 'text-[var(--color-leaf)]' : 'text-[var(--color-text)]/70'
               }`
             }>
-              <User size={20} />
-              <span>{user ? 'Profile' : 'Login'}</span>
+              {isAdmin ? <Shield size={20} /> : <User size={20} />}
+              <span>{user ? (isAdmin ? 'Admin' : 'Profile') : 'Login'}</span>
             </NavLink>
           </li>
 
