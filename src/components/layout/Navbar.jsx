@@ -76,10 +76,10 @@ const Navbar = () => {
                 className="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-cover"
               />
               <div className="leading-tight">
-                <span className="block font-[var(--font-heading)] text-xl sm:text-2xl text-[var(--color-forest)] font-bold">
+                <span className="block font-[var(--font-heading)] text-lg sm:text-2xl text-[var(--color-forest)] font-bold">
                   HariyaliBazar
                 </span>
-                <span className="nepali-text text-xs sm:text-base text-[var(--color-leaf)] tracking-wider">
+                <span className="nepali-text text-[10px] sm:text-base text-[var(--color-leaf)] tracking-wider">
                   किसानसँग जोड्छ, घरसम्म पुर्‍याउँछ।
                 </span>
               </div>
