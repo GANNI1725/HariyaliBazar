@@ -55,8 +55,10 @@ const CategoryTabs = () => {
             transition={{ duration: 0.3 }}
             className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 category-grid"
           >
-            {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} />
+            {filtered.map((p, i) => (
+              <div key={p.id} className={i >= 2 ? 'hidden lg:block' : ''}>
+                <ProductCard product={p} />
+              </div>
             ))}
           </motion.div>
         </AnimatePresence>
