@@ -113,7 +113,7 @@ const Navbar = () => {
                 <Search size={18} className="sm:size-[20px]" />
               </button>
 
-              <div className="hidden sm:block"><ThemeToggle /></div>
+              <div><ThemeToggle /></div>
 
               {user ? (
                 <div className="hidden sm:flex items-center gap-1">

@@ -63,19 +63,19 @@ const Cart = () => {
   }
 
   return (
-    <section className="w-full py-10 sm:py-14">
+    <section className="w-full py-6 sm:py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="font-[var(--font-heading)] text-3xl sm:text-4xl text-[var(--color-forest)] mb-2">
-          Your Shopping Cart
+        <h1 className="font-[var(--font-heading)] text-2xl sm:text-4xl text-[var(--color-forest)] mb-1 sm:mb-2">
+          Shopping Cart
         </h1>
-        <p className="text-[var(--color-text)]/70 mb-8">
+        <p className="text-sm sm:text-base text-[var(--color-text)]/70 mb-6 sm:mb-8">
           {totalItems > 0
             ? `You have ${totalItems} item${totalItems > 1 ? 's' : ''} in your cart`
             : 'Your cart is currently empty'}
         </p>
 
         {items.length === 0 && !showComingSoon && (
-          <div className="text-center py-20 bg-[var(--color-border)] rounded-2xl">
+          <div className="text-center py-12 sm:py-20 bg-[var(--color-border)] rounded-2xl">
             <div className="w-20 h-20 rounded-full bg-[var(--color-card)] mx-auto mb-5 flex items-center justify-center">
               <ShoppingBag size={36} className="text-[var(--color-leaf)]" />
             </div>

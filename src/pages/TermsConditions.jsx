@@ -20,7 +20,7 @@ const sections = [
 
 const TermsConditions = () => {
   return (
-    <div className="min-h-screen bg-[var(--color-background)] pt-24 pb-16 px-4">
+    <div className="min-h-screen bg-[var(--color-background)] pt-24 pb-10 sm:pb-16 px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ const TermsConditions = () => {
           <p className="text-sm text-[var(--color-text-secondary)] mt-1">Last updated: June 2025</p>
         </div>
 
-        <div className="bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)] p-8 space-y-6">
+        <div className="bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)] p-5 sm:p-8 space-y-5 sm:space-y-6">
           {sections.map((s) => (
             <div key={s.title}>
               <h2 className="text-lg font-semibold text-[var(--color-forest)] mb-2">{s.title}</h2>

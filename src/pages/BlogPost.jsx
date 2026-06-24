@@ -83,10 +83,10 @@ const BlogPost = () => {
             </span>
           </div>
 
-          <h1 className="font-[var(--font-heading)] text-3xl sm:text-4xl lg:text-5xl text-[var(--color-forest)] mb-2 leading-tight">
+          <h1 className="font-[var(--font-heading)] text-2xl sm:text-4xl lg:text-5xl text-[var(--color-forest)] mb-2 leading-tight">
             {post.title}
           </h1>
-          <p className="nepali-text text-xl text-[var(--color-leaf)] mb-6">
+          <p className="nepali-text text-lg sm:text-xl text-[var(--color-leaf)] mb-4 sm:mb-6">
             {post.titleNepali}
           </p>
 
@@ -96,7 +96,7 @@ const BlogPost = () => {
             className="w-full aspect-[16/9] object-cover rounded-2xl shadow-lg mb-8"
           />
 
-          <p className="text-lg text-[var(--color-text)]/80 leading-relaxed font-medium mb-6 italic border-l-4 border-[var(--color-sprout)] pl-4">
+          <p className="text-base sm:text-lg text-[var(--color-text)]/80 leading-relaxed font-medium mb-4 sm:mb-6 italic border-l-4 border-[var(--color-sprout)] pl-4">
             {post.excerpt}
           </p>
 
@@ -115,8 +115,8 @@ const BlogPost = () => {
           </div>
         </motion.div>
 
-        <div className="mt-16 pt-10 border-t border-[var(--color-border)]">
-          <h3 className="font-[var(--font-heading)] text-2xl text-[var(--color-forest)] mb-5">
+        <div className="mt-10 sm:mt-16 pt-8 sm:pt-10 border-t border-[var(--color-border)]">
+          <h3 className="font-[var(--font-heading)] text-xl sm:text-2xl text-[var(--color-forest)] mb-4 sm:mb-5">
             Keep Reading
           </h3>
           <div className="grid sm:grid-cols-3 gap-5">

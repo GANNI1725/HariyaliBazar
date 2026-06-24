@@ -130,7 +130,7 @@ const CustomerDashboard = () => {
         </div>
 
         {orders.length === 0 ? (
-          <div className="bg-[var(--color-card)] rounded-xl border border-[var(--color-border)] p-12 text-center">
+          <div className="bg-[var(--color-card)] rounded-xl border border-[var(--color-border)] p-8 sm:p-12 text-center">
             <Package size={48} className="mx-auto text-[var(--color-text-secondary)]/40 mb-3" />
             <p className="text-[var(--color-text-secondary)] font-medium">No orders yet</p>
             <p className="text-sm text-[var(--color-text-secondary)]/70 mt-1">Start shopping to see your orders here</p>

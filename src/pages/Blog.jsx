@@ -22,7 +22,7 @@ const Blog = () => {
           <span className="text-xs uppercase tracking-[0.3em] font-semibold text-[var(--color-leaf)]">
             HariyaliBazar Journal
           </span>
-          <h1 className="font-[var(--font-heading)] text-3xl sm:text-4xl lg:text-5xl text-[var(--color-forest)] mt-2 mb-3">
+          <h1 className="font-[var(--font-heading)] text-2xl sm:text-4xl lg:text-5xl text-[var(--color-forest)] mt-2 mb-3">
             Stories from the Soil
           </h1>
           <p className="text-[var(--color-text)]/70 max-w-2xl mx-auto">
@@ -47,7 +47,7 @@ const Blog = () => {
         </div>
 
         {filtered.length === 0 ? (
-          <p className="text-center py-20 text-[var(--color-text)]/60">
+          <p className="text-center py-12 sm:py-20 text-[var(--color-text)]/60">
             No posts in this category yet.
           </p>
         ) : (

@@ -124,7 +124,7 @@ const HeroBanner = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                      className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-[var(--color-pure-white)]/15 backdrop-blur-sm text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold hero-green-text mb-3 sm:mb-5"
+                      className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-[var(--color-forest)]/40 backdrop-blur-sm text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-sprout)] mb-3 sm:mb-5"
                   >
                     <Sprout size={14} /> {s.eyebrow}
                   </motion.span>
@@ -220,8 +220,7 @@ const HeroBanner = () => {
           visibility: visible;
           transition: opacity 0.5s ease 0.15s, visibility 0s linear 0.15s;
         }
-        .hero-green-text { color: var(--color-leaf); }
-        @media (max-width: 639px) {
+                @media (max-width: 639px) {
           .hero-title-mobile { font-size: clamp(1.75rem, 8vw, 2.5rem) !important; }
         }
         .hero-accent-title { color: var(--color-accent); }

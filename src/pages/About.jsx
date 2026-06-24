@@ -16,7 +16,7 @@ const stats = [
 const About = () => {
   return (
     <>
-      <section className="w-full relative bg-[var(--color-dark-section-bg)] text-[var(--color-pure-white)] py-20 sm:py-28">
+      <section className="w-full relative bg-[var(--color-dark-section-bg)] text-[var(--color-pure-white)] py-14 sm:py-28">
         <div className="absolute inset-0 opacity-50 bg-cover bg-center" style={{
           backgroundImage: `url(/About_Section/We-believe-in-honest-food.png)`
         }} />
@@ -26,22 +26,22 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block text-xs uppercase tracking-[0.3em] font-semibold text-[var(--color-sprout)] mb-3">
+            <span className="inline-block text-[10px] sm:text-xs uppercase tracking-[0.3em] font-semibold text-[var(--color-sprout)] mb-2 sm:mb-3">
               Our Story
             </span>
-            <h1 className="font-[var(--font-heading)] !text-[var(--color-pure-white)] text-4xl sm:text-5xl lg:text-6xl mb-5">
+            <h1 className="font-[var(--font-heading)] !text-[var(--color-pure-white)] text-3xl sm:text-5xl lg:text-6xl mb-3 sm:mb-5">
               We Believe in Honest Food
             </h1>
-            <p className="text-lg text-[var(--color-pure-white)]/90 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-lg text-[var(--color-pure-white)]/90 max-w-2xl mx-auto">
               HariyaliBazar was born from a simple idea: Nepali families deserve fresh, organic produce, and Nepali farmers deserve a fair price for growing it.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="w-full py-16">
+      <section className="w-full py-10 sm:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {stats.map((s, i) => {
               const Icon = s.icon
               return (
@@ -51,10 +51,10 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="text-center p-6 bg-[var(--color-border)] rounded-2xl"
+                  className="text-center p-4 sm:p-6 bg-[var(--color-border)] rounded-2xl"
                 >
-                  <Icon className="mx-auto text-[var(--color-leaf)] mb-3" size={32} />
-                  <p className="font-[var(--font-heading)] text-3xl text-[var(--color-forest)] mb-1">
+                  <Icon className="mx-auto text-[var(--color-leaf)] mb-2 sm:mb-3" size={32} />
+                  <p className="font-[var(--font-heading)] text-2xl sm:text-3xl text-[var(--color-forest)] mb-1">
                     {s.value}
                   </p>
                   <p className="text-sm text-[var(--color-text)]/70">{s.label}</p>
@@ -65,8 +65,8 @@ const About = () => {
         </div>
       </section>
 
-      <section className="w-full py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="w-full py-10 sm:py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -111,7 +111,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="w-full py-16 bg-[var(--color-border)]">
+      <section className="w-full py-10 sm:py-16 bg-[var(--color-border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Our Family"
@@ -150,7 +150,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="w-full py-16">
+      <section className="w-full py-10 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="font-[var(--font-heading)] text-2xl sm:text-3xl text-[var(--color-forest)] mb-3">
             A Project by Ganesh Prasad Bhandari

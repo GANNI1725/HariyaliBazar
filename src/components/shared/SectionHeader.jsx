@@ -8,14 +8,14 @@ const SectionHeader = ({ eyebrow, title, subtitle, center = true, className = ''
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`mb-12 ${center ? 'text-center' : ''} ${className}`}
+      className={`mb-8 sm:mb-12 ${center ? 'text-center' : ''} ${className}`}
     >
       {eyebrow && (
-        <span className="eyebrow mb-4">
+        <span className="eyebrow mb-2 sm:mb-4">
           {eyebrow}
         </span>
       )}
-      <h2 className="heading-md text-[var(--color-charcoal)] mb-4">
+      <h2 className="heading-md text-[var(--color-charcoal)] mb-2 sm:mb-4">
         {title}
       </h2>
       {subtitle && (

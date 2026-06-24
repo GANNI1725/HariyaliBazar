@@ -36,19 +36,19 @@ const Juices = () => {
   }, [juices, activeType])
 
   return (
-    <section className="w-full py-10 sm:py-14">
+    <section className="w-full py-6 sm:py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8 text-center"
+          className="mb-6 sm:mb-8 text-center"
         >
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-clay)] mb-3">
-            <Sparkles size={14} /> Cold-Pressed Daily
+          <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-clay)] mb-2 sm:mb-3">
+            <Sparkles size={12} className="sm:size-[14px]" /> Cold-Pressed Daily
           </div>
-          <h1 className="font-[var(--font-heading)] text-3xl sm:text-4xl text-[var(--color-forest)] mb-2 flex items-center justify-center gap-3">
-            <GlassWater size={32} className="text-[var(--color-leaf)]" />
-            HariyaliBazar Juice Bar
+          <h1 className="font-[var(--font-heading)] text-2xl sm:text-4xl text-[var(--color-forest)] mb-2 flex items-center justify-center gap-2 sm:gap-3">
+            <GlassWater size={24} className="sm:size-[32px] text-[var(--color-leaf)]" />
+            Juice Bar
           </h1>
           <p className="text-[var(--color-text)]/70 max-w-xl mx-auto">
             Cold-pressed every morning from our own fresh produce. No straws, no sugar, no shortcuts — just pure, honest nutrition.

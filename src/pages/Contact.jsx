@@ -32,25 +32,25 @@ const Contact = () => {
 
   return (
     <>
-      <section className="w-full py-14 sm:py-20 bg-[var(--color-border)] text-center">
+      <section className="w-full py-10 sm:py-20 bg-[var(--color-border)] text-center">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="font-[var(--font-heading)] text-4xl sm:text-5xl text-[var(--color-forest)] mb-3">
+            <h1 className="font-[var(--font-heading)] text-2xl sm:text-5xl text-[var(--color-forest)] mb-2 sm:mb-3">
               Let’s Talk
             </h1>
-            <p className="text-[var(--color-text)]/80 text-lg">
+            <p className="text-[var(--color-text)]/80 text-sm sm:text-lg">
               Questions about our produce? Curious about partnership? Just want to say hi? We’d love to hear from you.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="w-full py-12 sm:py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
+      <section className="w-full py-10 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8 sm:gap-10">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
