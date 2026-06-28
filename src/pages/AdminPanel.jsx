@@ -157,16 +157,28 @@ const AdminPanel = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8"
+      >
         {statCards.map((s) => (
           <div key={s.label} className="bg-[var(--color-card)] rounded-xl border border-[var(--color-border)] p-4">
             <p className="text-xs text-[var(--color-text-secondary)]">{s.label}</p>
             <p className={'text-2xl font-bold mt-1 ' + s.color}>{s.value}</p>
           </div>
         ))}
-      </div>
+      </motion.div>
 
-      <div className="flex gap-1 mb-6 bg-[var(--color-background)] rounded-lg p-1 border border-[var(--color-border)] overflow-x-auto w-full">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className="flex gap-1 mb-6 bg-[var(--color-background)] rounded-lg p-1 border border-[var(--color-border)] overflow-x-auto w-full"
+      >
         <div className="flex gap-1 min-w-max sm:min-w-0 w-full sm:w-auto sm:grid sm:grid-cols-4">
           {tabs.map(t => (
             <button key={t.id} onClick={() => setTab(t.id)} className={`flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded whitespace-nowrap ${tabBtnColor(tab === t.id)}`}>
@@ -174,7 +186,7 @@ const AdminPanel = () => {
             </button>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {tab === 'products' && (
         <div className="pb-16 md:pb-0">
@@ -288,7 +300,7 @@ const AdminPanel = () => {
                       </button>
                       <AnimatePresence>
                         {openDropdownId === o.id && (
-                          <motion.div
+                          <motion.div key="status-dropdown"
                             initial={{ opacity: 0, scale: 0.9, y: -4 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: -4 }}
@@ -350,7 +362,7 @@ const AdminPanel = () => {
 
       <AnimatePresence>
         {showModal && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--color-pure-black)]/40" onClick={() => setShowModal(false)}>
+          <motion.div key="product-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--color-pure-black)]/40" onClick={() => setShowModal(false)}>
             <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="bg-[var(--color-card)] rounded-2xl shadow-xl border border-[var(--color-border)] w-full max-w-lg max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between p-6 border-b border-[var(--color-border)]">
                 <h2 className="text-lg font-bold text-[var(--color-forest)]">{editing ? 'Edit Product' : 'Add Product'}</h2>
@@ -451,7 +463,7 @@ const AdminPanel = () => {
 
       <AnimatePresence>
         {showCatModal && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--color-pure-black)]/40" onClick={() => setShowCatModal(false)}>
+          <motion.div key="category-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--color-pure-black)]/40" onClick={() => setShowCatModal(false)}>
             <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="bg-[var(--color-card)] rounded-2xl shadow-xl border border-[var(--color-border)] w-full max-w-md" onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between p-5 border-b border-[var(--color-border)]">
                 <h2 className="text-lg font-bold text-[var(--color-forest)]">Add Category</h2>
@@ -491,7 +503,7 @@ const AdminPanel = () => {
 
       <AnimatePresence>
         {deleteId && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--color-pure-black)]/40">
+          <motion.div key="delete-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--color-pure-black)]/40">
             <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="bg-[var(--color-card)] rounded-2xl shadow-xl border border-[var(--color-border)] w-full max-w-sm p-6 text-center">
               <AlertTriangle size={40} className="mx-auto text-[var(--color-error)] mb-3" />
               <h3 className="text-lg font-bold text-[var(--color-text)] mb-1">Delete Product?</h3>

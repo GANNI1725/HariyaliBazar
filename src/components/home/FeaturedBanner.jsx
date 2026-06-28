@@ -10,11 +10,13 @@ const FeaturedBanner = () => {
     <section className="w-full py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ y: -6, transition: { duration: 0.3, ease: 'easeOut' } }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-earth)] text-[var(--color-pure-white)]"
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          onClick={() => setModalOpen(true)}
+          className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-earth)] text-[var(--color-pure-white)] shadow-sm hover:shadow-strong cursor-pointer transition-shadow duration-300"
         >
           <div className="grid md:grid-cols-2 gap-0 items-center">
             <div className="p-8 sm:p-12 lg:p-16 z-10">
@@ -35,15 +37,15 @@ const FeaturedBanner = () => {
                 </span>
               </div>
               <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 bg-[var(--color-pure-white)] text-[var(--color-earth)] font-semibold px-6 py-3 rounded-xl hover:bg-[var(--color-linen)] hover:shadow-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded"
+                onClick={(e) => { e.stopPropagation(); setModalOpen(true); }}
+                className="inline-flex items-center gap-2 bg-[var(--color-pure-white)] text-[var(--color-earth)] font-semibold px-6 py-3 rounded-xl hover:bg-[var(--color-accent)] hover:text-[var(--color-pure-white)] hover:shadow-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded"
               >
                 Order Now <ArrowRight size={18} />
               </button>
             </div>
             <div className="relative h-48 sm:h-56 md:h-full min-h-[200px] md:min-h-[280px]">
               <img
-                src="/Home-Logo_Section_Pics/Weekly-Veggie-Box.png"
+                src="/Home-Logo_Section_Pics/Weekly-Veggie-Box.jpg"
                 alt="Weekly veggie box"
                 className="absolute inset-0 w-full h-full object-cover"
               />

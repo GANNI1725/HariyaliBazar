@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 const items = [
   { img: '/Home-Logo_Section_Pics/Flag_of_Nepal.gif', alt: 'Nepal Flag', text: 'Proudly Made in Nepal' },
   { icon: '🍵', text: 'Fresh Ilam Tea Direct from the Hills' },
@@ -26,14 +28,20 @@ const Track = () => (
 
 const MarqueeStrip = () => {
   return (
-    <div className="w-full bg-[var(--color-surface)] py-1.5 overflow-hidden border-b border-[var(--color-border)]">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="w-full bg-[var(--color-surface)] py-1.5 overflow-hidden border-b border-[var(--color-border)]" role="marquee" aria-label="Announcements"
+    >
       <div className="flex marquee-track">
         <Track />
-        <Track />
-        <Track />
-        <Track />
+        <div aria-hidden="true" className="flex"><Track /></div>
+        <div aria-hidden="true" className="flex"><Track /></div>
+        <div aria-hidden="true" className="flex"><Track /></div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

@@ -21,7 +21,13 @@ const CategoryTabs = () => {
   const activeCat = visibleCategories.find((c) => c.id === active)
 
   return (
-    <section className="w-full py-16 sm:py-20">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      className="w-full py-16 sm:py-20"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Shop by Category"
@@ -31,18 +37,23 @@ const CategoryTabs = () => {
 
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {visibleCategories.map((c) => (
-            <button
+            <motion.button
               key={c.id}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => setActive(c.id)}
-              className={`px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
+              className={`px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
                 active === c.id
                   ? 'bg-[var(--color-forest)] text-[var(--color-pure-white)] shadow-md'
                   : 'bg-[var(--color-linen)] text-[var(--color-text)] hover:bg-[var(--color-sprout)] hover:text-[var(--color-pure-white)]'
               }`}
             >
-              <span>{c.icon}</span>
+              <motion.span
+                whileHover={{ rotate: [0, -10, 10, -5, 0] }}
+                transition={{ duration: 0.4 }}
+              >{c.icon}</motion.span>
               <span>{c.name}</span>
-            </button>
+            </motion.button>
           ))}
         </div>
 
@@ -56,9 +67,16 @@ const CategoryTabs = () => {
             className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 category-grid"
           >
             {filtered.map((p, i) => (
-              <div key={p.id} className={i >= 2 ? 'hidden lg:block' : ''}>
+              <motion.div
+                key={p.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: 'easeOut' }}
+                className={i >= 2 ? 'hidden lg:block' : ''}
+              >
                 <ProductCard product={p} />
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
@@ -84,7 +102,7 @@ const CategoryTabs = () => {
           </Link>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

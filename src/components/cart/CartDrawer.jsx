@@ -36,6 +36,7 @@ const CartDrawer = () => {
       {isOpen && (
         <>
           <motion.div
+            key="backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -44,6 +45,7 @@ const CartDrawer = () => {
             className="fixed inset-0 z-[90] bg-[var(--color-pure-black)]/50 backdrop-blur-sm"
           />
           <motion.aside
+            key="drawer"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}

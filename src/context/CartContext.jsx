@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react'
+import { createContext, useContext, useEffect, useState, useCallback, useRef, useMemo } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { LogIn } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useAuth } from './AuthContext'
 
@@ -19,6 +20,7 @@ const readStorage = () => {
 
 export const CartProvider = ({ children }) => {
   const { isLoggedIn, isAdmin } = useAuth()
+  const navigate = useNavigate()
   const [items, setItems] = useState(() => readStorage())
   const [isOpen, setIsOpen] = useState(false)
   const [loginPromptOpen, setLoginPromptOpen] = useState(false)
@@ -94,21 +96,15 @@ export const CartProvider = ({ children }) => {
   const openCart = useCallback(() => setIsOpen(true), [])
   const closeCart = useCallback(() => setIsOpen(false), [])
 
-  const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0)
-  const totalItems = items.reduce((sum, i) => sum + i.quantity, 0)
+  const subtotal = useMemo(() => items.reduce((sum, i) => sum + i.price * i.quantity, 0), [items])
+  const totalItems = useMemo(() => items.reduce((sum, i) => sum + i.quantity, 0), [items])
 
-  const value = {
-    items,
-    isOpen,
-    addItem,
-    removeItem,
-    updateQuantity,
-    clearCart,
-    openCart,
-    closeCart,
-    subtotal,
-    totalItems,
-  }
+  const value = useMemo(
+    () => ({
+      items, isOpen, addItem, removeItem, updateQuantity, clearCart, openCart, closeCart, subtotal, totalItems,
+    }),
+    [items, isOpen, addItem, removeItem, updateQuantity, clearCart, openCart, closeCart, subtotal, totalItems]
+  )
 
   return (
     <CartContext.Provider value={value}>
@@ -117,6 +113,7 @@ export const CartProvider = ({ children }) => {
       <AnimatePresence>
         {loginPromptOpen && (
           <motion.div
+            key="login-prompt"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -145,7 +142,7 @@ export const CartProvider = ({ children }) => {
                   Cancel
                 </button>
                 <button
-                  onClick={() => { window.location.href = '/login' }}
+                  onClick={() => { navigate('/login'); setLoginPromptOpen(false) }}
                   className="px-4 py-2 rounded-lg bg-[var(--color-forest)] text-white text-sm font-medium hover:bg-[var(--color-leaf)] transition-colors"
                 >
                   Log In

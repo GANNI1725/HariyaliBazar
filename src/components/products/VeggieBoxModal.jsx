@@ -11,7 +11,7 @@ const BOX_PRICE = 899
 const BOX_ORIGINAL = 1200
 const BOX_ID = 'veggie-box'
 const BOX_NAME = 'Weekly Veggie Box'
-const BOX_IMAGE = '/Home-Logo_Section_Pics/Weekly-Veggie-Box.png'
+const BOX_IMAGE = '/Home-Logo_Section_Pics/Weekly-Veggie-Box.jpg'
 
 const getRandomSurprise = (allProducts, selectedIds) => {
   const pool = allProducts.filter((p) => !selectedIds.includes(p.id) && p.inStock)
@@ -137,6 +137,7 @@ const VeggieBoxModal = ({ isOpen, onClose }) => {
       {isOpen && (
         <>
           <motion.div
+            key="backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -145,6 +146,7 @@ const VeggieBoxModal = ({ isOpen, onClose }) => {
             className="fixed inset-0 z-[100] bg-[var(--color-pure-black)]/60 backdrop-blur-sm"
           />
           <motion.div
+            key="modal"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}

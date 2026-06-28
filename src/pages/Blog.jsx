@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Clock, Tag, User } from 'lucide-react'
 import { blogPosts, blogCategories, calculateReadingTime } from '../data/blogPosts'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const Blog = () => {
+  useDocumentTitle('Blog')
   const [category, setCategory] = useState('all')
   const filtered =
     category === 'all'
@@ -59,7 +61,7 @@ const Blog = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: (i % 3) * 0.1 }}
-                className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group flex flex-col"
+                className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow group flex flex-col"
               >
                 <Link to={`/blog/${p.slug}`} className="block">
                   <div className="aspect-[4/3] sm:aspect-[16/10] max-h-36 sm:max-h-none overflow-hidden">

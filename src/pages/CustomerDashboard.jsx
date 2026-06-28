@@ -56,7 +56,13 @@ const CustomerDashboard = () => {
         </button>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6 mb-8">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="grid md:grid-cols-3 gap-6 mb-8"
+      >
         <div className="md:col-span-1">
           <div className="bg-[var(--color-card)] rounded-xl border border-[var(--color-border)] p-6 text-center">
             <div className="w-20 h-20 mx-auto rounded-full bg-[var(--color-forest)]/10 flex items-center justify-center mb-4">
@@ -121,9 +127,14 @@ const CustomerDashboard = () => {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+      >
         <div className="flex items-center gap-2 mb-4">
           <Package size={20} className="text-[var(--color-forest)]" />
           <h2 className="text-lg font-bold text-[var(--color-text)]">Order History</h2>
@@ -167,7 +178,7 @@ const CustomerDashboard = () => {
             ))}
           </div>
         )}
-      </div>
+      </motion.div>
     </div>
   )
 }

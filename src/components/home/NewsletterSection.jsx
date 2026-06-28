@@ -27,18 +27,14 @@ const NewsletterSection = () => {
     }, 1500)
   }
 
-  const onKeyDown = (e) => {
-    if (e.key === 'Enter' && !loading) onSubmit()
-  }
-
   return (
     <section className="w-full pt-10 pb-0 sm:pt-14 sm:pb-0 -mb-6">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
           className="rounded-2xl bg-gradient-to-br from-[var(--color-dark-section-from)] to-[var(--color-dark-section-to)] text-[var(--color-pure-white)] p-8 sm:p-10 lg:p-12 text-center relative overflow-hidden"
         >
           <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[var(--color-sprout)]/20" />
@@ -58,21 +54,20 @@ const NewsletterSection = () => {
               Get ₨100 off your first order
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
+            <form onSubmit={(e) => { e.preventDefault(); onSubmit() }} className="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={onKeyDown}
                 placeholder="you@example.com"
                 aria-label="Email address"
                 disabled={loading}
                 className="flex-1 px-3 py-2.5 rounded-lg bg-[var(--color-pure-white)] text-[var(--color-text)] text-sm placeholder:text-[var(--color-text-placeholder)] outline-none focus:ring-2 focus:ring-[var(--color-sprout)] disabled:opacity-50"
               />
               <Button
+                type="submit"
                 variant="accent"
                 size="sm"
-                onClick={onSubmit}
                 disabled={loading}
                 className="shrink-0"
               >
@@ -88,7 +83,7 @@ const NewsletterSection = () => {
                   'Subscribe'
                 )}
               </Button>
-            </div>
+            </form>
 
             <p className="text-xs text-[var(--color-pure-white)]/60 mt-4">
               We respect your inbox. Unsubscribe anytime.

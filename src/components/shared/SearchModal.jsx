@@ -50,6 +50,7 @@ const SearchModal = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          key="backdrop"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -88,7 +89,7 @@ const SearchModal = ({ isOpen, onClose }) => {
               </button>
             </div>
 
-            <div className="max-h-[60vh] overflow-y-auto">
+            <div className="max-h-[60vh] overflow-y-auto" aria-live="polite" aria-atomic="true">
               {!query.trim() && (
                 <div className="p-8 text-center text-[var(--color-text)]/60">
                   <p className="mb-2">Start typing to search 30+ organic products</p>

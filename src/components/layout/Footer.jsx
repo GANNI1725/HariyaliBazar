@@ -1,11 +1,18 @@
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, ExternalLink } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from '../shared/SocialIcons'
 
 const Footer = () => {
   const year = new Date().getFullYear()
   return (
-    <footer className="w-full bg-[var(--color-dark-section-bg)] text-[var(--color-pure-white)] mt-20">
+    <motion.footer
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="w-full bg-[var(--color-dark-section-bg)] text-[var(--color-pure-white)] mt-20"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
@@ -119,17 +126,22 @@ const Footer = () => {
                   [FacebookIcon, 'Facebook', 'https://facebook.com', 'hover:bg-[#1877F2] hover:shadow-[0_0_12px_#1877F2]'],
                   [InstagramIcon, 'Instagram', 'https://instagram.com', 'hover:bg-[#E4405F] hover:shadow-[0_0_12px_#E4405F]'],
                   [YoutubeIcon, 'YouTube', 'https://youtube.com', 'hover:bg-[#FF0000] hover:shadow-[0_0_12px_#FF0000]'],
-                ].map(([Icon, label, href, hoverCls]) => (
-                  <a
+                ].map(([Icon, label, href, hoverCls], i) => (
+                  <motion.a
                     key={label}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${label} (opens in new tab)`}
-                    className={`w-9 h-9 rounded-full bg-[var(--color-forest)] text-[var(--color-pure-white)] flex items-center justify-center transition-all duration-300 hover:scale-110 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2 ${hoverCls}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.3 }}
+                    whileHover={{ scale: 1.15, rotate: [0, -8, 8, -4, 0] }}
+                    className={`w-9 h-9 rounded-full bg-[var(--color-forest)] text-[var(--color-pure-white)] flex items-center justify-center transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2 ${hoverCls}`}
                   >
                     <Icon size={16} />
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </div>
@@ -166,7 +178,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   )
 }
 

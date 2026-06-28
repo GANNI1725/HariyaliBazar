@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react'
 import toast from 'react-hot-toast'
 
 const SEED_USERS = [
@@ -21,7 +21,6 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     let existingUsers = JSON.parse(localStorage.getItem('hariyali-users') || '[]')
-    const seedEmails = SEED_USERS.map(s => s.email.toLowerCase())
     const missingSeeds = SEED_USERS.filter(s => !existingUsers.some(u => u.email.toLowerCase() === s.email.toLowerCase()))
     if (missingSeeds.length > 0) {
       existingUsers = [...missingSeeds, ...existingUsers]
@@ -89,8 +88,13 @@ export function AuthProvider({ children }) {
     toast.success('Delivery address updated')
   }, [user])
 
+  const value = useMemo(
+    () => ({ user, loading, login, signup, logout, updateAddress, isAdmin: user?.role === 'admin', isCustomer: user?.role === 'customer', isLoggedIn: !!user }),
+    [user, loading, login, signup, logout, updateAddress]
+  )
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout, updateAddress, isAdmin: user?.role === 'admin', isCustomer: user?.role === 'customer', isLoggedIn: !!user }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   )

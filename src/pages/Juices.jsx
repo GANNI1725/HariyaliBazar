@@ -36,7 +36,13 @@ const Juices = () => {
   }, [juices, activeType])
 
   return (
-    <section className="w-full py-6 sm:py-14">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="w-full py-6 sm:py-14"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -93,7 +99,7 @@ const Juices = () => {
 
         <QuickViewModal product={quickView} onClose={() => setQuickView(null)} />
       </div>
-    </section>
+    </motion.section>
   )
 }
 

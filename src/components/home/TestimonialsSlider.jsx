@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
+import { motion } from 'framer-motion'
 import { Quote, Star, User } from 'lucide-react'
 import SectionHeader from '../shared/SectionHeader'
 import 'swiper/css'
@@ -64,7 +65,13 @@ const testimonials = [
 
 const TestimonialsSlider = () => {
   return (
-    <section className="w-full py-10 sm:py-20">
+    <motion.section
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      className="w-full py-10 sm:py-20"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Loved across Butwal & Rupandehi"
@@ -86,7 +93,11 @@ const TestimonialsSlider = () => {
         >
           {testimonials.map((t, i) => (
             <SwiperSlide key={`${t.name}-${i}`}>
-              <div className="bg-[var(--color-card)] rounded-2xl p-6 shadow-sm hover:shadow-elevated border border-[var(--color-border-light)] h-full flex flex-col transition-shadow duration-300">
+              <motion.div
+                whileHover={{ y: -4, scale: 1.02 }}
+                transition={{ duration: 0.25 }}
+                className="bg-[var(--color-card)] rounded-2xl p-6 shadow-sm hover:shadow-elevated border border-[var(--color-border-light)] h-full flex flex-col transition-shadow duration-300"
+              >
                 <Quote className="text-[var(--color-accent)] mb-4" size={28} />
                 <p className="text-[var(--color-text-secondary)] italic leading-relaxed mb-5 flex-1">
                   "{t.text}"
@@ -113,7 +124,7 @@ const TestimonialsSlider = () => {
                     <p className="text-xs text-[var(--color-text-secondary)]">{t.location}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -130,7 +141,7 @@ const TestimonialsSlider = () => {
           }
         `}</style>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

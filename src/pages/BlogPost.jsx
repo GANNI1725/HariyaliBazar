@@ -2,10 +2,12 @@ import { useParams, Link, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Clock, Tag, User, ArrowLeft, ChevronRight } from 'lucide-react'
 import { blogPosts, calculateReadingTime } from '../data/blogPosts'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const BlogPost = () => {
   const { slug } = useParams()
   const post = blogPosts.find((p) => p.slug === slug)
+  useDocumentTitle(post?.title)
   if (!post) return <Navigate to="/blog" replace />
 
   const others = blogPosts.filter((p) => p.slug !== slug).slice(0, 3)
@@ -115,7 +117,13 @@ const BlogPost = () => {
           </div>
         </motion.div>
 
-        <div className="mt-10 sm:mt-16 pt-8 sm:pt-10 border-t border-[var(--color-border)]">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="mt-10 sm:mt-16 pt-8 sm:pt-10 border-t border-[var(--color-border)]"
+        >
           <h3 className="font-[var(--font-heading)] text-xl sm:text-2xl text-[var(--color-forest)] mb-4 sm:mb-5">
             Keep Reading
           </h3>
@@ -142,7 +150,7 @@ const BlogPost = () => {
               </Link>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </article>
   )

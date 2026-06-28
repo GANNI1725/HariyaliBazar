@@ -13,10 +13,10 @@ const JuiceBarSection = () => {
     <section className="w-full py-16 sm:py-20 bg-[var(--color-linen)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-5 gap-10 items-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="lg:col-span-2"
         >
           <span className="eyebrow flex items-center gap-2 mb-3">
@@ -40,10 +40,10 @@ const JuiceBarSection = () => {
           {juices.map((j, i) => (
             <motion.div
               key={j.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
               className={i >= 2 ? 'hidden sm:block' : ''}
             >
               <ProductCard product={j} />

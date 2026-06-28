@@ -1,10 +1,19 @@
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Sprout } from 'lucide-react'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const NotFound = () => {
+  useDocumentTitle('Page Not Found')
   return (
     <section className="w-full py-24 sm:py-32 text-center px-4">
-      <div className="max-w-md mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="max-w-md mx-auto"
+      >
         <div className="w-24 h-24 rounded-full bg-[var(--color-border)] mx-auto mb-6 flex items-center justify-center">
           <Sprout size={42} className="text-[var(--color-leaf)]" />
         </div>
@@ -23,7 +32,7 @@ const NotFound = () => {
         >
           Take me home
         </Link>
-      </div>
+      </motion.div>
     </section>
   )
 }

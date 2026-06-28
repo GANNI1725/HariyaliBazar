@@ -27,6 +27,7 @@ const FloatingCart = () => {
     <AnimatePresence>
       {visible && (
         <motion.button
+          key="fab"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}

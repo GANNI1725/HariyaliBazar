@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import {
   ChevronRight,
   Heart,
@@ -32,6 +33,7 @@ const ProductDetail = () => {
   const { id } = useParams()
   const { getProductById } = useProducts()
   const product = getProductById(id)
+  useDocumentTitle(product?.name)
   const [quantity, setQuantity] = useState(1)
   const [tab, setTab] = useState('description')
   const [activeImg, setActiveImg] = useState(0)
@@ -81,8 +83,10 @@ const ProductDetail = () => {
         <div className="grid lg:grid-cols-2 gap-10">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className=""
           >
             <div className="rounded-2xl overflow-hidden bg-[var(--color-border)] aspect-square mb-4 group">
               <img
@@ -113,8 +117,10 @@ const ProductDetail = () => {
 
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+            className=""
           >
             <Link
               to="/products"
@@ -283,7 +289,15 @@ const ProductDetail = () => {
           </motion.div>
         </div>
 
-        <RelatedProducts product={product} />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className=""
+        >
+          <RelatedProducts product={product} />
+        </motion.div>
       </div>
 
       <div

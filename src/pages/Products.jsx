@@ -3,6 +3,7 @@ import { useSearchParams, useNavigationType } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { SlidersHorizontal, Leaf } from 'lucide-react'
 import { useProducts } from '../context/ProductContext'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { categories } from '../data/categories'
 import ProductCard from '../components/products/ProductCard'
 import ProductFilters from '../components/products/ProductFilters'
@@ -26,6 +27,7 @@ const defaultFilters = {
 }
 
 const Products = () => {
+  useDocumentTitle('Products')
   const { products } = useProducts()
   const [searchParams, setSearchParams] = useSearchParams()
   const getInitialFilters = () => {
@@ -97,7 +99,13 @@ const Products = () => {
   }
 
   return (
-    <section className="w-full py-6 sm:py-14">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="w-full py-6 sm:py-14"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -208,7 +216,7 @@ const Products = () => {
 
         <QuickViewModal product={quickView} onClose={() => setQuickView(null)} />
       </div>
-    </section>
+    </motion.section>
   )
 }
 

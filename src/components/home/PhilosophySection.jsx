@@ -32,10 +32,10 @@ const PhilosophySection = () => {
       <div className="absolute inset-0 bg-grain" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
+          initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
           className="relative"
         >
           <img
@@ -51,10 +51,10 @@ const PhilosophySection = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <span className="eyebrow">Our Philosophy</span>
           <h2 className="heading-sm text-[var(--color-charcoal)] mt-3 mb-4">
@@ -65,21 +65,32 @@ const PhilosophySection = () => {
           </p>
 
           <div className="grid sm:grid-cols-2 gap-4">
-            {pillars.map((p) => {
+            {pillars.map((p, i) => {
               const Icon = p.icon
               return (
-                <div
+                <motion.div
                   key={p.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.5, ease: 'easeOut' }}
+                  whileHover={{ y: -4 }}
                   className="p-4 rounded-xl bg-[var(--color-card)] border border-[var(--color-border-light)] shadow-sm"
                 >
-                  <Icon className="text-[var(--color-accent)] mb-2" size={22} />
+                  <motion.div
+                    whileHover={{ rotate: [0, -10, 10, -5, 0], scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                    className="inline-block"
+                  >
+                    <Icon className="text-[var(--color-accent)] mb-2" size={22} />
+                  </motion.div>
                   <h4 className="font-semibold text-[var(--color-charcoal)] mb-1">
                     {p.title}
                   </h4>
                   <p className="text-sm text-[var(--color-text-secondary)]">
                     {p.text}
                   </p>
-                </div>
+                </motion.div>
               )
             })}
           </div>

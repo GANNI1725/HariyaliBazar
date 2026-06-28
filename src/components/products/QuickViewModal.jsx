@@ -52,6 +52,7 @@ const QuickViewModal = ({ product, onClose }) => {
     <AnimatePresence>
       {product && (
         <motion.div
+          key="backdrop"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

@@ -102,6 +102,7 @@ const DeliveryChecker = ({ compact = false }) => {
           <AnimatePresence>
             {showSuggestions && (
               <motion.ul
+                key="suggestions"
                 ref={suggestionRef}
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -28,10 +28,10 @@ const SeasonalBanner = () => {
     <section className="w-full py-10 sm:py-12 bg-gradient-to-r from-[var(--color-sprout)]/20 via-[var(--color-surface)] to-[var(--color-sprout)]/20 overflow-hidden border-y border-[var(--color-border-light)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="flex flex-col lg:flex-row items-center gap-6"
         >
           <div className="flex items-center gap-3 shrink-0">
@@ -59,8 +59,8 @@ const SeasonalBanner = () => {
                 to={`/products/${p.id}`}
                 className="px-3 py-2 rounded-lg bg-[var(--color-card)] backdrop-blur-sm text-sm font-medium text-[var(--color-text)] border border-[var(--color-sprout)]/40 hover:bg-[var(--color-surface)] hover:border-[var(--color-sprout)] hover:shadow-sm transition-all focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 text-center"
               >
-                <span className="nepali-text text-lg font-semibold block">{p.nameNepali}</span>
-                <span className="text-[var(--color-text-secondary)] text-xs">{p.name}</span>
+                <span className="text-sm font-semibold block">{p.name}</span>
+                <span className="nepali-text text-[var(--color-text-secondary)] text-xs">{p.nameNepali}</span>
               </Link>
             ))}
           </div>

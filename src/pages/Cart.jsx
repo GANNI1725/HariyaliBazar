@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ShoppingBag, ArrowRight, Trash2, Sprout, X, Construction } from 'lucide-react'
 import { useCart } from '../context/CartContext'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import CartItem from '../components/cart/CartItem'
 import Button from '../components/shared/Button'
 
@@ -10,6 +11,7 @@ const ComingSoonModal = ({ onClose }) => {
   return (
     <AnimatePresence>
       <motion.div
+        key="backdrop"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -55,6 +57,7 @@ const ComingSoonModal = ({ onClose }) => {
 }
 
 const Cart = () => {
+  useDocumentTitle('Cart')
   const { items, subtotal, totalItems, clearCart } = useCart()
   const [showComingSoon, setShowComingSoon] = useState(false)
 
@@ -63,7 +66,13 @@ const Cart = () => {
   }
 
   return (
-    <section className="w-full py-6 sm:py-14">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="w-full py-6 sm:py-14"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="font-[var(--font-heading)] text-2xl sm:text-4xl text-[var(--color-forest)] mb-1 sm:mb-2">
           Shopping Cart
@@ -151,7 +160,7 @@ const Cart = () => {
       </div>
 
       {showComingSoon && <ComingSoonModal onClose={() => setShowComingSoon(false)} />}
-    </section>
+    </motion.section>
   )
 }
 

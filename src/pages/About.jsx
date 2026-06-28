@@ -1,19 +1,60 @@
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import { Sprout, Users, Heart, Award } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
+import { Sprout, Users, Heart, Award, Star } from 'lucide-react'
 import { farmers } from '../data/farmers'
 import { products } from '../data/products'
 import SectionHeader from '../components/shared/SectionHeader'
 import Button from '../components/shared/Button'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { useCountUp } from '../hooks/useCountUp'
 
 const stats = [
-  { icon: Users, value: `${farmers.length}`, label: 'Partner Farmers' },
-  { icon: Sprout, value: `${products.length}`, label: 'Products' },
-  { icon: Heart, value: '1000+', label: 'Happy Families' },
-  { icon: Award, value: `${new Set(farmers.map(f => f.district)).size}`, label: 'Districts Sourced' },
+  { icon: Users, target: farmers.length, suffix: '', label: 'Partner Farmers' },
+  { icon: Sprout, target: products.length, suffix: '', label: 'Products' },
+  { icon: Heart, target: 1000, suffix: '+', label: 'Happy Families' },
+  { icon: Award, target: new Set(farmers.map(f => f.district)).size, suffix: '', label: 'Districts Sourced' },
 ]
 
+const StatCard = ({ s, i }) => {
+  const Icon = s.icon
+  const [ref, display] = useCountUp(s.target, 1400)
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: i * 0.1 }}
+      className="text-center p-4 sm:p-6 bg-[var(--color-border)] rounded-2xl"
+    >
+      <Icon className="mx-auto text-[var(--color-leaf)] mb-2 sm:mb-3" size={32} />
+      <p className="font-[var(--font-heading)] text-2xl sm:text-3xl text-[var(--color-forest)] mb-1">
+        {display}{s.suffix}
+      </p>
+      <p className="text-sm text-[var(--color-text)]/70">{s.label}</p>
+    </motion.div>
+  )
+}
+
 const About = () => {
+  useDocumentTitle('About Us')
+  const location = useLocation()
+  const [expanded, setExpanded] = useState(null)
+  const farmerRefs = useRef({})
+  const contentHeights = useRef({})
+
+  useEffect(() => {
+    const hash = location.hash.replace('#', '')
+    if (hash.startsWith('farmer-')) {
+      const id = Number(hash.replace('farmer-', ''))
+      setExpanded(id)
+      setTimeout(() => {
+        farmerRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+    }
+  }, [location.hash])
+
   return (
     <>
       <section className="w-full relative bg-[var(--color-dark-section-bg)] text-[var(--color-pure-white)] py-14 sm:py-28">
@@ -42,25 +83,9 @@ const About = () => {
       <section className="w-full py-10 sm:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            {stats.map((s, i) => {
-              const Icon = s.icon
-              return (
-                <motion.div
-                  key={s.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="text-center p-4 sm:p-6 bg-[var(--color-border)] rounded-2xl"
-                >
-                  <Icon className="mx-auto text-[var(--color-leaf)] mb-2 sm:mb-3" size={32} />
-                  <p className="font-[var(--font-heading)] text-2xl sm:text-3xl text-[var(--color-forest)] mb-1">
-                    {s.value}
-                  </p>
-                  <p className="text-sm text-[var(--color-text)]/70">{s.label}</p>
-                </motion.div>
-              )
-            })}
+            {stats.map((s, i) => (
+              <StatCard key={s.label} s={s} i={i} />
+            ))}
           </div>
         </div>
       </section>
@@ -118,39 +143,102 @@ const About = () => {
             title="The Farmers Behind HariyaliBazar"
             subtitle="Every product we sell can be traced back to one of these dedicated organic farmers."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
-            {farmers.map((f, i) => (
-              <motion.div
-                key={f.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm text-center"
-              >
-                <img
-                  src={f.image}
-                  alt={`Portrait of ${f.name}, organic farmer from ${f.district}`}
-                  loading="lazy"
-                  width="300"
-                  height="300"
-                  className="w-full aspect-square object-cover"
-                />
-                <div className="p-4">
-                  <h4 className="font-semibold text-[var(--color-forest)] text-sm">
-                    {f.name}
-                  </h4>
-                  <p className="text-xs text-[var(--color-text)]/60 mt-0.5">
-                    {f.district} · {f.specialty}
-                  </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 items-start">
+            {farmers.map((f, i) => {
+              const isOpen = expanded === f.id
+              return (
+                <div key={f.id} ref={(el) => { farmerRefs.current[f.id] = el }} id={`farmer-${f.id}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                    className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm text-center cursor-pointer hover:shadow-strong transition-shadow duration-300"
+                    onClick={() => setExpanded(isOpen ? null : f.id)}
+                  >
+                    <div className="relative">
+                      <img
+                        src={f.image}
+                        alt={`Portrait of ${f.name}, organic farmer from ${f.district}`}
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                        className="w-full aspect-square object-cover"
+                      />
+                      {f.farmerOfTheWeek && (
+                        <span className="absolute top-3 right-3 inline-flex items-center gap-1 bg-[var(--color-accent)] text-[var(--color-pure-white)] rounded-full px-2.5 py-1 text-xs font-bold shadow">
+                          <Star size={10} fill="currentColor" /> Farmer of the Week
+                        </span>
+                      )}
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-semibold text-[var(--color-forest)] text-sm">
+                        {f.name}
+                      </h4>
+                      <p className="text-xs text-[var(--color-text)]/60 mt-0.5">
+                        {f.district} · {f.specialty}
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    animate={{ height: isOpen ? contentHeights.current[f.id] || 'auto' : 0 }}
+                    transition={{ duration: 0.35, ease: 'easeInOut' }}
+                    className="overflow-hidden"
+                  >
+                    <div
+                      ref={(el) => {
+                        if (el) contentHeights.current[f.id] = el.scrollHeight
+                      }}
+                      className="bg-[var(--color-card)] rounded-2xl p-4 sm:p-5 mt-2 border border-[var(--color-border-light)] shadow-sm"
+                    >
+                      <div className="flex items-start justify-between gap-3 mb-3">
+                        <h3 className="font-[var(--font-heading)] text-lg text-[var(--color-forest)]">{f.name}</h3>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setExpanded(null); }}
+                          className="shrink-0 w-6 h-6 rounded-full bg-[var(--color-border)] hover:bg-[var(--color-border-light)] flex items-center justify-center text-xs text-[var(--color-text-secondary)] transition-colors"
+                          aria-label="Close details"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                      <p className="nepali-text text-sm text-[var(--color-leaf)] mb-3">{f.nameNepali}</p>
+                      <div className="grid grid-cols-2 gap-2 mb-3">
+                        <div className="bg-[var(--color-border)] rounded-lg p-2">
+                          <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">District</p>
+                          <p className="font-semibold text-xs text-[var(--color-forest)]">{f.district}</p>
+                        </div>
+                        <div className="bg-[var(--color-border)] rounded-lg p-2">
+                          <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">Specialty</p>
+                          <p className="font-semibold text-xs text-[var(--color-forest)]">{f.specialty}</p>
+                        </div>
+                        <div className="bg-[var(--color-border)] rounded-lg p-2">
+                          <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">Years Organic</p>
+                          <p className="font-semibold text-xs text-[var(--color-forest)]">{f.yearsOrganic} years</p>
+                        </div>
+                        <div className="bg-[var(--color-border)] rounded-lg p-2">
+                          <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">Products</p>
+                          <p className="font-semibold text-xs text-[var(--color-forest)]">{f.products.length} items</p>
+                        </div>
+                      </div>
+                      <h4 className="font-[var(--font-heading)] text-sm text-[var(--color-forest)] mb-1">Their Story</h4>
+                      <p className="text-xs text-[var(--color-text)]/80 leading-relaxed">{f.story}</p>
+                    </div>
+                  </motion.div>
                 </div>
-              </motion.div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
 
-      <section className="w-full py-10 sm:py-16">
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className="w-full py-10 sm:py-16"
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="font-[var(--font-heading)] text-2xl sm:text-3xl text-[var(--color-forest)] mb-3">
             A Project by Ganesh Prasad Bhandari
@@ -166,7 +254,7 @@ const About = () => {
             <Button size="lg">Start Shopping</Button>
           </Link>
         </div>
-      </section>
+      </motion.section>
     </>
   )
 }

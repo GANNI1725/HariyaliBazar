@@ -23,7 +23,9 @@ const TermsConditions = () => {
     <div className="min-h-screen bg-[var(--color-background)] pt-24 pb-10 sm:pb-16 px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
         className="max-w-2xl mx-auto"
       >
         <Link

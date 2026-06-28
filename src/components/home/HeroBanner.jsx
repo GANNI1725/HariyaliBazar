@@ -50,17 +50,16 @@ const slides = [
     secondaryLabel: 'Browse Products',
     secondaryTo: '/products',
     image:
-      '/Home-Logo_Section_Pics/Same-Day-Delivery-in-Butwal-Rupandehi.png',
+      '/Home-Logo_Section_Pics/Same-Day-Delivery-in-Butwal.png',
     tagline: 'तुरुन्तै हजुरको घरमा',
     districts: 'Butwal · Siddharthanagar · Tilottama',
   },
 ]
 
 const wordVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0 },
   visible: (i) => ({
     opacity: 1,
-    y: 0,
     transition: { delay: i * 0.06, duration: 0.4, ease: 'easeOut' },
   }),
 }
@@ -91,8 +90,12 @@ const SlideImage = ({ image, isActive }) => {
       className="absolute inset-0 bg-cover bg-center will-change-transform"
       style={{ backgroundImage: `url(${image})` }}
       initial={{ scale: 1.15 }}
-      animate={{ scale: isActive ? 1 : 1.15 }}
-      transition={{ duration: 2.7, ease: [0.22, 1, 0.36, 1] }}
+      animate={{
+        scale: isActive ? 1 : 1.15,
+      }}
+      transition={{
+        scale: { duration: 2.7, ease: [0.22, 1, 0.36, 1] },
+      }}
       aria-hidden
     />
   )
@@ -102,7 +105,7 @@ const HeroBanner = () => {
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <section className="w-full relative">
+    <section className="w-full relative h-full">
       <Swiper
         modules={[Autoplay, Pagination, EffectFade]}
         autoplay={{ delay: 5500, disableOnInteraction: false }}
@@ -110,15 +113,15 @@ const HeroBanner = () => {
         effect="fade"
         loop
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-        className="hero-swiper"
+        className="hero-swiper h-full"
       >
         {slides.map((s, i) => (
-          <SwiperSlide key={`${s.title}-${i}`}>
-            <div className="relative min-h-[420px] sm:min-h-[520px] md:min-h-[600px] lg:min-h-[680px] overflow-hidden">
+          <SwiperSlide key={`${s.title}-${i}`} className="h-full">
+            <div className="relative min-h-full overflow-hidden h-full">
               <SlideImage image={s.image} isActive={i === activeIndex} />
               <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-pure-black)]/75 via-[var(--color-pure-black)]/35 to-transparent" />
 
-              <div className="slide-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-[420px] sm:min-h-[520px] md:min-h-[600px] lg:min-h-[680px] flex items-center">
+              <div className="slide-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-full flex items-center">
                 <div className="max-w-2xl text-[var(--color-pure-white)] py-8 sm:py-12 min-w-0">
                   <motion.span
                     initial={{ opacity: 0, y: 10 }}
@@ -174,12 +177,14 @@ const HeroBanner = () => {
                     transition={{ duration: 0.5, delay: 0.9 }}
                     className="flex flex-wrap gap-3"
                   >
+                    <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
                     <Link
                       to={s.primaryTo}
                       className="hero-btn inline-flex items-center gap-2 bg-[var(--color-forest)] text-[var(--color-pure-white)] font-semibold px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl hover:bg-[var(--color-leaf)] hover:shadow-2xl transition-all duration-300 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2 text-sm sm:text-base"
                     >
                       {s.primaryLabel} <ArrowRight size={16} className="sm:size-[18px]" />
                     </Link>
+                    </motion.div>
                     <Link
                       to={s.secondaryTo}
                       className="inline-flex items-center gap-2 bg-[var(--color-pure-white)]/10 text-[var(--color-pure-white)] border border-[var(--color-pure-white)]/25 font-medium px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl hover:bg-[var(--color-pure-white)]/20 hover:border-[var(--color-pure-white)]/40 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2 text-sm sm:text-base"
@@ -220,7 +225,11 @@ const HeroBanner = () => {
           visibility: visible;
           transition: opacity 0.5s ease 0.15s, visibility 0s linear 0.15s;
         }
-                @media (max-width: 639px) {
+        .hero-swiper .swiper-wrapper,
+        .hero-swiper .swiper-slide {
+          height: 100%;
+        }
+        @media (max-width: 639px) {
           .hero-title-mobile { font-size: clamp(1.75rem, 8vw, 2.5rem) !important; }
         }
         .hero-accent-title { color: var(--color-accent); }

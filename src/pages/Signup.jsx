@@ -3,9 +3,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { UserPlus, Eye, EyeOff, Mail, Lock, User, Phone } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const Signup = () => {
   const { signup } = useAuth()
+  useDocumentTitle('Create Account')
   const navigate = useNavigate()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -44,7 +46,7 @@ const Signup = () => {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 relative bg-cover bg-center pt-20" style={{ backgroundImage: 'url(/Home-Logo_Section_Pics/Login-Page.-BG.png)' }}>
       <div className="absolute inset-0 bg-[var(--color-pure-black)]/60" />
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md relative">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, ease: 'easeOut' }} className="w-full max-w-md relative">
         <div className="bg-[var(--color-card)] rounded-2xl shadow-lg border border-[var(--color-border)] p-8">
           <div className="text-center mb-8">
             <div className="w-14 h-14 mx-auto rounded-full bg-[var(--color-forest)]/10 flex items-center justify-center mb-4">
@@ -151,18 +153,18 @@ const Signup = () => {
 
             {error && <p className="text-sm text-[var(--color-error)] bg-[var(--color-error-bg)] px-3 py-2 rounded-lg">{error}</p>}
 
-            <label className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)] cursor-pointer leading-relaxed">
-              <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mt-1 shrink-0 rounded border-[var(--color-border)] text-[var(--color-leaf)] focus:ring-[var(--color-leaf)]" />
-              <span>
+            <div className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)] leading-relaxed">
+              <input id="agree-terms" type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mt-1 shrink-0 rounded border-[var(--color-border)] text-[var(--color-leaf)] focus:ring-[var(--color-leaf)]" />
+              <label htmlFor="agree-terms" className="cursor-pointer">
                 I agree to the{' '}
-                <Link to="/terms" target="_blank" rel="noopener noreferrer" className="text-[var(--color-leaf)] hover:brightness-75 font-medium">
+                <Link to="/terms" target="_blank" rel="noopener noreferrer" className="text-[var(--color-leaf)] hover:brightness-75 font-medium" onClick={e => e.stopPropagation()}>
                   Terms & Conditions
                 </Link>{' '}and{' '}
-                <Link to="/privacy" target="_blank" rel="noopener noreferrer" className="text-[var(--color-leaf)] hover:brightness-75 font-medium">
+                <Link to="/privacy" target="_blank" rel="noopener noreferrer" className="text-[var(--color-leaf)] hover:brightness-75 font-medium" onClick={e => e.stopPropagation()}>
                   Privacy Policy
                 </Link>
-              </span>
-            </label>
+              </label>
+            </div>
 
             <button
               type="submit" disabled={loading}

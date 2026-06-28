@@ -21,7 +21,7 @@ export const blogPosts = [
     titleNepali: 'पाँच मिनेटे पालुंगो साग',
     category: 'recipes',
     categoryLabel: 'Recipes',
-    author: 'Sandesh Tiwari',
+    author: 'Pramish Bhandari',
     date: '2026-05-05',
     image: '/Blog_Section/5-Minute-Spinach-Saag.png',
     excerpt:
@@ -36,7 +36,7 @@ export const blogPosts = [
     titleNepali: 'कृष्णलाई भेट्नुहोस्',
     category: 'farmer-stories',
     categoryLabel: 'Farmer Stories',
-    author: 'Sandesh Tiwari',
+    author: 'Suraj Pandey',
     date: '2026-04-22',
     image: '/Blog_Section/Meet-Krishna.png',
     excerpt:
@@ -66,7 +66,7 @@ export const blogPosts = [
     titleNepali: 'वर्षायाममा के खाने',
     category: 'organic-farming',
     categoryLabel: 'Organic Farming',
-    author: 'Sandesh Tiwari',
+    author: 'Pramish Bhandari',
     date: '2026-03-28',
     image: '/Blog_Section/Monsoon-Eating.png',
     excerpt:
@@ -81,7 +81,7 @@ export const blogPosts = [
     titleNepali: 'उचित मूल्यको अर्थ',
     category: 'sustainability',
     categoryLabel: 'Sustainability',
-    author: 'Ganesh Prasad Bhandari',
+    author: 'Suraj Pandey',
     date: '2026-03-15',
     image: '/Blog_Section/Fair-Price-to-Farmer.png',
     excerpt:

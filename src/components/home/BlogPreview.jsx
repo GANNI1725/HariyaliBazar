@@ -19,11 +19,11 @@ const BlogPreview = () => {
           {latest.map((p, i) => (
             <motion.article
               key={p.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-strong transition-all duration-300 group ${i >= 2 ? 'hidden md:block' : ''}`}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
+              className={`bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-strong transition-shadow duration-300 group ${i >= 2 ? 'hidden md:block' : ''}`}
             >
               <Link to={`/blog/${p.slug}`} className="block">
                 <div className="aspect-[4/3] sm:aspect-[16/10] max-h-36 sm:max-h-none overflow-hidden">
