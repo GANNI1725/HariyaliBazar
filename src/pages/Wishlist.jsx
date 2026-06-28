@@ -14,10 +14,10 @@ const Wishlist = () => {
   const items = products.filter((p) => ids.includes(p.id))
 
   return (
-    <div className="relative min-h-screen bg-[#1a2e1a] bg-fixed bg-cover bg-center" style={{ backgroundImage: `url('/Why-Organic/WishList.jpg')` }}>
+    <div className="relative min-h-screen bg-[#1a2e1a] bg-fixed bg-cover bg-center mb-[-5rem]" style={{ backgroundImage: `url('/Why-Organic/WishList.jpg')` }}>
       <div className="absolute inset-0 bg-[var(--color-pure-black)]/70" />
       <div className="relative z-10">
-        <section className="w-full py-6 sm:py-14">
+        <section className="w-full py-6 sm:py-14 pb-0">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
