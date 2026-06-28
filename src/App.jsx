@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation, useNavigationType } from 're
 import { Suspense, lazy, useEffect } from 'react'
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
 import { Toaster } from 'react-hot-toast'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { AuthProvider } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import { WishlistProvider } from './context/WishlistContext'
@@ -130,6 +131,7 @@ const App = () => {
                   },
                 }}
               />
+              <SpeedInsights />
             </div>
           </ErrorBoundary>
           </ProductProvider>
