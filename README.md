@@ -120,8 +120,8 @@ $ npm run lint
 
 ### 🔐 Auth & User Accounts
 - Login / Signup with validation (email must be `@gmail.com`, password: 8+ chars, uppercase, lowercase, number, special char)
-- Admin: `Ganesh@gmail.com` / `Admin@123` - access admin panel at `/admin`
-- Customer: `Customer@gmail.com` / `Customer@123` - access account dashboard at `/account`
+- Admin: `ganesh@gmail.com` / `Admin@123` - access admin panel at `/admin`
+- Customer: `customer@gmail.com` / `Customer@123` - access account dashboard at `/account`
 - New users sign up as customers (stored in `localStorage`)
 - Address management from customer dashboard
 

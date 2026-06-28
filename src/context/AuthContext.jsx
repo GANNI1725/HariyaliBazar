@@ -2,8 +2,8 @@ import { createContext, useContext, useState, useEffect, useCallback, useMemo } 
 import toast from 'react-hot-toast'
 
 const SEED_USERS = [
-  { id: 'admin-1', name: import.meta.env.VITE_ADMIN_NAME || 'Ganesh Admin', email: import.meta.env.VITE_ADMIN_EMAIL || 'Ganesh@gmail.com', password: import.meta.env.VITE_ADMIN_PASSWORD || 'Admin@123', role: 'admin', createdAt: new Date().toISOString(), address: '' },
-  { id: 'customer-1', name: import.meta.env.VITE_CUSTOMER_NAME || 'Customer', email: import.meta.env.VITE_CUSTOMER_EMAIL || 'Customer@gmail.com', password: import.meta.env.VITE_CUSTOMER_PASSWORD || 'Customer@123', role: 'customer', createdAt: new Date().toISOString(), address: 'Butwal, Rupandehi' },
+  { id: 'admin-1', name: import.meta.env.VITE_ADMIN_NAME || 'Ganesh Admin', email: (import.meta.env.VITE_ADMIN_EMAIL || 'ganesh@gmail.com').toLowerCase(), password: import.meta.env.VITE_ADMIN_PASSWORD || 'Admin@123', role: 'admin', createdAt: new Date().toISOString(), address: '' },
+  { id: 'customer-1', name: import.meta.env.VITE_CUSTOMER_NAME || 'Customer', email: (import.meta.env.VITE_CUSTOMER_EMAIL || 'customer@gmail.com').toLowerCase(), password: import.meta.env.VITE_CUSTOMER_PASSWORD || 'Customer@123', role: 'customer', createdAt: new Date().toISOString(), address: 'Butwal, Rupandehi' },
 ]
 
 const SEED_ORDERS = [
@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     let existingUsers = JSON.parse(localStorage.getItem('hariyali-users') || '[]')
-    const missingSeeds = SEED_USERS.filter(s => !existingUsers.some(u => u.email.toLowerCase() === s.email.toLowerCase()))
+    const missingSeeds = SEED_USERS.filter(s => !existingUsers.some(u => u.email === s.email))
     if (missingSeeds.length > 0) {
       existingUsers = [...missingSeeds, ...existingUsers]
       localStorage.setItem('hariyali-users', JSON.stringify(existingUsers))
@@ -37,10 +37,10 @@ export function AuthProvider({ children }) {
   }, [])
 
   const login = useCallback((email, password) => {
-    const trimmedEmail = email.trim()
+    const trimmedEmail = email.trim().toLowerCase()
     const trimmedPassword = password.trim()
     const users = JSON.parse(localStorage.getItem('hariyali-users') || '[]')
-    const found = users.find(u => u.email.toLowerCase() === trimmedEmail.toLowerCase() && u.password === trimmedPassword)
+    const found = users.find(u => u.email === trimmedEmail && u.password === trimmedPassword)
     if (!found) return { success: false, error: 'Invalid email or password' }
     const session = { id: found.id, name: found.name, email: found.email, role: found.role, address: found.address || '' }
     localStorage.setItem('hariyali-current-user', JSON.stringify(session))
@@ -50,8 +50,9 @@ export function AuthProvider({ children }) {
   }, [])
 
   const signup = useCallback((name, email, password, phone) => {
-    const emailPattern = /@gmail\.com$/i
-    if (!emailPattern.test(email)) return { success: false, error: 'Email must be a @gmail.com address' }
+    const emailPattern = /@gmail\.com$/
+    const normalizedEmail = email.trim().toLowerCase()
+    if (!emailPattern.test(normalizedEmail)) return { success: false, error: 'Email must be a @gmail.com address' }
     if (!phone || phone.trim().length < 10) return { success: false, error: 'Please enter a valid phone number' }
     if (password.length < 8) return { success: false, error: 'Password must be at least 8 characters' }
     if (!/[A-Z]/.test(password)) return { success: false, error: 'Password must contain an uppercase letter' }
@@ -60,9 +61,9 @@ export function AuthProvider({ children }) {
     if (!/[^A-Za-z0-9]/.test(password)) return { success: false, error: 'Password must contain a special character' }
 
     const users = JSON.parse(localStorage.getItem('hariyali-users') || '[]')
-    if (users.find(u => u.email.toLowerCase() === email.toLowerCase())) return { success: false, error: 'Email already registered' }
+    if (users.find(u => u.email === normalizedEmail)) return { success: false, error: 'Email already registered' }
 
-    const newUser = { id: 'user-' + Date.now(), name, email, phone, password, role: 'customer', createdAt: new Date().toISOString(), address: '' }
+    const newUser = { id: 'user-' + Date.now(), name, email: normalizedEmail, phone, password, role: 'customer', createdAt: new Date().toISOString(), address: '' }
     users.push(newUser)
     localStorage.setItem('hariyali-users', JSON.stringify(users))
     const session = { id: newUser.id, name: newUser.name, email: newUser.email, phone: newUser.phone, role: newUser.role, address: '' }

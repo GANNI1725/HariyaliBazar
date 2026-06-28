@@ -74,7 +74,7 @@ const Signup = () => {
               <div className="relative">
                 <Mail size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-secondary)]" />
                 <input
-                  type="email" value={email} onChange={e => setEmail(e.target.value)}
+                  type="email" value={email} onChange={e => setEmail(e.target.value.toLowerCase())}
                   placeholder="you@gmail.com"
                   className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)] placeholder:text-[var(--color-text-secondary)]/50"
                 />
