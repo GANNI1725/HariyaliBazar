@@ -157,12 +157,7 @@ const AdminPanel = () => {
         </button>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8"
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8"
       >
         {statCards.map((s) => (
           <div key={s.label} className="bg-[var(--color-card)] rounded-xl border border-[var(--color-border)] p-4">
@@ -170,14 +165,9 @@ const AdminPanel = () => {
             <p className={'text-2xl font-bold mt-1 ' + s.color}>{s.value}</p>
           </div>
         ))}
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="flex gap-1 mb-6 bg-[var(--color-background)] rounded-lg p-1 border border-[var(--color-border)] overflow-x-auto w-full"
+      <div className="flex gap-1 mb-6 bg-[var(--color-background)] rounded-lg p-1 border border-[var(--color-border)] overflow-x-auto w-full"
       >
         <div className="flex gap-1 min-w-max sm:min-w-0 w-full sm:w-auto sm:grid sm:grid-cols-4">
           {tabs.map(t => (
@@ -186,7 +176,7 @@ const AdminPanel = () => {
             </button>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {tab === 'products' && (
         <div className="pb-16 md:pb-0">
