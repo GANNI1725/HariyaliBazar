@@ -2,11 +2,13 @@
 
 > *Fresh organic produce from Nepal's farms, delivered to your door.*
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-2F6B3F?style=for-the-badge&logo=vercel&logoColor=white)](https://hariyali-bazar.vercel.app)
 [![License: All Rights Reserved](https://img.shields.io/badge/License-All%20Rights%20Reserved-C9901A?style=for-the-badge)](LICENSE)
 [![Status: Internship Complete](https://img.shields.io/badge/Status-Internship%20Complete-7FB069?style=for-the-badge)](https://github.com)
 
 A frontend-only organic-produce e-commerce experience crafted for the Nepali market - built end-to-end during a BCA Frontend Internship at **Sweven Incorporate Pvt. Ltd., Butwal**.
 
+**Live demo:** https://hariyali-bazar.vercel.app
 **Repository:** https://github.com/GANNI1725/HariyaliBazar
 
 ---
