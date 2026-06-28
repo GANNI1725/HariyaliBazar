@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { Link, useLocation } from 'react-router-dom'
-import { Sprout, Users, Heart, Award, Star } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { Sprout, Users, Heart, Award, Star, X, MapPin } from 'lucide-react'
 import { farmers } from '../data/farmers'
 import { products } from '../data/products'
 import SectionHeader from '../components/shared/SectionHeader'
@@ -39,21 +39,7 @@ const StatCard = ({ s, i }) => {
 
 const About = () => {
   useDocumentTitle('About Us')
-  const location = useLocation()
-  const [expanded, setExpanded] = useState(null)
-  const farmerRefs = useRef({})
-  const contentHeights = useRef({})
-
-  useEffect(() => {
-    const hash = location.hash.replace('#', '')
-    if (hash.startsWith('farmer-')) {
-      const id = Number(hash.replace('farmer-', ''))
-      setExpanded(id)
-      setTimeout(() => {
-        farmerRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 100)
-    }
-  }, [location.hash])
+  const [selectedFarmer, setSelectedFarmer] = useState(null)
 
   return (
     <>
@@ -150,90 +136,42 @@ const About = () => {
             subtitle="Every product we sell can be traced back to one of these dedicated organic farmers."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 items-start">
-            {farmers.map((f, i) => {
-              const isOpen = expanded === f.id
-              return (
-                <div key={f.id} ref={(el) => { farmerRefs.current[f.id] = el }} id={`farmer-${f.id}`}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.08 }}
-                    className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm text-center cursor-pointer hover:shadow-strong transition-shadow duration-300"
-                    onClick={() => setExpanded(isOpen ? null : f.id)}
-                  >
-                    <div className="relative">
-                      <img
-                        src={f.image}
-                        alt={`Portrait of ${f.name}, organic farmer from ${f.district}`}
-                        loading="lazy"
-                        width="300"
-                        height="300"
-                        className="w-full aspect-square object-cover"
-                      />
-                      {f.farmerOfTheWeek && (
-                        <span className="absolute top-3 right-3 inline-flex items-center gap-1 bg-[var(--color-accent)] text-[var(--color-pure-white)] rounded-full px-2.5 py-1 text-xs font-bold shadow">
-                          <Star size={10} fill="currentColor" /> Farmer of the Week
-                        </span>
-                      )}
-                    </div>
-                    <div className="p-4">
-                      <h4 className="font-semibold text-[var(--color-forest)] text-sm">
-                        {f.name}
-                      </h4>
-                      <p className="text-xs text-[var(--color-text)]/60 mt-0.5">
-                        {f.district} · {f.specialty}
-                      </p>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    animate={{ height: isOpen ? contentHeights.current[f.id] || 'auto' : 0 }}
-                    transition={{ duration: 0.35, ease: 'easeInOut' }}
-                    className="overflow-hidden"
-                  >
-                    <div
-                      ref={(el) => {
-                        if (el) contentHeights.current[f.id] = el.scrollHeight
-                      }}
-                      className="bg-[var(--color-card)] rounded-2xl p-4 sm:p-5 mt-2 border border-[var(--color-border-light)] shadow-sm"
-                    >
-                      <div className="flex items-start justify-between gap-3 mb-3">
-                        <h3 className="font-[var(--font-heading)] text-lg text-[var(--color-forest)]">{f.name}</h3>
-                        <button
-                          onClick={(e) => { e.stopPropagation(); setExpanded(null); }}
-                          className="shrink-0 w-6 h-6 rounded-full bg-[var(--color-border)] hover:bg-[var(--color-border-light)] flex items-center justify-center text-xs text-[var(--color-text-secondary)] transition-colors"
-                          aria-label="Close details"
-                        >
-                          ✕
-                        </button>
-                      </div>
-                      <p className="nepali-text text-sm text-[var(--color-leaf)] mb-3">{f.nameNepali}</p>
-                      <div className="grid grid-cols-2 gap-2 mb-3">
-                        <div className="bg-[var(--color-border)] rounded-lg p-2">
-                          <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">District</p>
-                          <p className="font-semibold text-xs text-[var(--color-forest)]">{f.district}</p>
-                        </div>
-                        <div className="bg-[var(--color-border)] rounded-lg p-2">
-                          <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">Specialty</p>
-                          <p className="font-semibold text-xs text-[var(--color-forest)]">{f.specialty}</p>
-                        </div>
-                        <div className="bg-[var(--color-border)] rounded-lg p-2">
-                          <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">Years Organic</p>
-                          <p className="font-semibold text-xs text-[var(--color-forest)]">{f.yearsOrganic} years</p>
-                        </div>
-                        <div className="bg-[var(--color-border)] rounded-lg p-2">
-                          <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">Products</p>
-                          <p className="font-semibold text-xs text-[var(--color-forest)]">{f.products.length} items</p>
-                        </div>
-                      </div>
-                      <h4 className="font-[var(--font-heading)] text-sm text-[var(--color-forest)] mb-1">Their Story</h4>
-                      <p className="text-xs text-[var(--color-text)]/80 leading-relaxed">{f.story}</p>
-                    </div>
-                  </motion.div>
-                </div>
-              )
-            })}
+            {farmers.map((f, i) => (
+              <div key={f.id}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm text-center cursor-pointer hover:shadow-strong transition-shadow duration-300"
+                  onClick={() => setSelectedFarmer(f)}
+                >
+                  <div className="relative">
+                    <img
+                      src={f.image}
+                      alt={`Portrait of ${f.name}, organic farmer from ${f.district}`}
+                      loading="lazy"
+                      width="300"
+                      height="300"
+                      className="w-full aspect-square object-cover"
+                    />
+                    {f.farmerOfTheWeek && (
+                      <span className="absolute top-3 right-3 inline-flex items-center gap-1 bg-[var(--color-accent)] text-[var(--color-pure-white)] rounded-full px-2.5 py-1 text-xs font-bold shadow">
+                        <Star size={10} fill="currentColor" /> Farmer of the Week
+                      </span>
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-semibold text-[var(--color-forest)] text-sm">
+                      {f.name}
+                    </h4>
+                    <p className="text-xs text-[var(--color-text)]/60 mt-0.5">
+                      {f.district} · {f.specialty}
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -261,6 +199,79 @@ const About = () => {
           </Link>
         </div>
       </motion.section>
+
+      <AnimatePresence>
+        {selectedFarmer && (
+          <motion.div
+            key="farmer-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-[var(--color-pure-black)]/40 backdrop-blur-sm"
+            onClick={() => setSelectedFarmer(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: -10 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-label={`Details about ${selectedFarmer.name}`}
+              className="bg-[var(--color-card)] rounded-2xl shadow-xl border border-[var(--color-border)] w-full max-w-lg max-h-[90vh] overflow-y-auto"
+            >
+              <div className="relative">
+                <img
+                  src={selectedFarmer.image}
+                  alt={`Portrait of ${selectedFarmer.name}`}
+                  width="300"
+                  height="300"
+                  className="w-full aspect-[4/3] object-cover rounded-t-2xl"
+                />
+                {selectedFarmer.farmerOfTheWeek && (
+                  <span className="absolute top-3 right-3 inline-flex items-center gap-1 bg-[var(--color-accent)] text-[var(--color-pure-white)] rounded-full px-2.5 py-1 text-xs font-bold shadow">
+                    <Star size={10} fill="currentColor" /> Farmer of the Week
+                  </span>
+                )}
+                <button
+                  onClick={() => setSelectedFarmer(null)}
+                  className="absolute top-3 left-3 w-8 h-8 rounded-full bg-[var(--color-pure-black)]/40 text-[var(--color-pure-white)] hover:bg-[var(--color-pure-black)]/60 flex items-center justify-center transition-colors"
+                  aria-label="Close details"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+              <div className="p-5 sm:p-6">
+                <h2 className="font-[var(--font-heading)] text-xl text-[var(--color-forest)]">{selectedFarmer.name}</h2>
+                <p className="nepali-text text-sm text-[var(--color-leaf)] mb-4">{selectedFarmer.nameNepali}</p>
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="bg-[var(--color-border)] rounded-lg p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">District</p>
+                    <p className="font-semibold text-sm text-[var(--color-forest)] flex items-center gap-1 mt-0.5">
+                      <MapPin size={12} /> {selectedFarmer.district}
+                    </p>
+                  </div>
+                  <div className="bg-[var(--color-border)] rounded-lg p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">Specialty</p>
+                    <p className="font-semibold text-sm text-[var(--color-forest)] mt-0.5">{selectedFarmer.specialty}</p>
+                  </div>
+                  <div className="bg-[var(--color-border)] rounded-lg p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">Years Organic</p>
+                    <p className="font-semibold text-sm text-[var(--color-forest)] mt-0.5">{selectedFarmer.yearsOrganic} years</p>
+                  </div>
+                  <div className="bg-[var(--color-border)] rounded-lg p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-[var(--color-leaf)] font-semibold">Products</p>
+                    <p className="font-semibold text-sm text-[var(--color-forest)] mt-0.5">{selectedFarmer.products.length} items</p>
+                  </div>
+                </div>
+                <h3 className="font-[var(--font-heading)] text-sm text-[var(--color-forest)] mb-2">Their Story</h3>
+                <p className="text-sm text-[var(--color-text)]/80 leading-relaxed">{selectedFarmer.story}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }
