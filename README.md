@@ -269,7 +269,7 @@ src/
     ├── WhyOrganic.jsx          Educational page: benefits, comparison table, CTA
     ├── Blog.jsx                Blog listing with category filters, card grid
     ├── BlogPost.jsx            Single article with rich content renderer, keep-reading sidebar
-    ├── Contact.jsx             Info cards, social links, contact form, DeliveryChecker
+    ├── Contact.jsx             Info cards, contact form, DeliveryChecker
     ├── Login.jsx               Sign-in form with demo credentials display
     ├── Signup.jsx              Registration with live password validation
     ├── AdminPanel.jsx          Admin dashboard: categories, products, orders, users (4 tabs)

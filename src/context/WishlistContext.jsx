@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react'
+import { createContext, useContext, useEffect, useState, useCallback, useRef, useMemo } from 'react'
 import toast from 'react-hot-toast'
 
 const WishlistContext = createContext(null)
@@ -28,36 +28,35 @@ export const WishlistProvider = ({ children }) => {
   const isWishlisted = useCallback((id) => ids.includes(id), [ids])
 
   const toggle = useCallback((product) => {
-    const willRemove = ids.includes(product.id)
-    setIds((prev) =>
-      willRemove
+    setIds((prev) => {
+      const willRemove = prev.includes(product.id)
+      toast.dismiss(wishlistToastId.current)
+      if (willRemove) {
+        wishlistToastId.current = toast(`Removed from wishlist`, {
+          icon: <span className="text-[var(--color-leaf)]">💔</span>,
+        })
+      } else {
+        wishlistToastId.current = toast.success(`Added to wishlist`, { icon: '💚' })
+      }
+      return willRemove
         ? prev.filter((i) => i !== product.id)
         : [...prev, product.id]
-    )
-    toast.dismiss(wishlistToastId.current)
-    if (willRemove) {
-      wishlistToastId.current = toast(`Removed from wishlist`, {
-        icon: <span className="text-[var(--color-leaf)]">💔</span>,
-      })
-    } else {
-      wishlistToastId.current = toast.success(`Added to wishlist`, { icon: '💚' })
-    }
-  }, [ids])
+    })
+  }, [])
 
   const remove = useCallback((id) => {
     setIds((prev) => prev.filter((i) => i !== id))
   }, [])
 
-  const clear = useCallback(() => setIds([]), [])
+  const clear = useCallback(() => {
+    setIds([])
+    toast.success('Wishlist cleared', { icon: '💔' })
+  }, [])
 
-  const value = {
-    ids,
-    count: ids.length,
-    isWishlisted,
-    toggle,
-    remove,
-    clear,
-  }
+  const value = useMemo(
+    () => ({ ids, count: ids.length, isWishlisted, toggle, remove, clear }),
+    [ids, isWishlisted, toggle, remove, clear]
+  )
 
   return <WishlistContext.Provider value={value}>{children}</WishlistContext.Provider>
 }

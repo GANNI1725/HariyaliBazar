@@ -1,70 +1,39 @@
-import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 
 const stats = [
-  { icon: '🌱', value: 41, suffix: '', label: 'Organic Products' },
-  { icon: '👨‍🌾', value: 6, suffix: '', label: 'Partner Farmers' },
-  { icon: '🚚', value: 65, suffix: '', label: 'Delivery Zones' },
+  { icon: '🌱', value: 40, suffix: '+', label: 'Organic Products' },
+  { icon: '👨‍🌾', value: 5, suffix: '+', label: 'Partner Farmers' },
+  { icon: '🚚', value: 65, suffix: '+', label: 'Delivery Zones' },
   { icon: '⭐', value: 1, suffix: '', label: 'Same-Day Delivery', noValue: true },
   { icon: '📍', value: 1, suffix: '', label: 'Rupandehi & Beyond', noValue: true },
 ]
 
-const useCountUp = (target, duration = 1500, decimals = 0) => {
-  const [value, setValue] = useState(0)
-  const [hasStarted, setHasStarted] = useState(false)
-  const ref = useRef(null)
-
-  useEffect(() => {
-    if (!ref.current || hasStarted) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHasStarted(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.3 },
-    )
-    observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [hasStarted])
-
-  useEffect(() => {
-    if (!hasStarted) return
-    let raf
-    const start = performance.now()
-    const animate = (now) => {
-      const elapsed = now - start
-      const progress = Math.min(elapsed / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setValue(eased * target)
-      if (progress < 1) raf = requestAnimationFrame(animate)
-    }
-    raf = requestAnimationFrame(animate)
-    return () => cancelAnimationFrame(raf)
-  }, [hasStarted, target, duration])
-
-  return [ref, decimals === 0 ? Math.round(value) : Number(value.toFixed(decimals))]
-}
+import { useCountUp } from '../../hooks/useCountUp'
 
 const StatItem = ({ stat }) => {
-  const [ref, display] = useCountUp(stat.value, 1400, stat.decimals || 0)
+  const [ref, display] = useCountUp(stat.value, 5000, stat.decimals || 0)
   return (
-    <span ref={ref} className="inline-flex items-center gap-2 text-sm font-medium">
+    <motion.span
+      ref={ref}
+      whileHover={{ y: -4, scale: 1.04 }}
+      transition={{ duration: 0.3 }}
+      className="inline-flex flex-col sm:flex-row items-center gap-0.5 sm:gap-2 text-[10px] sm:text-xs font-medium text-center sm:text-left whitespace-nowrap"
+    >
       <span aria-hidden>{stat.icon}</span>
       {stat.noValue ? (
         <span>{stat.label}</span>
       ) : (
         <span>{display}{stat.suffix} {stat.label}</span>
       )}
-    </span>
+    </motion.span>
   )
 }
 
 const TrustBar = () => {
   return (
-    <div className="w-full bg-[var(--color-surface)] text-[var(--color-text)] overflow-hidden border-b border-[var(--color-border)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+    <div className="w-full bg-[var(--color-background)] text-[var(--color-text)] overflow-hidden border-b border-[var(--color-border)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-5">
+        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-4">
           {stats.map((s) => (
             <StatItem key={s.label} stat={s} />
           ))}
