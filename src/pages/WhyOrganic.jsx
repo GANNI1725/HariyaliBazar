@@ -43,7 +43,7 @@ const compare = [
 const WhyOrganic = () => {
   return (
     <>
-    <div className="relative min-h-screen bg-[#1a2e1a] bg-fixed max-sm:bg-scroll bg-cover bg-center" style={{ backgroundImage: `url('/Why-Organic/Why-Organic.jpg')` }}>
+    <div className="relative min-h-screen bg-[#1a2e1a] bg-cover bg-center" style={{ backgroundImage: `url('/Why-Organic/Why-Organic.jpg')` }}>
       <div className="absolute inset-0 bg-[var(--color-pure-black)]/40" />
       <div className="relative z-10">
         <section className="w-full py-12 sm:py-20 bg-[var(--color-surface)]/90">
@@ -166,7 +166,7 @@ const WhyOrganic = () => {
         </motion.section>
       </div>
     </div>
-      <style>{`@media (max-width: 639px) { .bg-fixed { background-attachment: scroll !important; } }`}</style>
+
     </>
   )
 }
