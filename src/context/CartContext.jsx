@@ -97,7 +97,7 @@ export const CartProvider = ({ children }) => {
   const closeCart = useCallback(() => setIsOpen(false), [])
 
   const subtotal = useMemo(() => items.reduce((sum, i) => sum + i.price * i.quantity, 0), [items])
-  const totalItems = useMemo(() => items.reduce((sum, i) => sum + i.quantity, 0), [items])
+  const totalItems = useMemo(() => items.length, [items])
 
   const value = useMemo(
     () => ({
