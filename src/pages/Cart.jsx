@@ -2,10 +2,12 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ShoppingBag, ArrowRight, Trash2, Sprout, X, Construction } from 'lucide-react'
+import toast from 'react-hot-toast'
 import { useCart } from '../context/CartContext'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import CartItem from '../components/cart/CartItem'
 import Button from '../components/shared/Button'
+import ConfirmModal from '../components/shared/ConfirmModal'
 
 const ComingSoonModal = ({ onClose }) => {
   return (
@@ -60,6 +62,7 @@ const Cart = () => {
   useDocumentTitle('Cart')
   const { items, subtotal, totalItems, clearCart } = useCart()
   const [showComingSoon, setShowComingSoon] = useState(false)
+  const [showClearConfirm, setShowClearConfirm] = useState(false)
 
   const onPlaceOrder = () => {
     setShowComingSoon(true)
@@ -115,9 +118,7 @@ const Cart = () => {
                   ← Continue shopping
                 </Link>
                 <button
-                  onClick={() => {
-                    if (window.confirm('Clear all items from cart?')) clearCart()
-                  }}
+                  onClick={() => setShowClearConfirm(true)}
                   className="text-sm text-[var(--color-red)] hover:brightness-75 inline-flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-[var(--color-red)] focus-visible:outline-offset-2 rounded"
                 >
                   <Trash2 size={14} /> Clear cart
@@ -160,6 +161,15 @@ const Cart = () => {
       </div>
 
       {showComingSoon && <ComingSoonModal onClose={() => setShowComingSoon(false)} />}
+
+      <ConfirmModal
+        isOpen={showClearConfirm}
+        title="Clear cart?"
+        message="Remove all items from your cart? This can't be undone."
+        confirmLabel="Clear All"
+        onConfirm={() => { clearCart(); setShowClearConfirm(false); toast.success('Cart cleared') }}
+        onCancel={() => setShowClearConfirm(false)}
+      />
     </motion.section>
   )
 }

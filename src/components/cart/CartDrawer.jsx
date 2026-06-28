@@ -1,15 +1,17 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { X, ShoppingBag, ArrowRight, Trash2 } from 'lucide-react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useCart } from '../../context/CartContext'
 import CartItem from './CartItem'
 import Button from '../shared/Button'
+import ConfirmModal from '../shared/ConfirmModal'
 import { lockScroll, unlockScroll } from '../../utils/scrollLock'
 
 const CartDrawer = () => {
   const { items, isOpen, closeCart, subtotal, totalItems, clearCart } = useCart()
+  const [showClearConfirm, setShowClearConfirm] = useState(false)
 
   useEffect(() => {
     if (!isOpen) return
@@ -32,6 +34,7 @@ const CartDrawer = () => {
   }
 
   return (
+    <>
     <AnimatePresence>
       {isOpen && (
         <>
@@ -63,7 +66,7 @@ const CartDrawer = () => {
                 <div className="flex items-center gap-1">
                   {items.length > 0 && (
                     <button
-                      onClick={() => { clearCart(); closeCart(); toast.success('Cart cleared') }}
+                      onClick={() => setShowClearConfirm(true)}
                       aria-label="Clear cart"
                       className="p-2 rounded-md hover:bg-[var(--color-error-bg)] text-[var(--color-error)] hover:text-[var(--color-error-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
                     >
@@ -137,6 +140,16 @@ const CartDrawer = () => {
         </>
       )}
     </AnimatePresence>
+
+      <ConfirmModal
+        isOpen={showClearConfirm}
+        title="Clear cart?"
+        message="Remove all items from your cart? This can't be undone."
+        confirmLabel="Clear All"
+        onConfirm={() => { clearCart(); setShowClearConfirm(false); closeCart(); toast.success('Cart cleared') }}
+        onCancel={() => setShowClearConfirm(false)}
+      />
+    </>
   )
 }
 
