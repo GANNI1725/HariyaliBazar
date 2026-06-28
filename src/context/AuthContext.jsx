@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, useCallback, useMemo } 
 import toast from 'react-hot-toast'
 
 const SEED_USERS = [
-  { id: 'admin-1', name: import.meta.env.VITE_ADMIN_NAME || 'Ganesh Admin', email: (import.meta.env.VITE_ADMIN_EMAIL || 'ganesh@gmail.com').toLowerCase(), password: import.meta.env.VITE_ADMIN_PASSWORD || 'Admin@123', role: 'admin', createdAt: new Date().toISOString(), address: '' },
+  { id: 'admin-1', name: import.meta.env.VITE_ADMIN_NAME || 'Ganesh', email: (import.meta.env.VITE_ADMIN_EMAIL || 'ganesh@gmail.com').toLowerCase(), password: import.meta.env.VITE_ADMIN_PASSWORD || 'Admin@123', role: 'admin', createdAt: new Date().toISOString(), address: '' },
   { id: 'customer-1', name: import.meta.env.VITE_CUSTOMER_NAME || 'Customer', email: (import.meta.env.VITE_CUSTOMER_EMAIL || 'customer@gmail.com').toLowerCase(), password: import.meta.env.VITE_CUSTOMER_PASSWORD || 'Customer@123', role: 'customer', createdAt: new Date().toISOString(), address: 'Butwal, Rupandehi' },
 ]
 
