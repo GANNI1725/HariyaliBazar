@@ -45,7 +45,7 @@ export function AuthProvider({ children }) {
     const session = { id: found.id, name: found.name, email: found.email, role: found.role, address: found.address || '' }
     localStorage.setItem('hariyali-current-user', JSON.stringify(session))
     setUser(session)
-    toast.success(`Welcome back, ${found.name}!`)
+    toast.success(found.role === 'admin' ? 'Welcome Admin' : `Welcome back, ${found.name}!`)
     return { success: true, role: found.role }
   }, [])
 
