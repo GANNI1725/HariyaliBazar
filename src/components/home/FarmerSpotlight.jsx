@@ -1,11 +1,12 @@
-import { memo } from 'react'
+import { useState, memo } from 'react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import { MapPin, Calendar, Leaf, Star } from 'lucide-react'
 import { farmers } from '../../data/farmers'
 import SectionHeader from '../shared/SectionHeader'
+import FarmerModal from '../shared/FarmerModal'
 
 const FarmerSpotlight = memo(() => {
+  const [selected, setSelected] = useState(null)
 
   return (
     <section className="w-full py-16 sm:py-20 bg-[var(--color-surface)]">
@@ -24,12 +25,10 @@ const FarmerSpotlight = memo(() => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
-              className=""
+              onClick={() => setSelected(f)}
+              className="cursor-pointer"
             >
-              <Link
-                to={`/about#farmer-${f.id}`}
-                className="relative block text-left bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-strong hover:scale-[1.02] transition-all duration-300 group border-l-4 border-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-2"
-              >
+              <div className="relative block text-left bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-strong hover:scale-[1.02] transition-all duration-300 group border-l-4 border-[var(--color-accent)]">
                 {f.farmerOfTheWeek && (
                   <span className="absolute top-3 right-3 z-10 inline-flex items-center gap-1 bg-[var(--color-accent)] text-[var(--color-pure-white)] rounded-full px-2.5 py-1 text-xs font-bold shadow">
                     <Star size={10} fill="currentColor" /> Farmer of the Week
@@ -61,13 +60,13 @@ const FarmerSpotlight = memo(() => {
                     {f.yearsOrganic} years organic
                   </div>
                 </div>
-              </Link>
+              </div>
             </motion.div>
           ))}
         </div>
-
-
       </div>
+
+      <FarmerModal farmer={selected} onClose={() => setSelected(null)} />
     </section>
   )
 })
