@@ -33,7 +33,14 @@ const Contact = () => {
 
   return (
     <>
-    <div className="relative bg-cover bg-center min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)] flex flex-col mb-[-5rem]" style={{ backgroundImage: `url('/Why-Organic/Let-talk.jpg')` }}>
+    <div className="relative min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)] flex flex-col mb-[-5rem] overflow-hidden">
+        <motion.div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('/Why-Organic/Let-talk.jpg')` }}
+          initial={{ scale: 1.15 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2.7, ease: [0.22, 1, 0.36, 1] }}
+        />
         <div className="absolute inset-0 bg-[var(--color-pure-black)]/40" />
         <div className="relative z-10 flex flex-col flex-1">
         <section className="w-full py-3 sm:py-5 bg-[var(--color-surface)]/80 backdrop-blur-sm text-center">
