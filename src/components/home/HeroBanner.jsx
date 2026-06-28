@@ -56,34 +56,6 @@ const slides = [
   },
 ]
 
-const wordVariants = {
-  hidden: { opacity: 0 },
-  visible: (i) => ({
-    opacity: 1,
-    transition: { delay: i * 0.06, duration: 0.4, ease: 'easeOut' },
-  }),
-}
-
-const AnimatedWords = ({ text, className }) => {
-  const words = text.split(' ')
-  return (
-    <span className={className} aria-label={text}>
-      {words.map((w, i) => (
-        <motion.span
-          key={`${w}-${i}`}
-          custom={i}
-          variants={wordVariants}
-          initial="hidden"
-          animate="visible"
-          className="inline-block mr-[0.35em]"
-        >
-          {w}
-        </motion.span>
-      ))}
-    </span>
-  )
-}
-
 const SlideImage = ({ image, isActive }) => {
   return (
     <motion.div
@@ -123,44 +95,32 @@ const HeroBanner = () => {
 
               <div className="slide-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-full flex items-center">
                 <div className="max-w-2xl text-[var(--color-pure-white)] py-8 sm:py-12 min-w-0">
-                  <motion.span
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
+                  <span
                       className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-[var(--color-forest)]/40 backdrop-blur-sm text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-sprout)] mb-3 sm:mb-5"
                   >
                     <Sprout size={14} /> {s.eyebrow}
-                  </motion.span>
+                  </span>
 
                   <div className="heading-xl !text-[var(--color-pure-white)] leading-tight mb-1 hero-title-mobile">
-                    <AnimatedWords text={s.title} />
+                    {s.title}
                   </div>
                   <div className="heading-xl hero-accent-title leading-tight mb-4 sm:mb-6 hero-title-mobile">
-                    <AnimatedWords text={s.titleAccent} />
+                    {s.titleAccent}
                   </div>
 
-                  <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 }}
+                  <p
                     className="text-sm sm:text-lg text-[var(--color-pure-white)]/85 mb-3 sm:mb-4 max-w-xl leading-relaxed"
                   >
                     {s.subtitle}
-                  </motion.p>
+                  </p>
 
-                  <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.75 }}
+                  <p
                     className="nepali-text text-[var(--color-clay)]/90 text-base sm:text-xl mb-2"
                   >
                     {s.tagline}
-                  </motion.p>
+                  </p>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.82 }}
+                  <div
                     className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[var(--color-pure-white)]/70 mb-5 sm:mb-7"
                   >
                     <span className="flex items-center gap-1.5">
@@ -169,12 +129,9 @@ const HeroBanner = () => {
                     <span className="flex items-center gap-1.5">
                       <ShieldCheck size={12} /> Organic
                     </span>
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.9 }}
+                  <div
                     className="flex flex-wrap gap-3"
                   >
                     <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
@@ -191,7 +148,7 @@ const HeroBanner = () => {
                     >
                       {s.secondaryLabel}
                     </Link>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </div>

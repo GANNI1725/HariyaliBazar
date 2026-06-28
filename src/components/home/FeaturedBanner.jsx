@@ -47,6 +47,8 @@ const FeaturedBanner = () => {
               <img
                 src="/Home-Logo_Section_Pics/Weekly-Veggie-Box.jpg"
                 alt="Weekly veggie box"
+                width="600"
+                height="400"
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-earth)]/40 to-transparent md:bg-none" />
