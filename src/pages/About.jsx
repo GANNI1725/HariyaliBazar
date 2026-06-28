@@ -101,7 +101,10 @@ const About = () => {
             <img
               src="/About_Section/How-It-Started.png"
               alt="Internship at Sweven Incorporate, Butwal"
-              className="rounded-2xl shadow-lg w-full h-auto"
+              width="1536"
+              height="1024"
+              loading="lazy"
+              className="rounded-2xl shadow-lg w-full aspect-[3/2] object-cover"
             />
             <div>
               <h3 className="font-[var(--font-heading)] text-2xl sm:text-3xl text-[var(--color-forest)] mb-3">
@@ -122,7 +125,10 @@ const About = () => {
             <img
               src="/About_Section/How-We-Work.png"
               alt="Locally packed, organic produce being delivered"
-              className="rounded-2xl shadow-lg w-full h-auto md:[direction:ltr]"
+              width="1536"
+              height="1024"
+              loading="lazy"
+              className="rounded-2xl shadow-lg w-full aspect-[3/2] object-cover md:[direction:ltr]"
             />
             <div className="md:[direction:ltr]">
               <h3 className="font-[var(--font-heading)] text-2xl sm:text-3xl text-[var(--color-forest)] mb-3">
