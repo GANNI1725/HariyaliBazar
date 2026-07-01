@@ -106,8 +106,12 @@ const Signup = () => {
                   {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
-              <div className="mt-2 min-h-[116px] overflow-hidden">
-                {passwordTouched && (
+              <div className="mt-2">
+                {!passwordTouched ? (
+                  <p className="text-xs text-[var(--color-text-secondary)]/50">
+                    Min 6 characters, 1 uppercase, 1 lowercase, 1 number &amp; 1 special character
+                  </p>
+                ) : (
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
