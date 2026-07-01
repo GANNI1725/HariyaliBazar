@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Sprout, Users, Heart, Award, Star, MapPin } from 'lucide-react'
 import { farmers } from '../data/farmers'
 import { products } from '../data/products'
@@ -40,7 +40,15 @@ const StatCard = ({ s, i }) => {
 
 const About = () => {
   useDocumentTitle('About Us')
+  const { hash } = useLocation()
   const [selectedFarmer, setSelectedFarmer] = useState(null)
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.querySelector(hash)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [hash])
 
   return (
     <>
@@ -129,7 +137,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="w-full py-10 sm:py-16 bg-[var(--color-border)]">
+      <section id="farmers" className="w-full py-10 sm:py-16 bg-[var(--color-border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Our Family"

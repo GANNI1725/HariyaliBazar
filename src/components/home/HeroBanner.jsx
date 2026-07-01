@@ -18,7 +18,7 @@ const slides = [
     primaryLabel: 'Shop Fresh Produce',
     primaryTo: '/products',
     secondaryLabel: 'Meet Our Farmers',
-    secondaryTo: '/about',
+    secondaryTo: '/about#farmers',
     image:
       '/Home-Logo_Section_Pics/Organic-100p-Nepali.jpg',
     tagline: 'खेतबाट भान्सासम्म',
@@ -31,7 +31,7 @@ const slides = [
     subtitle:
       'We work directly with certified organic farmers across Nepal — paying them fairly, sourcing them seasonally.',
     primaryLabel: 'Explore Farmers',
-    primaryTo: '/about',
+    primaryTo: '/about#farmers',
     secondaryLabel: 'Why Organic?',
     secondaryTo: '/why-organic',
     image:
@@ -175,16 +175,21 @@ const HeroBanner = () => {
         .hero-swiper .swiper-slide .slide-content {
           opacity: 0;
           visibility: hidden;
+          pointer-events: none;
           transition: opacity 0.35s ease, visibility 0.35s ease;
         }
         .hero-swiper .swiper-slide-active .slide-content {
           opacity: 1;
           visibility: visible;
+          pointer-events: auto;
           transition: opacity 0.5s ease 0.15s, visibility 0s linear 0.15s;
         }
         .hero-swiper .swiper-wrapper,
         .hero-swiper .swiper-slide {
           height: 100%;
+        }
+        .hero-swiper .swiper-slide:not(.swiper-slide-active) {
+          pointer-events: none;
         }
         @media (max-width: 639px) {
           .hero-title-mobile { font-size: clamp(1.75rem, 8vw, 2.5rem) !important; }
