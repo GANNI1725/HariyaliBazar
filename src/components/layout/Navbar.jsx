@@ -7,6 +7,7 @@ import {
   ShoppingCart,
   Menu,
   X,
+  LogOut,
 } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { useCart } from '../../context/CartContext'
@@ -29,6 +30,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
   const { user, logout, isAdmin } = useAuth()
   const { totalItems, openCart } = useCart()
   const { count: wishlistCount } = useWishlist()
@@ -172,7 +174,7 @@ const Navbar = () => {
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
                       </Link>
                     )}
-                    <button onClick={logout} className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-[var(--color-error)] hover:bg-[var(--color-error-bg)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)]">
+                    <button onClick={() => setShowLogoutConfirm(true)} className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-[var(--color-error)] hover:bg-[var(--color-error-bg)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)]">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                       Logout
                     </button>
@@ -232,7 +234,7 @@ const Navbar = () => {
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
                       {isAdmin ? 'Admin Panel' : 'My Account'}
                     </NavLink>
-                    <button onClick={() => { logout(); setMobileOpen(false) }} className="flex items-center gap-2 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium text-[var(--color-error)] hover:bg-[var(--color-error-bg)]">
+                    <button onClick={() => setShowLogoutConfirm(true)} className="flex items-center gap-2 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium text-[var(--color-error)] hover:bg-[var(--color-error-bg)]">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                       Logout
                     </button>
@@ -256,6 +258,22 @@ const Navbar = () => {
       </header>
 
       <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+
+      <AnimatePresence>
+        {showLogoutConfirm && (
+          <motion.div key="nav-logout-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-[var(--color-pure-black)]/40" onClick={() => setShowLogoutConfirm(false)}>
+            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="bg-[var(--color-card)] rounded-2xl shadow-xl border border-[var(--color-border)] w-full max-w-sm p-6 text-center" onClick={e => e.stopPropagation()}>
+              <LogOut size={40} className="mx-auto text-[var(--color-error)] mb-3" />
+              <h3 className="text-lg font-bold text-[var(--color-text)] mb-1">Logout</h3>
+              <p className="text-sm text-[var(--color-text-secondary)] mb-6">Are you sure you want to logout?</p>
+              <div className="flex justify-center gap-3">
+                <button onClick={() => setShowLogoutConfirm(false)} className="px-4 py-2 rounded-lg text-sm font-medium text-[var(--color-text-secondary)] hover:bg-[var(--color-border)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">Cancel</button>
+                <button onClick={() => { logout(); setShowLogoutConfirm(false); setMobileOpen(false) }} className="px-4 py-2 rounded-lg bg-[var(--color-error)] text-white text-sm font-medium hover:bg-[var(--color-error-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">Logout</button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }
