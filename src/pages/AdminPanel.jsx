@@ -35,6 +35,7 @@ const AdminPanel = () => {
   const [pinPrompt, setPinPrompt] = useState(false)
   const [pinValue, setPinValue] = useState('')
   const [usersUnlocked, setUsersUnlocked] = useState(false)
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
 
   useEffect(() => {
     if (!isAdmin) { navigate('/login', { replace: true }); return }
@@ -65,7 +66,8 @@ const AdminPanel = () => {
     revenue: orders.filter(o => o.status !== 'cancelled').reduce((s, o) => s + o.total, 0),
   }), [products, orders, users])
 
-  const handleLogout = () => { logout(); navigate('/') }
+  const handleLogout = () => setShowLogoutConfirm(true)
+  const confirmLogout = () => { logout(); navigate('/') }
 
   const saveProducts = (updated) => {
     updateProducts(updated)
@@ -657,6 +659,22 @@ const AdminPanel = () => {
                   <button type="submit" className="px-4 py-2 rounded-lg bg-[var(--color-forest)] text-white text-sm font-medium hover:bg-[var(--color-leaf)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2">{editingZone ? 'Update' : 'Add'} Zone</button>
                 </div>
               </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showLogoutConfirm && (
+          <motion.div key="admin-logout-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--color-pure-black)]/40" onClick={() => setShowLogoutConfirm(false)}>
+            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="bg-[var(--color-card)] rounded-2xl shadow-xl border border-[var(--color-border)] w-full max-w-sm p-6 text-center" onClick={e => e.stopPropagation()}>
+              <LogOut size={40} className="mx-auto text-[var(--color-error)] mb-3" />
+              <h3 className="text-lg font-bold text-[var(--color-text)] mb-1">Logout</h3>
+              <p className="text-sm text-[var(--color-text-secondary)] mb-6">Are you sure you want to logout?</p>
+              <div className="flex justify-center gap-3">
+                <button onClick={() => setShowLogoutConfirm(false)} className="px-4 py-2 rounded-lg text-sm font-medium text-[var(--color-text-secondary)] hover:bg-[var(--color-border)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">Cancel</button>
+                <button onClick={confirmLogout} className="px-4 py-2 rounded-lg bg-[var(--color-error)] text-white text-sm font-medium hover:bg-[var(--color-error-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">Logout</button>
+              </div>
             </motion.div>
           </motion.div>
         )}
