@@ -325,9 +325,8 @@ const ProductDetail = () => {
             disabled={!product.inStock}
             className="shrink-0"
           >
-            <ShoppingCart size={16} />
-            <span className="hidden sm:inline">Add to Cart</span>
-            <span className="sm:hidden">Add</span>
+            <ShoppingCart size={18} />
+            Add to Cart
           </Button>
         </div>
       </div>
