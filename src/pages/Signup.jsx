@@ -18,16 +18,7 @@ const Signup = () => {
   const [showConfirmPw, setShowConfirmPw] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const [passwordTouched, setPasswordTouched] = useState(false)
   const [agreed, setAgreed] = useState(false)
-
-  const passwordRules = [
-    { label: 'At least 8 characters', test: p => p.length >= 8 },
-    { label: 'One uppercase letter', test: p => /[A-Z]/.test(p) },
-    { label: 'One lowercase letter', test: p => /[a-z]/.test(p) },
-    { label: 'One number', test: p => /[0-9]/.test(p) },
-    { label: 'One special character', test: p => /[^A-Za-z0-9]/.test(p) },
-  ]
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -98,48 +89,14 @@ const Signup = () => {
               <div className="relative">
                 <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-secondary)]" />
                 <input
-                  type={showPw ? 'text' : 'password'} value={password} onChange={e => { setPassword(e.target.value); if (!passwordTouched) setPasswordTouched(true) }}
-                  placeholder="Create a strong password"
+                  type={showPw ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)}
+                  placeholder="Enter password"
                   className="w-full pl-10 pr-10 py-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)] placeholder:text-[var(--color-text-secondary)]/50"
                 />
                 <button type="button" onClick={() => setShowPw(o => !o)} aria-label="Toggle password visibility" className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-secondary)] focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">
                   {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
-              <div className="mt-2">
-                {!passwordTouched ? (
-                  <p className="text-xs text-[var(--color-text-secondary)]/50">
-                    Min 6 characters, 1 uppercase, 1 lowercase, 1 number &amp; 1 special character
-                  </p>
-                ) : (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                  {passwordRules.every(r => r.test(password)) ? (
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="text-xs text-green-600 font-medium flex items-center gap-1"
-                    >
-                      <span className="text-green-600 text-sm">✓</span> Strong password
-                    </motion.p>
-                  ) : (
-                    <div className="space-y-1">
-                      {passwordRules.map((rule) => (
-                        <div key={rule.label} className={`flex items-center gap-1.5 text-xs ${rule.test(password) ? 'text-green-600' : 'text-[var(--color-text-secondary)]'}`}>
-                          <span className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${rule.test(password) ? 'border-[var(--color-success)] bg-[var(--color-success-bg)]' : 'border-[var(--color-border)]'}`}>
-                            {rule.test(password) ? <span className="text-green-600 text-[8px]">✓</span> : <span className="text-[8px]">○</span>}
-                          </span>
-                          {rule.label}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </motion.div>
-              )}
-            </div>
             </div>
 
             <div>
