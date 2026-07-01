@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { User, Package, MapPin, Calendar, CreditCard, Edit3, X, Check } from 'lucide-react'
+import { User, Package, LogOut, MapPin, Calendar, CreditCard, Edit3, X, Check } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 const statusColors = {
@@ -12,7 +12,7 @@ const statusColors = {
 }
 
 const CustomerDashboard = () => {
-  const { user, isCustomer, updateAddress } = useAuth()
+  const { user, logout, isCustomer, updateAddress } = useAuth()
   const navigate = useNavigate()
   const [orders, setOrders] = useState([])
   const [editingAddress, setEditingAddress] = useState(false)
@@ -26,6 +26,8 @@ const CustomerDashboard = () => {
     setOrders(allOrders.filter(o => o.userId === user?.id))
   }, [isCustomer, user, navigate])
 
+  const handleLogout = () => { logout(); navigate('/') }
+
   const startEditAddress = () => {
     setAddressDraft(user?.address || '')
     setEditingAddress(true)
@@ -38,6 +40,8 @@ const CustomerDashboard = () => {
     setEditingAddress(false)
   }
 
+  if (!isCustomer) return null
+
   const activeOrders = orders.filter(o => o.status !== 'delivered' && o.status !== 'cancelled')
 
   return (
@@ -47,6 +51,9 @@ const CustomerDashboard = () => {
           <h1 className="text-2xl font-[var(--font-heading)] font-bold text-[var(--color-forest)]">My Account</h1>
           <p className="text-sm text-[var(--color-text-secondary)]">Welcome back, {user?.name}</p>
         </div>
+        <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-[var(--color-error)] hover:bg-[var(--color-error-bg)] transition-colors">
+          <LogOut size={16} /> Logout
+        </button>
       </div>
 
       <div className="grid md:grid-cols-3 gap-6 mb-8"
