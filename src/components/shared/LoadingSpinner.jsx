@@ -18,7 +18,7 @@ const LoadingSpinner = ({ size = 'md', label = 'Loading', fullscreen = false }) 
 
   if (fullscreen) {
     return (
-      <div className="w-full min-h-[60vh] flex flex-col items-center justify-center gap-3">
+      <div className="w-full min-h-dvh flex flex-col items-center justify-center gap-3">
         {spinner}
         <p className="text-sm text-[var(--color-text)]/60">{label}…</p>
       </div>
