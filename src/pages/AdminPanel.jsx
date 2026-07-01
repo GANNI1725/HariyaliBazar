@@ -35,8 +35,6 @@ const AdminPanel = () => {
   const [pinPrompt, setPinPrompt] = useState(false)
   const [pinValue, setPinValue] = useState('')
   const [usersUnlocked, setUsersUnlocked] = useState(false)
-  const [pinAttempts, setPinAttempts] = useState(0)
-  const [pinError, setPinError] = useState('')
 
   useEffect(() => {
     if (!isAdmin) { navigate('/login', { replace: true }); return }
@@ -186,7 +184,7 @@ const AdminPanel = () => {
             <button
               key={t.id}
               onClick={() => {
-                if (t.locked && !usersUnlocked) { setPinPrompt(true); setPinValue(''); setPinAttempts(0); setPinError(''); return }
+                if (t.locked && !usersUnlocked) { setPinPrompt(true); setPinValue(''); return }
                 if (tab === 'users' && t.id !== 'users') { setUsersUnlocked(false) }
                 setTab(t.id)
               }}
@@ -599,26 +597,14 @@ const AdminPanel = () => {
                   onChange={e => {
                     const digits = e.target.value.replace(/\D/g, '')
                     setPinValue(digits)
-                    setPinError('')
                     if (digits.length === 4) {
-                      if (digits === '8848') { setUsersUnlocked(true); setPinPrompt(false); setTab('users') } else {
-                        setPinError('Wrong PIN')
-                        const next = pinAttempts + 1
-                        setPinAttempts(next)
-                        if (next >= 3) { setPinPrompt(false); setPinValue('') }
-                      }
+                      if (digits === '8848') { setUsersUnlocked(true); setPinPrompt(false); setTab('users') }
                     }
                   }}
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   style={{ caretColor: 'transparent', WebkitTextSecurity: 'disc' }}
                 />
               </div>
-              {pinError && (
-                <motion.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} className="text-sm text-[var(--color-error)] mb-2">{pinError}</motion.p>
-              )}
-              {pinAttempts > 0 && pinAttempts < 3 && (
-                <p className="text-xs text-[var(--color-text-secondary)]">{3 - pinAttempts} attempt{pinAttempts === 2 ? '' : 's'} remaining</p>
-              )}
             </motion.div>
           </motion.div>
         )}
