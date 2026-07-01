@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { User, Package, MapPin, Calendar, CreditCard, Edit3, X, Check } from 'lucide-react'
+import { User, Package, MapPin, Calendar, CreditCard, Edit3, X, Check, LogOut } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 const statusColors = {
@@ -12,7 +12,7 @@ const statusColors = {
 }
 
 const CustomerDashboard = () => {
-  const { user, isCustomer, updateAddress } = useAuth()
+  const { user, isCustomer, updateAddress, logout } = useAuth()
   const navigate = useNavigate()
   const [orders, setOrders] = useState([])
   const [editingAddress, setEditingAddress] = useState(false)
@@ -25,6 +25,8 @@ const CustomerDashboard = () => {
     })()
     setOrders(allOrders.filter(o => o.userId === user?.id))
   }, [isCustomer, user, navigate])
+
+  const handleLogout = () => { logout(); navigate('/') }
 
   const startEditAddress = () => {
     setAddressDraft(user?.address || '')
@@ -52,13 +54,25 @@ const CustomerDashboard = () => {
       <div className="grid md:grid-cols-3 gap-6 mb-8"
       >
         <div className="md:col-span-1">
-          <div className="bg-[var(--color-card)] rounded-xl border border-[var(--color-border)] p-6 text-center">
+          <div className="relative group bg-[var(--color-card)] rounded-xl border border-[var(--color-border)] p-6 text-center">
             <div className="w-20 h-20 mx-auto rounded-full bg-[var(--color-forest)]/10 flex items-center justify-center mb-4">
               <User size={36} className="text-[var(--color-forest)]" />
             </div>
             <h2 className="text-lg font-bold text-[var(--color-text)]">{user?.name}</h2>
             <p className="text-sm text-[var(--color-text-secondary)]">{user?.email}</p>
             <span className="inline-block mt-2 px-3 py-0.5 rounded-full text-xs font-medium bg-[var(--color-forest)]/10 text-[var(--color-forest)] capitalize">{user?.role}</span>
+
+            <div className="absolute left-0 right-0 top-full mt-1 mx-4 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-20">
+              <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl shadow-lg overflow-hidden">
+                <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-[var(--color-text)] hover:bg-[var(--color-hover)] transition-colors text-left">
+                  <User size={16} /> My Profile
+                </button>
+                <hr className="border-[var(--color-border)]" />
+                <button onClick={handleLogout} className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-[var(--color-error)] hover:bg-[var(--color-error-bg)] transition-colors text-left">
+                  <LogOut size={16} /> Logout
+                </button>
+              </div>
+            </div>
 
             <div className="mt-4 pt-4 border-t border-[var(--color-border)]">
               <div className="flex items-center justify-between mb-2">
