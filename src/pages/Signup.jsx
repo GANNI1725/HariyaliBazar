@@ -6,6 +6,8 @@ import { useAuth } from '../context/AuthContext'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import toast from 'react-hot-toast'
 
+const NEPALI_PHONE = /^(98|97)\d{8}$/
+
 const Signup = () => {
   const { signup } = useAuth()
   useDocumentTitle('Create Account')
@@ -20,16 +22,22 @@ const Signup = () => {
   const [loading, setLoading] = useState(false)
   const [agreed, setAgreed] = useState(false)
 
+  const notify = (msg) => {
+    toast.dismiss()
+    toast(msg, { icon: '⚠️', duration: 3000 })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!name.trim() || !email.trim() || !phone.trim() || !password.trim() || !confirmPw.trim()) { toast.error('Please fill in all fields'); return }
-    if (password !== confirmPw) { toast.error('Passwords do not match'); return }
-    if (!agreed) { toast.error('You must agree to the Terms & Conditions and Privacy Policy'); return }
+    if (!name.trim() || !email.trim() || !phone.trim() || !password.trim() || !confirmPw.trim()) { notify('Please fill in all fields'); return }
+    if (password !== confirmPw) { notify('Passwords do not match'); return }
+    if (phone.trim() && !NEPALI_PHONE.test(phone.trim())) { notify('Please enter a valid Nepali mobile number (98XXXXXXXX or 97XXXXXXXX)'); return }
+    if (!agreed) { notify('You must agree to the Terms & Conditions and Privacy Policy'); return }
     setLoading(true)
     await new Promise(r => setTimeout(r, 400))
     const result = signup(name, email, password, phone)
     setLoading(false)
-    if (!result.success) { toast.error(result.error); return }
+    if (!result.success) { notify(result.error); return }
     navigate('/')
   }
 

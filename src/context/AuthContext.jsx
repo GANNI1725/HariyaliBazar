@@ -13,6 +13,7 @@ const SEED_ORDERS = [
   { id: 'ord-1004', userId: 'customer-1', items: [{ productId: 3, name: 'Tomato', qty: 2, price: 50 }, { productId: 7, name: 'Cauliflower', qty: 1, price: 120 }], total: 220, status: 'cancelled', date: '2026-05-20', address: 'Butwal, Rupandehi', paymentMethod: 'Cash on Delivery' },
 ]
 
+const NEPALI_PHONE = /^(98|97)\d{8}$/
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
@@ -53,12 +54,7 @@ export function AuthProvider({ children }) {
     const emailPattern = /@gmail\.com$/
     const normalizedEmail = email.trim().toLowerCase()
     if (!emailPattern.test(normalizedEmail)) return { success: false, error: 'Email must be a @gmail.com address' }
-    if (!phone || phone.trim().length < 10) return { success: false, error: 'Please enter a valid phone number' }
-    if (password.length < 8) return { success: false, error: 'Password must be at least 8 characters' }
-    if (!/[A-Z]/.test(password)) return { success: false, error: 'Password must contain an uppercase letter' }
-    if (!/[a-z]/.test(password)) return { success: false, error: 'Password must contain a lowercase letter' }
-    if (!/[0-9]/.test(password)) return { success: false, error: 'Password must contain a number' }
-    if (!/[^A-Za-z0-9]/.test(password)) return { success: false, error: 'Password must contain a special character' }
+    if (!phone || !NEPALI_PHONE.test(phone.trim())) return { success: false, error: 'Please enter a valid Nepali mobile number (98XXXXXXXX or 97XXXXXXXX)' }
 
     const users = JSON.parse(localStorage.getItem('hariyali-users') || '[]')
     if (users.find(u => u.email === normalizedEmail)) return { success: false, error: 'Email already registered' }

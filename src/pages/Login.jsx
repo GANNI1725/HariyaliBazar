@@ -15,14 +15,19 @@ const Login = () => {
   const [showPw, setShowPw] = useState(false)
   const [loading, setLoading] = useState(false)
 
+  const notify = (msg) => {
+    toast.dismiss()
+    toast(msg, { icon: '⚠️', duration: 3000 })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!email.trim() || !password.trim()) { toast.error('Please fill in all fields'); return }
+    if (!email.trim() || !password.trim()) { notify('Please fill in all fields'); return }
     setLoading(true)
     await new Promise(r => setTimeout(r, 400))
     const result = login(email.trim(), password.trim())
     setLoading(false)
-    if (!result.success) { toast.error(result.error); return }
+    if (!result.success) { notify(result.error); return }
     navigate(result.role === 'admin' ? '/admin' : '/')
   }
 
