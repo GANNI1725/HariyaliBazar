@@ -83,6 +83,8 @@ const QuickViewModal = ({ product, onClose }) => {
               <img
                 src={product.images?.[0] || product.image || ''}
                 alt={product.name}
+                width="400"
+                height="400"
                 className="w-full h-72 md:h-full object-cover"
               />
               <div className="p-6 md:p-8 flex flex-col">

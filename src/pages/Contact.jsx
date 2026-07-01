@@ -89,10 +89,11 @@ const Contact = () => {
               <div className="space-y-3">
                 <div className="grid sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1.5">
+                    <label htmlFor="contact-name" className="block text-sm font-medium text-[var(--color-text)] mb-1.5">
                       Name *
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       value={form.name}
                       onChange={update('name')}
@@ -101,10 +102,11 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1.5">
+                    <label htmlFor="contact-email" className="block text-sm font-medium text-[var(--color-text)] mb-1.5">
                       Email *
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       value={form.email}
                       onChange={update('email')}
@@ -115,10 +117,11 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-text)] mb-1.5">
+                  <label htmlFor="contact-subject" className="block text-sm font-medium text-[var(--color-text)] mb-1.5">
                     Subject
                   </label>
                   <input
+                    id="contact-subject"
                     type="text"
                     value={form.subject}
                     onChange={update('subject')}
@@ -128,10 +131,11 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-text)] mb-1.5">
+                  <label htmlFor="contact-message" className="block text-sm font-medium text-[var(--color-text)] mb-1.5">
                     Message *
                   </label>
                   <textarea
+                    id="contact-message"
                     value={form.message}
                     onChange={update('message')}
                     placeholder="Tell us a little more..."

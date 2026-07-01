@@ -31,7 +31,7 @@ const Badge = ({ type, children, className = '', size = 'md' }) => {
 }
 
 Badge.propTypes = {
-  type: PropTypes.oneOf(['organic', 'local', 'sameday', 'pesticidefree']),
+  type: PropTypes.oneOf(['organic', 'local', 'sameday', 'pesticidefree', 'featured']),
   children: PropTypes.node,
   className: PropTypes.string,
   size: PropTypes.oneOf(['sm', 'md']),

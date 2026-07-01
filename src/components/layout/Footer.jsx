@@ -164,14 +164,14 @@ const Footer = () => {
           <p>
             © {year} HariyaliBazar. All rights reserved.<br />
             Designed & Developed under the mentorship of Sweven Incorporate Pvt. Ltd. ·{' '}
-            <Link
-              to="/privacy"
+            <a
+              href="/privacy"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-0.5 hover:text-[var(--color-sprout)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2"
             >
               Privacy Policy<ExternalLink size={11} className="mb-0.5" />
-            </Link>
+            </a>
           </p>
           <p className="italic">
             Grown in Nepal's soil. Delivered with care. 🌿

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, CheckCircle2 } from 'lucide-react'
 import toast from 'react-hot-toast'
@@ -12,18 +12,28 @@ const NewsletterSection = () => {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
 
+  const loadingTimer = useRef(null)
+  const successTimer = useRef(null)
+
+  useEffect(() => {
+    return () => {
+      if (loadingTimer.current) clearTimeout(loadingTimer.current)
+      if (successTimer.current) clearTimeout(successTimer.current)
+    }
+  }, [])
+
   const onSubmit = () => {
     if (!isValidEmail(email)) {
       toast.error('Please enter a valid email address')
       return
     }
     setLoading(true)
-    setTimeout(() => {
+    loadingTimer.current = setTimeout(() => {
       setLoading(false)
       setSuccess(true)
       toast.success('Welcome to HariyaliBazar! 💚 Check your inbox.')
       setEmail('')
-      setTimeout(() => setSuccess(false), 5000)
+      successTimer.current = setTimeout(() => setSuccess(false), 5000)
     }, 1500)
   }
 

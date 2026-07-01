@@ -26,6 +26,9 @@ const FarmerSpotlight = memo(() => {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
               onClick={() => setSelected(f)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelected(f); } }}
+              role="button"
+              tabIndex={0}
               className="cursor-pointer"
             >
               <div className="relative block text-left bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-strong hover:scale-[1.02] transition-all duration-300 group border-l-4 border-[var(--color-accent)]">

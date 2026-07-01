@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from '../context/AuthContext'
 import Login from '../pages/Login'
 
@@ -9,6 +10,7 @@ const renderLogin = () =>
     <BrowserRouter>
       <AuthProvider>
         <Login />
+        <Toaster />
       </AuthProvider>
     </BrowserRouter>,
   )

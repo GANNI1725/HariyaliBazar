@@ -64,8 +64,8 @@ export function AuthProvider({ children }) {
     if (users.find(u => u.email === normalizedEmail)) return { success: false, error: 'Email already registered' }
 
     const newUser = { id: 'user-' + Date.now(), name, email: normalizedEmail, phone, password, role: 'customer', createdAt: new Date().toISOString(), address: '' }
-    users.push(newUser)
-    localStorage.setItem('hariyali-users', JSON.stringify(users))
+    const updatedUsers = [...users, newUser]
+    localStorage.setItem('hariyali-users', JSON.stringify(updatedUsers))
     const session = { id: newUser.id, name: newUser.name, email: newUser.email, phone: newUser.phone, role: newUser.role, address: '' }
     localStorage.setItem('hariyali-current-user', JSON.stringify(session))
     setUser(session)

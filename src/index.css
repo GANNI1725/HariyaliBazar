@@ -68,18 +68,6 @@
     --color-badge-default-bg: #F3F4F6;
     --color-badge-default-text: #1F2937;
 
-    --color-forest: #2F6B3F;
-    --color-leaf: #6D9773;
-    --color-sprout: #7FB069;
-    --color-earth: #7A4E2D;
-    --color-clay: #D4A373;
-    --color-cream: #F6F2E8;
-    --color-linen: #FFFDF8;
-    --color-charcoal: #1B2A1E;
-    --color-mist: #D9D7CC;
-    --color-gold: #C9901A;
-    --color-red: #D9534F;
-
     --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.03);
     --shadow-elevated: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
     --shadow-strong: 0 20px 40px -8px rgba(0, 0, 0, 0.12), 0 8px 16px -4px rgba(0, 0, 0, 0.06);
@@ -295,7 +283,6 @@
     max-width: 100%;
     height: auto;
     display: block;
-    aspect-ratio: auto;
   }
 
   input,
@@ -315,8 +302,7 @@
 
   input[type="checkbox"],
   input[type="radio"] {
-    background-color: var(--color-card);
-    border-color: var(--color-border-strong);
+    accent-color: var(--color-leaf);
   }
 
   hr {
@@ -389,6 +375,11 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-forest);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-leaf) var(--color-border);
   }
 
   ::selection {

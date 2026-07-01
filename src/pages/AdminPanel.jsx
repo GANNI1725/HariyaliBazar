@@ -425,36 +425,36 @@ const AdminPanel = () => {
               <form onSubmit={handleSave} className="p-6 space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Name (English)</label>
-                    <input type="text" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
+                    <label htmlFor="prod-name" className="block text-sm font-medium text-[var(--color-text)] mb-1">Name (English)</label>
+                    <input id="prod-name" type="text" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Name (Nepali)</label>
-                    <input type="text" value={form.nameNepali} onChange={e => setForm(f => ({ ...f, nameNepali: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
+                    <label htmlFor="prod-name-nep" className="block text-sm font-medium text-[var(--color-text)] mb-1">Name (Nepali)</label>
+                    <input id="prod-name-nep" type="text" value={form.nameNepali} onChange={e => setForm(f => ({ ...f, nameNepali: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Category</label>
-                    <select value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]">
+                    <label htmlFor="prod-category" className="block text-sm font-medium text-[var(--color-text)] mb-1">Category</label>
+                    <select id="prod-category" value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]">
                       {categories.map(c => <option key={c.id} value={c.id}>{c.icon} {c.name}</option>)}
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Unit</label>
-                    <select value={form.unit} onChange={e => setForm(f => ({ ...f, unit: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]">
+                    <label htmlFor="prod-unit" className="block text-sm font-medium text-[var(--color-text)] mb-1">Unit</label>
+                    <select id="prod-unit" value={form.unit} onChange={e => setForm(f => ({ ...f, unit: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]">
                       {['kg', 'bundle', 'litre', 'pack', 'bottle', 'piece', '250g', '500g', 'dozen', 'cup', 'box', 'pair'].map(u => <option key={u} value={u}>{u}</option>)}
                     </select>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Price (NPR)</label>
-                    <input type="number" value={form.price} onChange={e => setForm(f => ({ ...f, price: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
+                    <label htmlFor="prod-price" className="block text-sm font-medium text-[var(--color-text)] mb-1">Price (NPR)</label>
+                    <input id="prod-price" type="number" value={form.price} onChange={e => setForm(f => ({ ...f, price: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Original Price (NPR)</label>
-                    <input type="number" value={form.originalPrice} onChange={e => setForm(f => ({ ...f, originalPrice: e.target.value }))} placeholder="Leave empty for no discount" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
+                    <label htmlFor="prod-og-price" className="block text-sm font-medium text-[var(--color-text)] mb-1">Original Price (NPR)</label>
+                    <input id="prod-og-price" type="number" value={form.originalPrice} onChange={e => setForm(f => ({ ...f, originalPrice: e.target.value }))} placeholder="Leave empty for no discount" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
                   </div>
                 </div>
                 <div>
@@ -481,15 +481,15 @@ const AdminPanel = () => {
                   <input ref={fileRef} type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Farmer</label>
-                  <select value={form.farmerId} onChange={e => { const f = farmers.find(fr => fr.id === Number(e.target.value)); setForm(s => ({ ...s, farmerId: Number(e.target.value), farmer: f ? f.name : '' })) }} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]">
+                  <label htmlFor="prod-farmer" className="block text-sm font-medium text-[var(--color-text)] mb-1">Farmer</label>
+                  <select id="prod-farmer" value={form.farmerId} onChange={e => { const f = farmers.find(fr => fr.id === Number(e.target.value)); setForm(s => ({ ...s, farmerId: Number(e.target.value), farmer: f ? f.name : '' })) }} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]">
                     <option value="">— No farmer assigned —</option>
                     {farmers.map(f => <option key={f.id} value={f.id}>{f.name} ({f.district})</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Description</label>
-                  <textarea rows={3} value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)] resize-none" />
+                  <label htmlFor="prod-desc" className="block text-sm font-medium text-[var(--color-text)] mb-1">Description</label>
+                  <textarea id="prod-desc" rows={3} value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)] resize-none" />
                 </div>
                 <div className="flex items-center gap-4">
                   <label className="flex items-center gap-2 text-sm text-[var(--color-text)]">
@@ -533,17 +533,17 @@ const AdminPanel = () => {
                 toast.success('Category added')
               }} className="p-5 space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Emoji</label>
-                  <input type="text" value={catForm.icon} onChange={e => setCatForm(f => ({ ...f, icon: e.target.value }))} maxLength={2} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-lg text-center" />
+                  <label htmlFor="cat-emoji" className="block text-sm font-medium text-[var(--color-text)] mb-1">Emoji</label>
+                  <input id="cat-emoji" type="text" value={catForm.icon} onChange={e => setCatForm(f => ({ ...f, icon: e.target.value }))} maxLength={2} className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-lg text-center" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Name (English)</label>
-                  <input type="text" value={catForm.name} onChange={e => setCatForm(f => ({ ...f, name: e.target.value }))} placeholder="e.g. Grains & Staples" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm" />
+                  <label htmlFor="cat-name" className="block text-sm font-medium text-[var(--color-text)] mb-1">Name (English)</label>
+                  <input id="cat-name" type="text" value={catForm.name} onChange={e => setCatForm(f => ({ ...f, name: e.target.value }))} placeholder="e.g. Grains & Staples" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm" />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Description</label>
-                  <textarea rows={2} value={catForm.description} onChange={e => setCatForm(f => ({ ...f, description: e.target.value }))} placeholder="Brief description of this category" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm resize-none" />
+                  <label htmlFor="cat-desc" className="block text-sm font-medium text-[var(--color-text)] mb-1">Description</label>
+                  <textarea id="cat-desc" rows={2} value={catForm.description} onChange={e => setCatForm(f => ({ ...f, description: e.target.value }))} placeholder="Brief description of this category" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm resize-none" />
                 </div>
                 <div className="flex justify-end gap-3 pt-2">
                   <button type="button" onClick={() => setShowCatModal(false)} className="px-4 py-2 rounded-lg text-sm font-medium text-[var(--color-text-secondary)] hover:bg-[var(--color-border)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2">Cancel</button>
@@ -636,17 +636,17 @@ const AdminPanel = () => {
               }} className="p-5 space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Area</label>
-                    <input type="text" value={zoneForm.area} onChange={e => setZoneForm(f => ({ ...f, area: e.target.value }))} placeholder="e.g. Butwal" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
+                    <label htmlFor="zone-area" className="block text-sm font-medium text-[var(--color-text)] mb-1">Area</label>
+                    <input id="zone-area" type="text" value={zoneForm.area} onChange={e => setZoneForm(f => ({ ...f, area: e.target.value }))} placeholder="e.g. Butwal" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1">District</label>
-                    <input type="text" value={zoneForm.district} onChange={e => setZoneForm(f => ({ ...f, district: e.target.value }))} placeholder="e.g. Rupandehi" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
+                    <label htmlFor="zone-district" className="block text-sm font-medium text-[var(--color-text)] mb-1">District</label>
+                    <input id="zone-district" type="text" value={zoneForm.district} onChange={e => setZoneForm(f => ({ ...f, district: e.target.value }))} placeholder="e.g. Rupandehi" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Delivery Fee (NPR)</label>
-                  <input type="number" value={zoneForm.fee} onChange={e => setZoneForm(f => ({ ...f, fee: e.target.value }))} placeholder="e.g. 30" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
+                  <label htmlFor="zone-fee" className="block text-sm font-medium text-[var(--color-text)] mb-1">Delivery Fee (NPR)</label>
+                  <input id="zone-fee" type="number" value={zoneForm.fee} onChange={e => setZoneForm(f => ({ ...f, fee: e.target.value }))} placeholder="e.g. 30" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
                 </div>
                 <label className="flex items-center gap-2 text-sm text-[var(--color-text)]">
                   <input type="checkbox" checked={zoneForm.sameDay} onChange={e => setZoneForm(f => ({ ...f, sameDay: e.target.checked }))} className="rounded border-[var(--color-border)] text-[var(--color-leaf)] focus:ring-[var(--color-leaf)]" />

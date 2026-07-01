@@ -197,8 +197,8 @@ const Navbar = () => {
           </div>
         </div>
 
-        {mobileOpen && (
-          <AnimatePresence>
+        <AnimatePresence>
+          {mobileOpen && (
             <motion.div
               key="mobile-menu"
               initial={{ opacity: 0 }}
@@ -251,8 +251,8 @@ const Navbar = () => {
                 )}
               </nav>
             </motion.div>
-          </AnimatePresence>
-        )}
+          )}
+        </AnimatePresence>
       </header>
 
       <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useCountUp } from '../../hooks/useCountUp'
 
 const stats = [
   { icon: '🌱', value: 40, suffix: '+', label: 'Organic Products' },
@@ -7,8 +8,6 @@ const stats = [
   { icon: '⭐', value: 1, suffix: '', label: 'Same-Day Delivery', noValue: true },
   { icon: '📍', value: 1, suffix: '', label: 'Rupandehi & Beyond', noValue: true },
 ]
-
-import { useCountUp } from '../../hooks/useCountUp'
 
 const StatItem = ({ stat }) => {
   const [ref, display] = useCountUp(stat.value, 5000, stat.decimals || 0)
