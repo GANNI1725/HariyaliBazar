@@ -23,7 +23,7 @@ const StatItem = ({ stat }) => {
       {stat.noValue ? (
         <span>{stat.label}</span>
       ) : (
-        <span><span className="tabular-nums">{display}</span>{stat.suffix} {stat.label}</span>
+        <span><span className="tabular-nums inline-block min-w-[2ch] text-right">{display}</span>{stat.suffix} {stat.label}</span>
       )}
     </motion.span>
   )

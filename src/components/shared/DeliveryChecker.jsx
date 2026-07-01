@@ -134,47 +134,49 @@ const DeliveryChecker = ({ compact = false }) => {
         </Button>
       </div>
 
-      <AnimatePresence mode="wait">
-        {checked && (
-          <motion.div
-            key={result ? 'ok' : 'no'}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className={`mt-4 p-4 rounded-lg flex items-start gap-3 ${
-              result
-                ? 'bg-[var(--color-success-bg)] border border-[var(--color-success-border)] text-[var(--color-success-text)]'
-                : 'bg-[var(--color-warning-bg)] border border-[var(--color-warning-border)] text-[var(--color-warning-text)]'
-            }`}
-          >
-            {result ? (
-              <>
-                <CheckCircle2 size={22} className="shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-semibold">
-                    Great news! We deliver to {result.area} 🚚
-                  </p>
-                  <p className="text-sm mt-1">
-                    {result.sameDay ? '✓ Same-day delivery available' : '📦 1–2 day delivery'} ·{' '}
-                    Delivery fee: ₨{result.fee}
-                  </p>
-                </div>
-              </>
-            ) : (
-              <>
-                <XCircle size={22} className="shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-semibold">Coming soon to your area!</p>
-                  <p className="text-sm mt-1">
-                    We currently serve Butwal, Siddharthanagar, Tilottama, Devdaha and nearby areas of Rupandehi. Sign up to be notified when we expand further.
-                  </p>
-                </div>
-              </>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className="mt-4 min-h-[88px]">
+        <AnimatePresence mode="wait">
+          {checked && (
+            <motion.div
+              key={result ? 'ok' : 'no'}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className={`p-4 rounded-lg flex items-start gap-3 ${
+                result
+                  ? 'bg-[var(--color-success-bg)] border border-[var(--color-success-border)] text-[var(--color-success-text)]'
+                  : 'bg-[var(--color-warning-bg)] border border-[var(--color-warning-border)] text-[var(--color-warning-text)]'
+              }`}
+            >
+              {result ? (
+                <>
+                  <CheckCircle2 size={22} className="shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold">
+                      Great news! We deliver to {result.area} 🚚
+                    </p>
+                    <p className="text-sm mt-1">
+                      {result.sameDay ? '✓ Same-day delivery available' : '📦 1–2 day delivery'} ·{' '}
+                      Delivery fee: ₨{result.fee}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <XCircle size={22} className="shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold">Coming soon to your area!</p>
+                    <p className="text-sm mt-1">
+                      We currently serve Butwal, Siddharthanagar, Tilottama, Devdaha and nearby areas of Rupandehi. Sign up to be notified when we expand further.
+                    </p>
+                  </div>
+                </>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   )
 }

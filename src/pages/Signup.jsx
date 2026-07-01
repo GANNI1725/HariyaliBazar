@@ -106,12 +106,13 @@ const Signup = () => {
                   {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
-              {passwordTouched && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  className="mt-2 overflow-hidden"
-                >
+              <div className="mt-2 min-h-[116px] overflow-hidden">
+                {passwordTouched && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2 }}
+                  >
                   {passwordRules.every(r => r.test(password)) ? (
                     <motion.p
                       initial={{ opacity: 0 }}
@@ -135,6 +136,7 @@ const Signup = () => {
                 </motion.div>
               )}
             </div>
+            </div>
 
             <div>
               <label className="block text-sm font-medium text-[var(--color-text)] mb-1.5">Confirm Password</label>
@@ -151,7 +153,9 @@ const Signup = () => {
               </div>
             </div>
 
-            {error && <p className="text-sm text-[var(--color-error)] bg-[var(--color-error-bg)] px-3 py-2 rounded-lg">{error}</p>}
+            <div className="min-h-[40px]">
+              {error && <p className="text-sm text-[var(--color-error)] bg-[var(--color-error-bg)] px-3 py-2 rounded-lg">{error}</p>}
+            </div>
 
             <div className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)] leading-relaxed">
               <input id="agree-terms" type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mt-1 shrink-0 rounded border-[var(--color-border)] text-[var(--color-leaf)] focus:ring-[var(--color-leaf)]" />

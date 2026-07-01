@@ -74,7 +74,9 @@ const Login = () => {
               </div>
             </div>
 
-            {error && <p className="text-sm text-[var(--color-error)] bg-[var(--color-error-bg)] px-3 py-2 rounded-lg">{error}</p>}
+            <div className="min-h-[40px]">
+              {error && <p className="text-sm text-[var(--color-error)] bg-[var(--color-error-bg)] px-3 py-2 rounded-lg">{error}</p>}
+            </div>
 
             <button
               type="submit"
