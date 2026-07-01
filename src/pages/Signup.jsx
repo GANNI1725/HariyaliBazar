@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { UserPlus, Eye, EyeOff, Mail, Lock, User, Phone } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import toast from 'react-hot-toast'
 
 const Signup = () => {
   const { signup } = useAuth()
@@ -16,21 +17,19 @@ const Signup = () => {
   const [confirmPw, setConfirmPw] = useState('')
   const [showPw, setShowPw] = useState(false)
   const [showConfirmPw, setShowConfirmPw] = useState(false)
-  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [agreed, setAgreed] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError('')
-    if (!name.trim() || !email.trim() || !phone.trim() || !password.trim() || !confirmPw.trim()) { setError('Please fill in all fields'); return }
-    if (password !== confirmPw) { setError('Passwords do not match'); return }
-    if (!agreed) { setError('You must agree to the Terms & Conditions and Privacy Policy'); return }
+    if (!name.trim() || !email.trim() || !phone.trim() || !password.trim() || !confirmPw.trim()) { toast.error('Please fill in all fields'); return }
+    if (password !== confirmPw) { toast.error('Passwords do not match'); return }
+    if (!agreed) { toast.error('You must agree to the Terms & Conditions and Privacy Policy'); return }
     setLoading(true)
     await new Promise(r => setTimeout(r, 400))
     const result = signup(name, email, password, phone)
     setLoading(false)
-    if (!result.success) { setError(result.error); return }
+    if (!result.success) { toast.error(result.error); return }
     navigate('/')
   }
 
@@ -112,10 +111,6 @@ const Signup = () => {
                   {showConfirmPw ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
-            </div>
-
-            <div className="min-h-[40px]">
-              {error && <p className="text-sm text-[var(--color-error)] bg-[var(--color-error-bg)] px-3 py-2 rounded-lg">{error}</p>}
             </div>
 
             <div className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)] leading-relaxed">

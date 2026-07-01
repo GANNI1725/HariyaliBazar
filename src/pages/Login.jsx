@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { LogIn, Eye, EyeOff, Mail, Lock } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import toast from 'react-hot-toast'
 
 const Login = () => {
   const { login } = useAuth()
@@ -12,18 +13,16 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPw, setShowPw] = useState(false)
-  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError('')
-    if (!email.trim() || !password.trim()) { setError('Please fill in all fields'); return }
+    if (!email.trim() || !password.trim()) { toast.error('Please fill in all fields'); return }
     setLoading(true)
     await new Promise(r => setTimeout(r, 400))
     const result = login(email.trim(), password.trim())
     setLoading(false)
-    if (!result.success) { setError(result.error); return }
+    if (!result.success) { toast.error(result.error); return }
     navigate(result.role === 'admin' ? '/admin' : '/')
   }
 
@@ -72,10 +71,6 @@ const Login = () => {
                   {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
-            </div>
-
-            <div className="min-h-[40px]">
-              {error && <p className="text-sm text-[var(--color-error)] bg-[var(--color-error-bg)] px-3 py-2 rounded-lg">{error}</p>}
             </div>
 
             <button
