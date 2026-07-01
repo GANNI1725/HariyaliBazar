@@ -72,7 +72,8 @@ export function AuthProvider({ children }) {
   const logout = useCallback(() => {
     localStorage.removeItem('hariyali-current-user')
     setUser(null)
-    toast.success('Logged out successfully')
+    toast.dismiss()
+    toast('Logged out successfully', { icon: '👋', duration: 2000 })
   }, [])
 
   const updateAddress = useCallback((address) => {
