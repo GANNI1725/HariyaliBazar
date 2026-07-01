@@ -80,6 +80,7 @@ const AnimatedRoutes = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+        <SpeedInsights route={pathname} />
       </motion.div>
     </AnimatePresence>
   )
@@ -131,8 +132,7 @@ const App = () => {
                   },
                 }}
               />
-              <SpeedInsights />
-            </div>
+          </div>
           </ErrorBoundary>
           </ProductProvider>
         </WishlistProvider>
