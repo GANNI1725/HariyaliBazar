@@ -51,7 +51,7 @@ const WhyOrganic = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.2 }}
             >
               <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[var(--color-forest)] dark:bg-[var(--color-leaf)] text-[var(--color-pure-white)] mb-3 sm:mb-5">
                 <Leaf size={20} className="sm:size-[28px]" />
@@ -74,7 +74,7 @@ const WhyOrganic = () => {
                   key={b.title}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
                   className="p-4 sm:p-6 bg-[var(--color-card)]/95 rounded-2xl border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow"
                 >
@@ -96,8 +96,8 @@ const WhyOrganic = () => {
         <motion.section
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           className="w-full py-10 sm:py-16 bg-[var(--color-linen)]/90"
         >
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -145,8 +145,8 @@ const WhyOrganic = () => {
         <motion.section
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           className="w-full py-10 sm:py-16 bg-[var(--color-card)]/95"
         >
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

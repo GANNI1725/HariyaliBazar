@@ -59,7 +59,7 @@ const Blog = () => {
                 key={p.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.4, delay: (i % 3) * 0.1 }}
                 className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow group flex flex-col"
               >

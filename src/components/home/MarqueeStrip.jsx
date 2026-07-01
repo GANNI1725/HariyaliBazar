@@ -31,8 +31,8 @@ const MarqueeStrip = () => {
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
       className="w-full bg-[var(--color-surface)] py-1.5 overflow-hidden border-b border-[var(--color-border)]" role="marquee" aria-label="Announcements"
     >
       <div className="flex marquee-track">

@@ -25,7 +25,7 @@ const StatCard = ({ s, i }) => {
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.4, delay: i * 0.1 }}
       className="text-center p-4 sm:p-6 bg-[var(--color-border)] rounded-2xl"
     >
@@ -60,7 +60,7 @@ const About = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.2 }}
           >
             <span className="inline-block text-[10px] sm:text-xs uppercase tracking-[0.3em] font-semibold text-[var(--color-sprout)] mb-2 sm:mb-3">
               Our Story
@@ -90,7 +90,7 @@ const About = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             className="grid md:grid-cols-2 gap-8 items-center"
           >
             <img
@@ -114,7 +114,7 @@ const About = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             className="grid md:grid-cols-2 gap-8 items-center md:[direction:rtl]"
           >
             <img
@@ -150,7 +150,7 @@ const About = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
                   className="bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm text-center cursor-pointer hover:shadow-strong transition-shadow duration-300"
                   onClick={() => setSelectedFarmer(f)}
@@ -188,8 +188,8 @@ const About = () => {
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.2, ease: 'easeOut' }}
         className="w-full py-10 sm:py-16"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

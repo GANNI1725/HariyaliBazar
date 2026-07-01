@@ -21,8 +21,8 @@ const BlogPreview = () => {
               key={p.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.2, delay: i * 0.1, ease: 'easeOut' }}
               className={`bg-[var(--color-card)] rounded-2xl overflow-hidden shadow-sm hover:shadow-strong transition-shadow duration-300 group ${i >= 2 ? 'hidden md:block' : ''}`}
             >
               <Link to={`/blog/${p.slug}`} className="block">

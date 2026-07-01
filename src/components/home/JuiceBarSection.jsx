@@ -15,8 +15,8 @@ const JuiceBarSection = () => {
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           className="lg:col-span-2"
         >
           <span className="eyebrow flex items-center gap-2 mb-3">
@@ -42,8 +42,8 @@ const JuiceBarSection = () => {
               key={j.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.2, delay: i * 0.1, ease: 'easeOut' }}
               className={i >= 2 ? 'hidden sm:block' : ''}
             >
               <ProductCard product={j} />

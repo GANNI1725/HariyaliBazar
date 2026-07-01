@@ -68,8 +68,8 @@ const TestimonialsSlider = () => {
     <motion.section
       initial={{ opacity: 0, x: 50 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, ease: 'easeOut' }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
       className="w-full py-10 sm:py-20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -10,8 +10,8 @@ const NotFound = () => {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.2, ease: 'easeOut' }}
         className="max-w-md mx-auto"
       >
         <div className="w-24 h-24 rounded-full bg-[var(--color-border)] mx-auto mb-6 flex items-center justify-center">

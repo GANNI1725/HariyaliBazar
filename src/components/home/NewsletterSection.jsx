@@ -43,8 +43,8 @@ const NewsletterSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           className="rounded-2xl bg-gradient-to-br from-[var(--color-dark-section-from)] to-[var(--color-dark-section-to)] text-[var(--color-pure-white)] p-8 sm:p-10 lg:p-12 text-center relative overflow-hidden"
         >
           <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[var(--color-sprout)]/20" />

@@ -13,8 +13,8 @@ const FeaturedBanner = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           whileHover={{ y: -6, transition: { duration: 0.3, ease: 'easeOut' } }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           onClick={() => setModalOpen(true)}
           className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-earth)] text-[var(--color-pure-white)] shadow-sm hover:shadow-strong cursor-pointer transition-shadow duration-300"
         >

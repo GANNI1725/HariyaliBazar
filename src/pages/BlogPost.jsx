@@ -120,8 +120,8 @@ const BlogPost = () => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           className="mt-10 sm:mt-16 pt-8 sm:pt-10 border-t border-[var(--color-border)]"
         >
           <h3 className="font-[var(--font-heading)] text-xl sm:text-2xl text-[var(--color-forest)] mb-4 sm:mb-5">

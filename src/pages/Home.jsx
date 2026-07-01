@@ -47,8 +47,8 @@ const Home = () => {
       <motion.section
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: 'easeOut' }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.2, ease: 'easeOut' }}
         className="w-full py-16 relative"
       >
         <div className="absolute inset-0 bg-dhaka-pattern" />

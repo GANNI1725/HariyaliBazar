@@ -24,8 +24,8 @@ const CategoryTabs = () => {
     <motion.section
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, ease: 'easeOut' }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
       className="w-full py-16 sm:py-20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,8 +71,8 @@ const CategoryTabs = () => {
                 key={p.id}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: 'easeOut' }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.2, delay: i * 0.08, ease: 'easeOut' }}
                 className={i >= 2 ? 'hidden lg:block' : ''}
               >
                 <ProductCard product={p} />

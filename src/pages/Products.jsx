@@ -102,8 +102,8 @@ const Products = () => {
     <motion.section
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
       className="w-full py-6 sm:py-14"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

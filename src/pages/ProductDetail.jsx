@@ -84,8 +84,8 @@ const ProductDetail = () => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
             className=""
           >
             <div className="rounded-2xl overflow-hidden bg-[var(--color-border)] aspect-square mb-4 group">
@@ -118,8 +118,8 @@ const ProductDetail = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.2, delay: 0.1, ease: 'easeOut' }}
             className=""
           >
             <Link
@@ -292,8 +292,8 @@ const ProductDetail = () => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           className=""
         >
           <RelatedProducts product={product} />

@@ -34,8 +34,8 @@ const PhilosophySection = () => {
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           className="relative"
         >
           <img
@@ -53,8 +53,8 @@ const PhilosophySection = () => {
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
         >
           <span className="eyebrow">Our Philosophy</span>
           <h2 className="heading-sm text-[var(--color-charcoal)] mt-3 mb-4">
@@ -72,7 +72,7 @@ const PhilosophySection = () => {
                   key={p.title}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "-80px" }}
                   transition={{ delay: i * 0.1, duration: 0.5, ease: 'easeOut' }}
                   whileHover={{ y: -4 }}
                   className="p-4 rounded-xl bg-[var(--color-card)] border border-[var(--color-border-light)] shadow-sm"

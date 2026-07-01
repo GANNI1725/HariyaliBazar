@@ -66,7 +66,7 @@ const Contact = () => {
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
             >
               <h2 className="font-[var(--font-heading)] text-xl sm:text-2xl text-[var(--color-pure-white)]">
                 Get in Touch
@@ -76,7 +76,7 @@ const Contact = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               className="bg-[var(--color-card)] rounded-2xl p-5 sm:p-6 border border-[var(--color-border)] shadow-sm h-fit"
             >
               <h2 className="font-[var(--font-heading)] text-xl sm:text-2xl text-[var(--color-forest)] mb-0.5">
@@ -162,7 +162,7 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             className="space-y-6"
           >
             <div className="space-y-3">

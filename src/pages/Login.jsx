@@ -34,7 +34,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 relative bg-cover bg-center pt-20" style={{ backgroundImage: 'url(/Home-Logo_Section_Pics/Login-Page.-BG.png)' }}>
       <div className="absolute inset-0 bg-[var(--color-pure-black)]/60" />
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, ease: 'easeOut' }} className="w-full max-w-md relative">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.2, ease: 'easeOut' }} className="w-full max-w-md relative">
         <div className="bg-[var(--color-card)] rounded-2xl shadow-lg border border-[var(--color-border)] p-8">
           <div className="text-center mb-8">
             <div className="w-14 h-14 mx-auto rounded-full bg-[var(--color-forest)]/10 flex items-center justify-center mb-4">

@@ -24,7 +24,7 @@ const FarmerSpotlight = memo(() => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
+              transition={{ duration: 0.2, delay: i * 0.1, ease: 'easeOut' }}
               onClick={() => setSelected(f)}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelected(f); } }}
               role="button"
