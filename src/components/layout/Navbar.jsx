@@ -57,7 +57,7 @@ const Navbar = () => {
         className={`w-full z-50 transition-all duration-300 ${
           isAuthPage
             ? 'fixed top-0 bg-[var(--color-card)]/90 backdrop-blur-sm'
-            : `sticky top-0 ${scrolled ? 'bg-[var(--color-background)]/85 backdrop-blur-md shadow-sm' : 'bg-[var(--color-background)]'}`
+            : `sticky top-0 relative ${scrolled ? 'bg-[var(--color-background)]/85 backdrop-blur-md shadow-sm' : 'bg-[var(--color-background)]'}`
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -201,11 +201,11 @@ const Navbar = () => {
           <AnimatePresence>
             <motion.div
               key="mobile-menu"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.25, ease: 'easeInOut' }}
-              className="lg:hidden border-t border-[var(--color-border)] bg-[var(--color-background)] overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: 'easeInOut' }}
+              className="lg:hidden absolute left-0 right-0 top-full z-50 border-t border-[var(--color-border)] bg-[var(--color-background)] shadow-lg"
             >
               <nav className="px-4 py-3 space-y-1">
                 {navLinks.map((l) => (

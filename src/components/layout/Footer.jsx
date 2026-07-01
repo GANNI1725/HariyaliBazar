@@ -153,10 +153,10 @@ const Footer = () => {
             Payment Methods
           </p>
           <div className="flex flex-wrap gap-4 items-center">
-            <img src="/Footer-Payment-Method/E-sewa.png" alt="eSewa" loading="lazy" className="h-7 w-auto object-contain" />
-            <img src="/Footer-Payment-Method/Khalti.png" alt="Khalti" loading="lazy" className="h-7 w-auto object-contain" />
-            <img src="/Footer-Payment-Method/Cash-On-Delivery.png" alt="Cash on Delivery" loading="lazy" className="h-7 w-auto object-contain" />
-            <img src="/Footer-Payment-Method/Bank-Transfer.png" alt="Bank Transfer" loading="lazy" className="h-7 w-auto object-contain" />
+            <img src="/Footer-Payment-Method/E-sewa.png" alt="eSewa" loading="lazy" width="80" height="28" className="h-7 w-auto object-contain" />
+            <img src="/Footer-Payment-Method/Khalti.png" alt="Khalti" loading="lazy" width="80" height="28" className="h-7 w-auto object-contain" />
+            <img src="/Footer-Payment-Method/Cash-On-Delivery.png" alt="Cash on Delivery" loading="lazy" width="80" height="28" className="h-7 w-auto object-contain" />
+            <img src="/Footer-Payment-Method/Bank-Transfer.png" alt="Bank Transfer" loading="lazy" width="80" height="28" className="h-7 w-auto object-contain" />
           </div>
         </div>
 
