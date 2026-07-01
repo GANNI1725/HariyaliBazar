@@ -1,14 +1,16 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Plus, Edit3, Trash2, X, LogOut, Package, Users, ShoppingBag, AlertTriangle, ChevronDown, Upload, Tags } from 'lucide-react'
+import { Plus, Edit3, Trash2, X, LogOut, Package, Users, ShoppingBag, AlertTriangle, ChevronDown, Upload, Tags, Truck } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { useAuth } from '../context/AuthContext'
 import { useProducts } from '../context/ProductContext'
 import { farmers } from '../data/farmers'
+import { deliveryZones as initialZones, saveDeliveryZones } from '../data/deliveryZones'
 
 
 const EMPTY_PRODUCT = { name: '', nameNepali: '', category: 'vegetables', price: '', originalPrice: '', unit: 'kg', inStock: true, isOrganic: true, isSameDay: false, description: '', farmer: '', farmerId: '', images: [''] }
+const EMPTY_ZONE = { area: '', district: 'Rupandehi', sameDay: true, fee: '' }
 
 const AdminPanel = () => {
   const { user, logout, isAdmin } = useAuth()
@@ -26,6 +28,13 @@ const AdminPanel = () => {
   const fileRef = useRef(null)
   const [showCatModal, setShowCatModal] = useState(false)
   const [catForm, setCatForm] = useState({ icon: '', name: '', description: '' })
+  const [zones, setZones] = useState(() => [...initialZones])
+  const [showZoneModal, setShowZoneModal] = useState(false)
+  const [editingZone, setEditingZone] = useState(null)
+  const [zoneForm, setZoneForm] = useState(EMPTY_ZONE)
+  const [pinPrompt, setPinPrompt] = useState(false)
+  const [pinValue, setPinValue] = useState('')
+  const [usersUnlocked, setUsersUnlocked] = useState(false)
 
   useEffect(() => {
     if (!isAdmin) { navigate('/login', { replace: true }); return }
@@ -113,10 +122,11 @@ const AdminPanel = () => {
   if (!isAdmin) return null
 
   const tabs = [
-    { id: 'categories', label: 'Categories', icon: Tags },
-    { id: 'products', label: 'Products', icon: Package },
     { id: 'orders', label: 'Orders', icon: ShoppingBag },
-    { id: 'users', label: 'Users', icon: Users },
+    { id: 'products', label: 'Products', icon: Package },
+    { id: 'delivery', label: 'Delivery', icon: Truck },
+    { id: 'categories', label: 'Categories', icon: Tags },
+    { id: 'users', label: 'Users', icon: Users, locked: true },
   ]
 
   const statCards = [
@@ -169,10 +179,18 @@ const AdminPanel = () => {
 
       <div className="flex gap-1 mb-6 bg-[var(--color-background)] rounded-lg p-1 border border-[var(--color-border)] overflow-x-auto w-full"
       >
-        <div className="flex gap-1 min-w-max sm:min-w-0 w-full sm:w-auto sm:grid sm:grid-cols-4">
+        <div className="flex gap-1 min-w-max sm:min-w-0 w-full sm:w-auto sm:grid sm:grid-cols-5">
           {tabs.map(t => (
-            <button key={t.id} onClick={() => setTab(t.id)} className={`flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded whitespace-nowrap ${tabBtnColor(tab === t.id)}`}>
-              <t.icon size={16} /> {t.label}
+            <button
+              key={t.id}
+              onClick={() => {
+                if (t.locked && !usersUnlocked) { setPinPrompt(true); setPinValue(''); return }
+                if (tab === 'users' && t.id !== 'users') { setUsersUnlocked(false) }
+                setTab(t.id)
+              }}
+              className={`flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded whitespace-nowrap ${tabBtnColor(tab === t.id)}`}
+            >
+              <t.icon size={16} /> {t.label} {t.locked && !usersUnlocked && '🔒'}
             </button>
           ))}
         </div>
@@ -257,6 +275,52 @@ const AdminPanel = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {tab === 'delivery' && (
+        <div className="pb-16 md:pb-0">
+          <div className="flex justify-between items-center mb-4">
+            <p className="text-sm text-[var(--color-text-secondary)]">{zones.length} delivery zones</p>
+            <button onClick={() => { setZoneForm(EMPTY_ZONE); setEditingZone(null); setShowZoneModal(true) }} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--color-forest)] text-white text-sm font-medium hover:bg-[var(--color-leaf)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">
+              <Plus size={16} /> Add Zone
+            </button>
+          </div>
+          <div className="bg-[var(--color-card)] rounded-xl border border-[var(--color-border)] overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="bg-[var(--color-background)] text-[var(--color-text-secondary)]">
+                  <tr>
+                    <th className="text-left px-4 py-3 font-medium">Area</th>
+                    <th className="text-left px-4 py-3 font-medium hidden sm:table-cell">District</th>
+                    <th className="text-center px-4 py-3 font-medium hidden sm:table-cell">Same-Day</th>
+                    <th className="text-right px-4 py-3 font-medium">Fee (NPR)</th>
+                    <th className="text-right px-4 py-3 font-medium">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[var(--color-border)]">
+                  {zones.map((z, i) => (
+                    <tr key={`${z.area}-${i}`} className="hover:bg-[var(--color-hover)] transition-colors">
+                      <td className="px-4 py-3 font-medium text-[var(--color-text)]">{z.area}</td>
+                      <td className="px-4 py-3 hidden sm:table-cell text-[var(--color-text-secondary)]">{z.district}</td>
+                      <td className="px-4 py-3 text-center hidden sm:table-cell">
+                        <span className={'inline-block px-2 py-0.5 rounded-full text-xs font-medium ' + (z.sameDay ? 'bg-[var(--color-success-bg)] text-[var(--color-success-text)]' : 'bg-[var(--color-badge-default-bg)] text-[var(--color-text-secondary)]')}>
+                          {z.sameDay ? 'Yes' : 'No'}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-right font-medium text-[var(--color-forest)]">Rs. {z.fee}</td>
+                      <td className="px-4 py-3 text-right">
+                        <div className="flex items-center justify-end gap-1">
+                          <button onClick={() => { setZoneForm(z); setEditingZone(`${z.area}-${i}`); setShowZoneModal(true) }} aria-label={`Edit ${z.area}`} className="p-1.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-info-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded"><Edit3 size={16} /></button>
+                          <button onClick={() => { const updated = zones.filter((_, idx) => idx !== i); setZones(updated); saveDeliveryZones(updated); toast.success('Zone deleted') }} aria-label={`Delete ${z.area}`} className="p-1.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-error)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded"><Trash2 size={16} /></button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )}
@@ -502,6 +566,97 @@ const AdminPanel = () => {
                 <button onClick={() => setDeleteId(null)} className="px-4 py-2 rounded-lg text-sm font-medium text-[var(--color-text-secondary)] hover:bg-[var(--color-border)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">Cancel</button>
                 <button onClick={() => confirmDelete(deleteId)} className="px-4 py-2 rounded-lg bg-[var(--color-error)] text-white text-sm font-medium hover:bg-[var(--color-error-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">Delete</button>
               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {pinPrompt && (
+          <motion.div key="pin-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--color-pure-black)]/40 backdrop-blur-sm" onClick={() => setPinPrompt(false)}>
+            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="bg-[var(--color-card)] rounded-3xl shadow-xl border border-[var(--color-border)] w-full max-w-xs p-8 text-center" onClick={e => e.stopPropagation()}>
+              <div className="w-16 h-16 mx-auto rounded-full bg-[var(--color-forest)]/10 flex items-center justify-center mb-5">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--color-forest)]"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <h3 className="text-lg font-bold text-[var(--color-text)] mb-1">Enter PIN</h3>
+              <p className="text-sm text-[var(--color-text-secondary)] mb-6">Admin access requires a PIN</p>
+
+              <div className="relative flex justify-center gap-3 mb-6">
+                {[0, 1, 2, 3].map(i => (
+                  <div
+                    key={i}
+                    className={`w-4 h-4 rounded-full border-2 transition-all duration-150 ${
+                      pinValue.length > i
+                        ? 'bg-[var(--color-forest)] border-[var(--color-forest)]'
+                        : 'border-[var(--color-border)]'
+                    }`}
+                  />
+                ))}
+                <input
+                  type="text" inputMode="numeric" maxLength={4} value={pinValue} autoFocus autoComplete="off" data-1p-ignore=""
+                  onChange={e => {
+                    const digits = e.target.value.replace(/\D/g, '')
+                    setPinValue(digits)
+                    if (digits.length === 4) {
+                      if (digits === '8848') { setUsersUnlocked(true); setPinPrompt(false); setTab('users') }
+                    }
+                  }}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  style={{ caretColor: 'transparent', WebkitTextSecurity: 'disc' }}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showZoneModal && (
+          <motion.div key="zone-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--color-pure-black)]/40" onClick={() => setShowZoneModal(false)}>
+            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="bg-[var(--color-card)] rounded-2xl shadow-xl border border-[var(--color-border)] w-full max-w-md" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-5 border-b border-[var(--color-border)]">
+                <h2 className="text-lg font-bold text-[var(--color-forest)]">{editingZone ? 'Edit Zone' : 'Add Zone'}</h2>
+                <button onClick={() => setShowZoneModal(false)} aria-label="Close modal" className="p-1 rounded-md hover:bg-[var(--color-border)] focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"><X size={20} /></button>
+              </div>
+              <form onSubmit={e => {
+                e.preventDefault()
+                if (!zoneForm.area.trim() || !zoneForm.fee) { toast.error('Area and fee are required'); return }
+                const zone = { area: zoneForm.area.trim(), district: zoneForm.district, sameDay: zoneForm.sameDay, fee: Number(zoneForm.fee) }
+                let updated
+                if (editingZone) {
+                  updated = zones.map((z, i) => `${z.area}-${i}` === editingZone ? zone : z)
+                } else {
+                  if (zones.some(z => z.area.toLowerCase() === zone.area.toLowerCase())) { toast.error('Zone with this area already exists'); return }
+                  updated = [...zones, zone]
+                }
+                setZones(updated)
+                saveDeliveryZones(updated)
+                setShowZoneModal(false)
+                toast.success(editingZone ? 'Zone updated' : 'Zone added')
+              }} className="p-5 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Area</label>
+                    <input type="text" value={zoneForm.area} onChange={e => setZoneForm(f => ({ ...f, area: e.target.value }))} placeholder="e.g. Butwal" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-[var(--color-text)] mb-1">District</label>
+                    <input type="text" value={zoneForm.district} onChange={e => setZoneForm(f => ({ ...f, district: e.target.value }))} placeholder="e.g. Rupandehi" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Delivery Fee (NPR)</label>
+                  <input type="number" value={zoneForm.fee} onChange={e => setZoneForm(f => ({ ...f, fee: e.target.value }))} placeholder="e.g. 30" className="w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-leaf)]" />
+                </div>
+                <label className="flex items-center gap-2 text-sm text-[var(--color-text)]">
+                  <input type="checkbox" checked={zoneForm.sameDay} onChange={e => setZoneForm(f => ({ ...f, sameDay: e.target.checked }))} className="rounded border-[var(--color-border)] text-[var(--color-leaf)] focus:ring-[var(--color-leaf)]" />
+                  Same-day delivery
+                </label>
+                <div className="flex justify-end gap-3 pt-2">
+                  <button type="button" onClick={() => setShowZoneModal(false)} className="px-4 py-2 rounded-lg text-sm font-medium text-[var(--color-text-secondary)] hover:bg-[var(--color-border)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2">Cancel</button>
+                  <button type="submit" className="px-4 py-2 rounded-lg bg-[var(--color-forest)] text-white text-sm font-medium hover:bg-[var(--color-leaf)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2">{editingZone ? 'Update' : 'Add'} Zone</button>
+                </div>
+              </form>
             </motion.div>
           </motion.div>
         )}

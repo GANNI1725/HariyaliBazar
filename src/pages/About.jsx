@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
-import { Sprout, Users, Heart, Award, Star, MapPin } from 'lucide-react'
+import { Sprout, Users, Heart, Award, Star } from 'lucide-react'
 import { farmers } from '../data/farmers'
 import { products } from '../data/products'
 import SectionHeader from '../components/shared/SectionHeader'

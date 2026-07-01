@@ -36,6 +36,11 @@ const TermsConditions = lazy(() => import('./pages/TermsConditions'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
+const SpeedInsightsTracker = () => {
+  const { pathname } = useLocation()
+  return <SpeedInsights route={pathname} />
+}
+
 const AnimatedRoutes = () => {
   const location = useLocation()
   const navigationType = useNavigationType()
@@ -80,7 +85,6 @@ const AnimatedRoutes = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
-        <SpeedInsights route={pathname} />
       </motion.div>
     </AnimatePresence>
   )
@@ -133,6 +137,7 @@ const App = () => {
                 }}
               />
           </div>
+          <SpeedInsightsTracker />
           </ErrorBoundary>
           </ProductProvider>
         </WishlistProvider>

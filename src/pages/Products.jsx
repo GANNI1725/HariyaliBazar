@@ -69,7 +69,7 @@ const Products = () => {
     if (params.toString() !== current.toString()) {
       setSearchParams(params, { replace: true })
     }
-  }, [filters.categories, sort, setSearchParams])
+  }, [filters.categories, sort, setSearchParams, searchParams])
 
   const totalCount = useMemo(() => products.filter((p) => p.category !== 'juices').length, [products])
 

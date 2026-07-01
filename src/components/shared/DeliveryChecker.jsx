@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useState, useRef, useEffect } from 'react'
 import { MapPin, CheckCircle2, XCircle, Truck, Search } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { deliveryZones, checkDelivery } from '../../data/deliveryZones'
+import { getDeliveryZones, checkDelivery } from '../../data/deliveryZones'
 import Button from './Button'
 
 const DeliveryChecker = ({ compact = false }) => {
@@ -21,7 +21,7 @@ const DeliveryChecker = ({ compact = false }) => {
       return
     }
     const q = query.trim().toLowerCase()
-    const matches = deliveryZones.filter((z) =>
+    const matches = getDeliveryZones().filter((z) =>
       z.area.toLowerCase().includes(q),
     )
     setSuggestions(matches)
