@@ -377,7 +377,7 @@
     background: var(--color-forest);
   }
 
-  * {
+  html {
     scrollbar-width: thin;
     scrollbar-color: var(--color-leaf) var(--color-border);
   }
