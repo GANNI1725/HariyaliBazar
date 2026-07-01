@@ -73,7 +73,7 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('hariyali-current-user')
     setUser(null)
     toast.dismiss()
-    toast('Logged out successfully', { icon: '👋', duration: 2000 })
+    toast.success('Logged out successfully')
   }, [])
 
   const updateAddress = useCallback((address) => {
