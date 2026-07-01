@@ -77,6 +77,16 @@ const ProductCard = memo(({ product, onQuickView }) => {
           </button>
         )}
 
+        <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out">
+          <button
+            onClick={(e) => { e.stopPropagation(); product.inStock && addItem(product); }}
+            disabled={!product.inStock}
+            aria-label={`Add ${product.name} to cart`}
+            className="w-full bg-[var(--color-forest)] hover:bg-[var(--color-leaf)] text-[var(--color-pure-white)] text-xs font-semibold py-1.5 md:py-3 inline-flex items-center justify-center gap-1 disabled:bg-[var(--color-disabled)] disabled:cursor-not-allowed transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-[-2px]"
+          >
+            <ShoppingCart size={12} className="md:size-[14px]" /> Add to Cart
+          </button>
+        </div>
       </div>
 
       <div className="p-3 sm:p-4 flex flex-col flex-1">
@@ -129,9 +139,9 @@ const ProductCard = memo(({ product, onQuickView }) => {
             onClick={(e) => { e.stopPropagation(); product.inStock && addItem(product); }}
             disabled={!product.inStock}
             aria-label={`Add ${product.name} to cart`}
-            className="bg-[var(--color-forest)] hover:bg-[var(--color-leaf)] text-[var(--color-pure-white)] text-xs font-semibold py-1.5 px-3 sm:px-4 rounded-lg inline-flex items-center justify-center gap-1 disabled:bg-[var(--color-disabled)] disabled:cursor-not-allowed transition-colors duration-200 shrink-0"
+            className="md:hidden bg-[var(--color-forest)] hover:bg-[var(--color-leaf)] text-[var(--color-pure-white)] text-xs font-semibold py-1.5 px-2.5 sm:px-3 rounded-lg inline-flex items-center justify-center gap-1 disabled:bg-[var(--color-disabled)] disabled:cursor-not-allowed transition-colors duration-200 shrink-0"
           >
-            <ShoppingCart size={12} className="sm:size-[14px]" /> Add to Cart
+            <ShoppingCart size={12} /> Add
           </button>
         </div>
       </div>
