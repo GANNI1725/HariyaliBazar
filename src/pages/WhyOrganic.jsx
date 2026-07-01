@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { CheckCircle2, XCircle, Sprout, Heart, Leaf, ArrowRight } from 'lucide-react'
@@ -41,6 +42,11 @@ const compare = [
 ]
 
 const WhyOrganic = () => {
+  useEffect(() => {
+    const img = new Image()
+    img.src = '/Why-Organic/Why-Organic.jpg'
+  }, [])
+
   return (
     <>
     <div className="relative min-h-screen bg-[#1a2e1a] bg-cover bg-center" style={{ backgroundImage: `url('/Why-Organic/Why-Organic.jpg')` }}>
@@ -50,8 +56,9 @@ const WhyOrganic = () => {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
             >
               <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[var(--color-forest)] dark:bg-[var(--color-leaf)] text-[var(--color-pure-white)] mb-3 sm:mb-5">
                 <Leaf size={20} className="sm:size-[28px]" />
