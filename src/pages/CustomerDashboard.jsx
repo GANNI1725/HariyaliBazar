@@ -53,7 +53,7 @@ const CustomerDashboard = () => {
           <h1 className="text-2xl font-[var(--font-heading)] font-bold text-[var(--color-forest)]">My Account</h1>
           <p className="text-sm text-[var(--color-text-secondary)]">Welcome back, {user?.name}</p>
         </div>
-        <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-[var(--color-error)] hover:bg-[var(--color-error-bg)] transition-colors">
+        <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-[#B91C1C] hover:bg-[var(--color-error-bg)] transition-colors">
           <LogOut size={16} /> Logout
         </button>
       </div>

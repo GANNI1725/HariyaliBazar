@@ -164,7 +164,7 @@ const AdminPanel = () => {
           <h1 className="text-2xl font-[var(--font-heading)] font-bold text-[var(--color-forest)]">Admin Panel</h1>
           <p className="text-sm text-[var(--color-text-secondary)]">Welcome, {user?.name}</p>
         </div>
-        <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-[var(--color-error)] hover:bg-[var(--color-error-bg)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">
+        <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-[#B91C1C] hover:bg-[var(--color-error-bg)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">
           <LogOut size={16} /> Logout
         </button>
       </div>

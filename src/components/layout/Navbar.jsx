@@ -174,7 +174,7 @@ const Navbar = () => {
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
                       </Link>
                     )}
-                    <button onClick={() => setShowLogoutConfirm(true)} className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-[var(--color-error)] hover:bg-[var(--color-error-bg)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)]">
+                    <button onClick={() => setShowLogoutConfirm(true)} className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-[#B91C1C] hover:bg-[var(--color-error-bg)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)]">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                       Logout
                     </button>
@@ -234,7 +234,7 @@ const Navbar = () => {
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
                       {isAdmin ? 'Admin Panel' : 'My Account'}
                     </NavLink>
-                    <button onClick={() => setShowLogoutConfirm(true)} className="flex items-center gap-2 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium text-[var(--color-error)] hover:bg-[var(--color-error-bg)]">
+                    <button onClick={() => setShowLogoutConfirm(true)} className="flex items-center gap-2 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium text-[#B91C1C] hover:bg-[var(--color-error-bg)]">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                       Logout
                     </button>
