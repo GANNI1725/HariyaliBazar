@@ -38,11 +38,15 @@ const Navbar = () => {
   const isAuthPage = pathname === '/login' || pathname === '/signup'
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 8)
-      if (mobileOpen) setMobileOpen(false)
-    }
+    const onScroll = () => setScrolled(window.scrollY > 8)
     onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    if (!mobileOpen) return
+    const onScroll = () => setMobileOpen(false)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [mobileOpen])
