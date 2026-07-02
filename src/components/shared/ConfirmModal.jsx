@@ -39,7 +39,7 @@ const ConfirmModal = ({ isOpen, title, message, confirmLabel, cancelLabel, onCon
               </button>
               <button
                 onClick={onConfirm}
-                className="px-5 py-2.5 rounded-lg text-sm font-medium text-[var(--color-pure-white)] bg-[var(--color-error)] hover:brightness-110 transition-all focus-visible:outline-2 focus-visible:outline-[var(--color-error)] focus-visible:outline-offset-2"
+                className="px-5 py-2.5 rounded-lg text-sm font-medium text-[var(--color-pure-white)] bg-[#B91C1C] hover:brightness-75 transition-all focus-visible:outline-2 focus-visible:outline-[#B91C1C] focus-visible:outline-offset-2"
               >
                 {confirmLabel || 'Clear'}
               </button>
