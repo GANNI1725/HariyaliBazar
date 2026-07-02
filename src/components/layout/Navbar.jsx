@@ -53,6 +53,16 @@ const Navbar = () => {
     return () => unlockScroll()
   }, [mobileOpen])
 
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
+    const handler = () => setMobileOpen(false)
+    window.addEventListener('close-mobile-menu', handler)
+    return () => window.removeEventListener('close-mobile-menu', handler)
+  }, [])
+
   return (
     <>
       <header
@@ -116,7 +126,7 @@ const Navbar = () => {
 
             <div className="flex items-center gap-1">
               <button
-                onClick={() => setSearchOpen(true)}
+                onClick={() => { setSearchOpen(true); setMobileOpen(false) }}
                 aria-label="Open search"
                 className="min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] p-1.5 sm:p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
               >
@@ -140,7 +150,7 @@ const Navbar = () => {
 
               {!isAdmin && (
                 <button
-                  onClick={openCart}
+                  onClick={() => { openCart(); setMobileOpen(false) }}
                   aria-label={`Cart with ${totalItems} items`}
                   className="relative min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] p-1.5 sm:p-2.5 rounded-md hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors flex items-center justify-center focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
                 >

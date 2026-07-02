@@ -36,7 +36,7 @@ const MobileBottomNav = () => {
           </li>
           <li>
             <button
-              onClick={() => setSearchOpen(true)}
+              onClick={() => { setSearchOpen(true); window.dispatchEvent(new CustomEvent('close-mobile-menu')) }}
               aria-label="Open search"
               className="flex flex-col items-center justify-center gap-0.5 h-full w-full min-h-[44px] text-xs font-medium text-[var(--color-text)]/70 focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2"
             >
