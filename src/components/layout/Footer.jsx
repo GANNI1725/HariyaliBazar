@@ -133,10 +133,6 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${label} (opens in new tab)`}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ delay: i * 0.1, duration: 0.3 }}
                     whileHover={{ scale: 1.15, rotate: [0, -8, 8, -4, 0] }}
                     className={`w-9 h-9 rounded-full bg-[var(--color-forest)] text-[var(--color-pure-white)] flex items-center justify-center transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-[var(--color-pure-white)] focus-visible:outline-offset-2 ${hoverCls}`}
                   >
