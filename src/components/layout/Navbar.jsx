@@ -268,7 +268,7 @@ const Navbar = () => {
               <p className="text-sm text-[var(--color-text-secondary)] mb-6">Are you sure you want to logout?</p>
               <div className="flex justify-center gap-3">
                 <button onClick={() => setShowLogoutConfirm(false)} className="px-4 py-2 rounded-lg text-sm font-medium text-[var(--color-text-secondary)] hover:bg-[var(--color-border)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">Cancel</button>
-                <button onClick={() => { logout(); setShowLogoutConfirm(false); setMobileOpen(false) }} className="px-4 py-2 rounded-lg bg-[var(--color-error)] text-white text-sm font-medium hover:bg-[var(--color-error-text)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">Logout</button>
+                <button onClick={() => { logout(); setShowLogoutConfirm(false); setMobileOpen(false) }} className="px-4 py-2 rounded-lg bg-[#B91C1C] text-white text-sm font-medium hover:brightness-75 transition-all focus-visible:outline-2 focus-visible:outline-[var(--color-leaf)] focus-visible:outline-offset-2 rounded">Logout</button>
               </div>
             </motion.div>
           </motion.div>
