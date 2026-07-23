@@ -344,6 +344,41 @@
     contain-intrinsic-size: 1px 500px;
   }
 
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 9999;
+    will-change: clip-path;
+    animation: circle-reveal 900ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  @keyframes circle-reveal {
+    from {
+      clip-path: circle(0% at var(--x) var(--y));
+    }
+    to {
+      clip-path: circle(150% at var(--x) var(--y));
+    }
+  }
+
+  .btn-toggle-anim {
+    animation: btn-scale-press 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes btn-scale-press {
+    0% { transform: scale(1); }
+    40% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
