@@ -3,6 +3,7 @@ import { Suspense, lazy, useEffect } from 'react'
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
 import { Toaster } from 'react-hot-toast'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+import { Analytics } from '@vercel/analytics/react'
 import { AuthProvider } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import { WishlistProvider } from './context/WishlistContext'
@@ -138,6 +139,7 @@ const App = () => {
               />
           </div>
           <SpeedInsightsTracker />
+          <Analytics />
           </ErrorBoundary>
           </ProductProvider>
         </WishlistProvider>
