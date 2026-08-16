@@ -60,7 +60,7 @@ const AnimatedRoutes = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
-        className="w-full"
+        className="w-full min-h-screen"
       >
         <Suspense fallback={<LoadingSpinner fullscreen />}>
           <Routes location={location}>

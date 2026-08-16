@@ -126,7 +126,7 @@ const Footer = () => {
                   [FacebookIcon, 'Facebook', 'https://facebook.com', 'hover:bg-[#1877F2] hover:shadow-[0_0_12px_#1877F2]'],
                   [InstagramIcon, 'Instagram', 'https://instagram.com', 'hover:bg-[#E4405F] hover:shadow-[0_0_12px_#E4405F]'],
                   [YoutubeIcon, 'YouTube', 'https://youtube.com', 'hover:bg-[#FF0000] hover:shadow-[0_0_12px_#FF0000]'],
-                ].map(([Icon, label, href, hoverCls], i) => (
+                ].map(([Icon, label, href, hoverCls]) => (
                   <motion.a
                     key={label}
                     href={href}
